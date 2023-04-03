@@ -1,0 +1,315 @@
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #F9FBFD;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.navbar-top {
+    background-color: white;
+    border-bottom: 1px gainsboro solid;
+}
+
+.item-navbartop{
+    margin-left: 100px;
+}
+
+.form-search{
+    margin-right: 400px;
+}
+
+.user-logo-nav{
+    color: gray;
+}
+
+.area-right-nav{
+    margin-right: 100px;
+}
+
+.input-search{
+    border-radius: 25px;
+}
+
+.forgotPassword{
+    float: right;
+    color: gray;
+    margin: 10px;
+}
+
+.btn-login{
+    margin-top:20px;
+    width: 100%;
+    color: white;
+    background-color:#0A1421;
+}
+
+.btn-login:hover{
+    background-color: rgb(69, 68, 68);
+}
+
+.btn-login-facebook{
+    width: 100%;
+    color: white;
+}
+
+.no-have-account{
+    margin-top:10px;
+    text-align: center;
+    color: gray;
+}
+
+.orLableLogin{
+    margin-top:10px;
+    text-align: center;
+    color: gray;
+}
+
+.text-processing{
+    color: black;
+    font-size: 20px;
+}
+
+.text-pending{
+    color: gray;
+    font-size: 20px;
+}
+
+.saperate{
+    font-size:20px;
+}
+.modal.left .modal-dialog,
+	.modal.right .modal-dialog {
+		position: fixed;
+		margin: auto;
+		width: 350px;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
+	}
+
+	.modal.left .modal-content,
+	.modal.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+
+	.modal.left .modal-body,
+	.modal.right .modal-body {
+		padding: 15px 15px 80px;
+	}
+
+/*Left*/
+	.modal.left.fade .modal-dialog{
+		left: 0px;
+		-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+		        transition: opacity 0.3s linear, left 0.3s ease-out;
+	}
+
+	.modal.left.fade.in .modal-dialog{
+		left: 0;
+	}
+
+
+	.modal.right .modal-body,
+	.modal.right .modal-body {
+		padding: 15px 15px 80px;
+	}
+
+/*Right*/
+	.modal.right.fade .modal-dialog{
+		right: 0px;
+		-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+		        transition: opacity 0.3s linear, left 0.3s ease-out;
+	}
+
+	.modal.right.fade.in .modal-dialog{
+		right: 0;
+	}
+
+.card{
+    width: 180px;
+    height: 375px;
+}
+
+.btn_book{
+    width:100%;
+    background-color: #dc2626;
+    color: white;
+    font-size: 13px;;
+}
+
+.date-show{
+    color: gray;
+    font-size: 14px;
+}
+
+.logo-footer{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.text-footer{
+    margin-top: 10px;
+    color: gray;
+    font-size: 14px;
+}
+
+.partner{
+    margin-top: 10px;
+    color: gray;
+    font-size: 14px;
+}
+
+.title-bold{
+    font-weight: bold;
+}
+
+.partner-logo{
+    margin-top: 10px;
+}
+
+.avatar-partner{
+    position: relative;
+    display: inline-block;
+    padding: 3px;
+}
+
+.round-circle{
+    border-radius: 50%!important;
+    width: 40px;
+}
+
+.license-logo{
+    margin-left: 120px;
+}
+
+.footer-user-page{
+    background-color: #EDF2F9;
+    margin-top: 20px;
+}
+
+.review-new{
+    width: 100%;
+}
+
+.review-right{
+    width: 100%;
+}
+
+.area-review{
+    margin-top: 20px;
+}
+
+.card-header-review{
+    background-color: #edf2f9;
+}
+
+.province-logo-nav{
+    margin-right: 15px;
+     color: gray;
+}
+
+.number-rap{
+    color: gray;
+    font-size: 12px;
+}
+.name-cate-review{
+    color: red;
+    font-size: 12px;
+}
+.time-post-review{
+    color: gray;
+}
+.name-review{
+    color: black;
+    font-weight: bold;
+}
+.desc-review{
+    color: gray;
+    font-size: 12px;
+}
+
+.card{
+    height: auto;
+}
+
+#lich-chieu-background{
+   width: 100%;
+   height: 120px;
+   background-image: url(https://moveek.com/build/images/tix-banner.36bfeb64.png);
+}
+
+.btn-date-choose{
+    width: 80px;
+}
+
+.btn-date-choose-in-ticket{
+    width: 140px;
+}
+
+.bg-dark{
+    background-color: #12263f!important;
+}
+
+.featured-movie {
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.title-film-ticket{
+    font-size:25px;
+}
+.desc-film-ticket{
+    color: #8399B6 !important;
+    font-size: 15px;
+}
+
+.mua-ve-tt{
+    font-size:  20px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #12263f;
+    background-color: transparent;
+    border-color: transparent transparent #2c7be5;
+}
+
+.nav-item a{
+    color: gray;
+}
+
+.card-wrap-dang-chieu{
+    margin-right: 10px; margin-bottom: 10px;
+}
+
+.card-dang-chieu{
+    height: 245px; width: 129px;
+}
+
+.title-chi-tiet-phim{
+    color: white;
+    font-size: 25px;
+}
+
+.btn-do-movie-rate{
+    background: white;
+    color: black;
+}
+.name-film-slide{
+    margin-bottom: 0px;
+}
