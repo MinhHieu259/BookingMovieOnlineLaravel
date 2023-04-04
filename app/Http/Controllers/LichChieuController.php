@@ -8,7 +8,11 @@ class LichChieuController extends Controller
 {
     public function LichChieu()
     {
-        return view('components.user.lich-chieu');
+        return view('components.user.LichChieu.lich-chieu');
     }
 
+    public function ChiTietLichChieu()
+    {
+        return view('components.user.LichChieu.chi-tiet-lich-chieu');
+    }
 }

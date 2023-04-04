@@ -4,9 +4,9 @@
     <div class="bg-white border-top border-bottom mt-3 pt-4">
         <div class="container">
             <h2 class="text-center">
-                <a class="text-processing" href="">Đang chiếu</a>
+                <a class="text-processing" href="{{route('dang-chieu')}}">Đang chiếu</a>
                 <span class="saperate">|</span>
-                <a href="" class="text-pending">Sắp chiếu</a>
+                <a href="{{route('sap-chieu')}}" class="text-pending">Sắp chiếu</a>
             </h2>
 
             <div class="container mt-3 p-5">

@@ -8,16 +8,21 @@ class PhimController extends Controller
 {
     public function DangChieu()
     {
-        return view('components.user.dang-chieu');
+        return view('components.user.Phim.dang-chieu');
     }
 
     public function SapChieu()
     {
-        return view('components.user.sap-chieu');
+        return view('components.user.Phim.sap-chieu');
     }
 
     public function MuaVe()
     {
-        return view('components.user.mua-ve');
+        return view('components.user.Phim.mua-ve');
+    }
+
+    public function ThongTinPhim()
+    {
+        return view('components.user.Phim.thong-tin-phim');
     }
 }
