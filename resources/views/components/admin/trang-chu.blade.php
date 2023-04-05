@@ -1,5 +1,8 @@
 @extends('layouts.admin-layout')
 @section('title', 'Trang quản trị')
+@section('js')
+    <script src="{{asset('admin/function/auth.js')}}"></script>
+@endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">

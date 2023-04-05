@@ -10,4 +10,9 @@ class PageController extends Controller
     {
         return view('components.user.trang-chu');
     }
+
+    public function AccessDenied()
+    {
+        return view('errors.access-denied');
+    }
 }
