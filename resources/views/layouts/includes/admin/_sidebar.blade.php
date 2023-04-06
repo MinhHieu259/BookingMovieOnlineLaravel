@@ -32,10 +32,31 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item {{request()->is('admin/them-moi-rap') || request()->is('admin/danh-sach-rap') ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{request()->is('admin/them-moi-rap') || request()->is('admin/danh-sach-rap') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Quản Lý Rạp
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.listrap')}}" class="nav-link {{request()->is('admin/danh-sach-rap') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách rạp</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.addrap')}}" class="nav-link {{request()->is('admin/them-moi-rap') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới rạp</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item {{request()->is('admin/them-moi-admin') || request()->is('admin/danh-sach-admin') ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{request()->is('admin/them-moi-admin') || request()->is('admin/danh-sach-admin') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Quản lý ADMIN Rạp
@@ -44,13 +65,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            <a href="{{route('admin.listadmin')}}" class="nav-link {{request()->is('admin/danh-sach-admin') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách ADMIN</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{route('admin.addadmin')}}" class="nav-link {{request()->is('admin/them-moi-admin') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm mới ADMIN</p>
                             </a>
@@ -77,12 +98,12 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">LOGOUT</li>
+                <li class="nav-header">Đăng xuất</li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" id="logoutadmin">
+                    <a href="javascript:void(0)" class="nav-link" id="logoutadmin">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
-                            Logout
+                            Đăng xuất
                         </p>
                     </a>
                 </li>

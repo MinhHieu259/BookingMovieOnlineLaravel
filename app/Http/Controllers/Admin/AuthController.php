@@ -36,6 +36,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/dang-nhap');
+//        return redirect('/admin/dang-nhap')->with('message', 'Đăng xuất thành công');
+        return response()->json(['redirect' => '/admin/dang-nhap']);
     }
 }
