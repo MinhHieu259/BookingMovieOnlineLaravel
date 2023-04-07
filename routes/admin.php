@@ -20,6 +20,8 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     //Route For Rap
     Route::get('/them-moi-rap', [RapController::class, 'AddRap'])->name('admin.addrap');
     Route::get('/danh-sach-rap', [RapController::class, 'ListRap'])->name('admin.listrap');
+    Route::post('/validate-data-rap', [RapController::class, 'ValidateDataRap'])->name('admin.validateAddRap');
+    Route::post('/save-data-rap', [RapController::class, 'SaveDataRap'])->name('admin.savedatarap');
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');
 });

@@ -67,7 +67,9 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard3.js"></script>
 <script src="function/common.js"></script>
-@yield('js')
+
+@stack('js')
+@include('commons.popup.popup-confirm')
 </body>
 </html>
 

@@ -5,31 +5,7 @@
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endpush
-@section('js')
-    <script src="{{asset('admin/function/auth.js')}}"></script>
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script>
-        $(function () {
-            $('#table-rap').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
-@endsection
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -63,36 +39,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0
-                    </td>
-                    <td>
-                        <img src="" alt="Anh dai dien">
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-warning">Cập nhật</button>
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0
-                    </td>
-                    <td>
-                        <img src="" alt="Anh dai dien">
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-warning">Cập nhật</button>
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
+               @foreach($raps as $STT => $rap)
+                   <tr>
+                       <td>{{$STT + 1}}</td>
+                       <td>{{$rap->tenRap}}
+                       </td>
+                       <td>
+                           <img width="100" src="{{asset($rap->anhDaiDien)}}" alt="Anh dai dien">
+                       </td>
+                       <td class="text-center">
+                           <button class="btn btn-warning">Cập nhật</button>
+                       </td>
+                       <td class="text-center">
+                           <button class="btn btn-danger">Xóa</button>
+                       </td>
+                   </tr>
+               @endforeach
 
                 </tbody>
             </table>
@@ -101,3 +63,29 @@
     </div>
     <!-- /.content -->
 @endsection
+
+@push('js')
+    <script src="{{asset('admin/function/auth.js')}}"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script>
+        $(function () {
+            $('#table-rap').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+@endpush
