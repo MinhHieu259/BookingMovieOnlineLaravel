@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Thêm mới rạp</h1>
+                    <h1 class="m-0">Cập nhật thông tin rạp</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nameRap">Tên rạp</label>
-                                    <input type="text" class="form-control" id="tenRap" placeholder="Nhập tên rạp" autocomplete="off">
+                                    <input type="text" class="form-control" id="tenRap" placeholder="Nhập tên rạp" @if(isset($rap->tenRap)) value="{{$rap->tenRap}}" @endif autocomplete="off">
                                     <span class="text-danger input-error" id="tenRapError"></span>
                                 </div>
                                 <div class="form-group">
@@ -50,7 +50,11 @@
                                     </div>
                                    <div class="row">
                                        <div class="col-md-6">
-                                           <div id="avatarPreview"></div>
+                                           <div id="avatarPreview">
+                                               @if(isset($rap->anhDaiDien))
+                                                   <img style="margin-top: 20px; width: 500px;" src="{{asset($rap->anhDaiDien)}}" alt="">
+                                               @endif
+                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                            <button type="button" style="display:none;" class="float-right mt-5 btn btn-danger" id="delete-image-preview">Xóa</button>

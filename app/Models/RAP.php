@@ -11,6 +11,7 @@ class RAP extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = 'RAP';
+    protected $primaryKey = 'maRap';
     protected $fillable = [
         'maRap',
         'tenRap',

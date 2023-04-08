@@ -36,7 +36,7 @@
                     <a href="#" class="nav-link {{request()->is('admin/them-moi-rap') || request()->is('admin/danh-sach-rap') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Quản Lý Rạp
+                            Quản lý thông tin rạp
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -50,30 +50,30 @@
                         <li class="nav-item">
                             <a href="{{route('admin.addrap')}}" class="nav-link {{request()->is('admin/them-moi-rap') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm mới rạp</p>
+                                <p>Cập nhật thông tin rạp</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{request()->is('admin/them-moi-admin') || request()->is('admin/danh-sach-admin') ? 'menu-is-opening menu-open' : ''}}">
-                    <a href="#" class="nav-link {{request()->is('admin/them-moi-admin') || request()->is('admin/danh-sach-admin') ? 'active' : ''}}">
+                <li class="nav-item {{request()->is('admin/them-moi-cum-rap') || request()->is('admin/danh-sach-cum-rap') ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{request()->is('admin/them-moi-cum-rap') || request()->is('admin/danh-sach-cum-rap') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Quản lý ADMIN Rạp
+                            Quản lý cụm rạp
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('admin.listadmin')}}" class="nav-link {{request()->is('admin/danh-sach-admin') ? 'active' : ''}}">
+                            <a href="{{route('admin.listcumrap')}}" class="nav-link {{request()->is('admin/danh-sach-cum-rap') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách ADMIN</p>
+                                <p>Danh sách cụm rạp</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.addadmin')}}" class="nav-link {{request()->is('admin/them-moi-admin') ? 'active' : ''}}">
+                            <a href="{{route('admin.addcumrap')}}" class="nav-link {{request()->is('admin/them-moi-cum-rap') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm mới ADMIN</p>
+                                <p>Thêm mới cụm rạp</p>
                             </a>
                         </li>
                     </ul>

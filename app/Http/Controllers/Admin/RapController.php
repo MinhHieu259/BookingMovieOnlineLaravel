@@ -12,7 +12,8 @@ class RapController extends Controller
 {
     public function AddRap()
     {
-        return view('components.admin.rap.them-moi-rap');
+        $rap = RAP::first();
+        return view('components.admin.rap.them-moi-rap', compact('rap'));
     }
 
     public function ListRap()
@@ -40,30 +41,61 @@ class RapController extends Controller
 
     public function SaveDataRap(Request $request)
     {
-        $rap = new RAP();
-        $rap->maRap = '';
-        $rap->tenRap = $request->input('tenRap');
-        if($request->hasFile('anhDaiDien')){
-            $file = $request->file('anhDaiDien');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $file->getClientOriginalName().time().'.'.$extension;
-            $file->move('uploads/rap/', $filename);
+        $rap = RAP::first();
+        if ($rap){
+            $rap->maRap = '';
+            $rap->tenRap = $request->input('tenRap');
+            if($request->hasFile('anhDaiDien')){
+                if (file_exists($rap->anhDaiDien)) {
+                    unlink($rap->anhDaiDien);
+                }
 
-            $rap->anhDaiDien = 'uploads/rap/'.$filename;
+                $file = $request->file('anhDaiDien');
+                $extension = $file->getClientOriginalExtension();
+                $filename = $file->getClientOriginalName().time().'.'.$extension;
+                $file->move('uploads/rap/', $filename);
+
+                $rap->anhDaiDien = 'uploads/rap/'.$filename;
+            } else {
+//                if (file_exists($rap->anhDaiDien)) {
+//                    unlink($rap->anhDaiDien);
+//                }
+//
+//                $rap->anhDaiDien = '';
+            }
+            $rap->save();
+//            if($rap->wasChanged()){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Cập nhật thông tin rạp thành công'
+                ]);
+//            }
         } else {
-            $rap->anhDaiDien = '';
-        }
-        $rap->save();
-        if($rap->wasRecentlyCreated){
-            return response()->json([
-                'status' => 200,
-                'message' => 'Thêm mới rạp thành công'
-            ]);
-        } else {
-            return response()->json([
-                'status' => 500,
-                'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
-            ]);
+            $rap = new RAP();
+            $rap->maRap = '';
+            $rap->tenRap = $request->input('tenRap');
+            if($request->hasFile('anhDaiDien')){
+                $file = $request->file('anhDaiDien');
+                $extension = $file->getClientOriginalExtension();
+                $filename = $file->getClientOriginalName().time().'.'.$extension;
+                $file->move('uploads/rap/', $filename);
+
+                $rap->anhDaiDien = 'uploads/rap/'.$filename;
+            } else {
+                $rap->anhDaiDien = '';
+            }
+            $rap->save();
+            if($rap->wasRecentlyCreated){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Thêm mới thông tin rạp thành công'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
+                ]);
+            }
         }
     }
 }

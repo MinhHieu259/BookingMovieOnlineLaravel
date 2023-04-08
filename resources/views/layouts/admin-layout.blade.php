@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{asset('assets/toastr/toastr.min.css')}}">
     @stack('css')
 </head>
 <!--
@@ -67,7 +68,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard3.js"></script>
 <script src="function/common.js"></script>
-
+<script src="{{asset('assets/toastr/toastr.min.js')}}"></script>
 @stack('js')
 @include('commons.popup.popup-confirm')
 </body>

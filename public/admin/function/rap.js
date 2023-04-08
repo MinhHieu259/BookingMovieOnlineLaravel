@@ -1,4 +1,3 @@
-
 function validateRap() {
     var nameRap = $('#tenRap')
     var avatarRap = $('#avatarRap')
@@ -7,7 +6,7 @@ function validateRap() {
     avatarRap.on('change', () => {
         var file = avatarRap.get(0).files[0]
         var reader = new FileReader()
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             // Thiết lập thuộc tính src của thẻ img để hiển thị hình ảnh đó
             var img = $('<img>')
             img.css('margin-top', '20px')
@@ -34,7 +33,8 @@ function validateRap() {
         // Ẩn nút "Xóa"
         buttonDelete.hide()
     })
-    function saveData(e){
+
+    function saveData(e) {
         e.preventDefault()
         var formData = new FormData();
         formData.append('tenRap', nameRap.val());
@@ -46,18 +46,19 @@ function validateRap() {
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response.status == 200) {
-                    console.log(response.message)
+                if (response.status == 200) {
                     $('#popupCofirm').modal('hide')
-                } else if(response.status == 500) {
+                    toastr["success"](response.message, 'Thành công');
+                } else if (response.status == 500) {
                     console.log(response.message)
                 }
             },
             error: function (error) {
-                console.log(error);
+                toastr["success"](error, 'Lỗi');
             }
         });
     }
+
     $('#btnSaveRap').on('click', (e) => {
         e.preventDefault()
         var formData = new FormData();
@@ -75,7 +76,7 @@ function validateRap() {
                 $('.input-error').text('')
             },
             success: function (response) {
-                if(response.status == 200) {
+                if (response.status == 200) {
                     $('#popupCofirm').modal('show')
                     popupConfirm(
                         'Xác nhận lưu thông tin rạp ?',
@@ -88,7 +89,7 @@ function validateRap() {
                 var arrayErrors = [];
                 $.each(error.responseJSON.errors, function (prefix, val) {
                     $('#' + prefix).addClass("is-invalid");
-                    $('#' + prefix+ "Error").text(val);
+                    $('#' + prefix + "Error").text(val);
                     arrayErrors.push(prefix);
                 })
                 $('#' + arrayErrors[0]).focus();
@@ -97,6 +98,6 @@ function validateRap() {
     })
 }
 
-$(document).ready(function (){
+$(document).ready(function () {
     validateRap()
 })
