@@ -11,10 +11,14 @@ function ajaxSetting() {
 function popupConfirm(title, method) {
     $('#popup-confirm-title').text(title)
     $('#btnAgree').on('click', method)
-    $('#btnRefuse').on('click', () => {
-        $('#popupCofirm').modal('hide')
+    $('#popupCofirm').on('hidden.bs.modal', () => {
         $('#btnAgree').off('click', method)
         $('#btnRefuse').off('click')
+    })
+    $('#btnRefuse').on('click', () => {
+        $('#popupCofirm').modal('hide')
+        // $('#btnAgree').off('click', method)
+        // $('#btnRefuse').off('click')
     })
 }
 
@@ -37,9 +41,5 @@ $(document).ready(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    $('.select2').select2({
-        theme: "bootstrap-5",
-        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-    });
 })
 

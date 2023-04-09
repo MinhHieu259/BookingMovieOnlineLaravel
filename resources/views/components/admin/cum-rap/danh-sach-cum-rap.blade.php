@@ -28,30 +28,27 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <table id="table-rap" class="table table-bordered table-hover">
+            <table id="table-cum-rap" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>STT</th>
+                    <th style="width: 5%">STT</th>
                     <th>Tên Rạp</th>
-                    <th>Ảnh Đại Diện</th>
-                    <th>Thao tác</th>
+                    <th>Địa chỉ</th>
+                    <th style="width: 12%">Thao tác</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                @foreach($cumraps as $index => $cumrap)
                     <tr>
-                        <td>1</td>
-                        <td>ten rap
-                        </td>
-                        <td>
-                            <img width="100" src="" alt="Anh dai dien">
-                        </td>
+                        <td>{{$index + 1}}</td>
+                        <td>{{$cumrap->tenRap}}</td>
+                        <td>{{$cumrap->diaChi}}</td>
                         <td class="text-center">
-                            <button class="btn btn-warning">Cập nhật</button>
-                            <button class="btn btn-danger">Xóa</button>
+                            <button class="btn btn-warning btn-sm float-left">Cập nhật</button>
+                            <button class="btn btn-danger btn-sm float-right">Xóa</button>
                         </td>
                     </tr>
-
+                @endforeach
 
                 </tbody>
             </table>
@@ -74,10 +71,10 @@
     <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script>
         $(function () {
-            $('#table-rap').DataTable({
+            $('#table-cum-rap').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,

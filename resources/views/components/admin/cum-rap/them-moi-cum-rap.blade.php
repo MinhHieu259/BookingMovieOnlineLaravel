@@ -1,8 +1,15 @@
 @extends('layouts.admin-layout')
-@section('title', 'Thêm mới Admin Rạp')
+@section('title', 'Thêm mới cụm rạp')
 @push('js')
     <script src="{{asset('admin/function/auth.js')}}"></script>
+    <script src="{{asset('admin/function/cum-rap.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $('.select2').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        });
+    </script>
 @endpush
 @push('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
@@ -64,23 +71,24 @@
                                     <span class="text-danger input-error" id="mapError"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="motaRap">Mô tả rạp</label>
+                                    <label for="motaRap">Mô tả cụm rạp</label>
                                     <textarea id="motaRap" class="form-control" rows="3" placeholder="Nhập mô tả cụm rạp"></textarea>
                                     <span class="text-danger input-error" id="motaRapError"></span>
                                 </div>
                                 <div class="form-group" data-select2-id="42">
                                     <label>Tỉnh thành</label>
-                                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select id="tinh" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         @foreach($tinhs as $index => $tinh)
                                         <option value="{{$tinh->maTinh}}">{{$tinh->tenTinh}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text-danger input-error" id="tinhError"></span>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary" id="btnSaveRap">Lưu thông tin</button>
+                                <button type="button" class="btn btn-primary" id="btnSaveCumRap">Lưu thông tin</button>
                             </div>
                         </form>
                     </div>

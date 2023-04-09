@@ -17,9 +17,10 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     //Route For Cum Rap
     Route::get('/them-moi-cum-rap', [CumRapController::class, 'AddNewCumRap'])->name('admin.addcumrap');
     Route::get('/danh-sach-cum-rap', [CumRapController::class, 'ListCumRap'])->name('admin.listcumrap');
+    Route::post('/validate-cum-rap', [CumRapController::class, 'ValidationCumRap'])->name('admin.cumrapvalidate');
+    Route::post('/save-cum-rap', [CumRapController::class, 'SaveDataCumRap'])->name('admin.savecumrap');
     //Route For Rap
     Route::get('/them-moi-rap', [RapController::class, 'AddRap'])->name('admin.addrap');
-    Route::get('/danh-sach-rap', [RapController::class, 'ListRap'])->name('admin.listrap');
     Route::post('/validate-data-rap', [RapController::class, 'ValidateDataRap'])->name('admin.validateAddRap');
     Route::post('/save-data-rap', [RapController::class, 'SaveDataRap'])->name('admin.savedatarap');
     //Route For Auth

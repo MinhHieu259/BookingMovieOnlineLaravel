@@ -10,6 +10,8 @@ class ChiTietRap extends Model
     use HasFactory;
 
     protected $table = 'ChiTietRap';
+    protected $primaryKey = 'maChiTietRap';
+    public $timestamps = false;
     protected $fillable = [
         'maChiTietRap',
         'tenRap',

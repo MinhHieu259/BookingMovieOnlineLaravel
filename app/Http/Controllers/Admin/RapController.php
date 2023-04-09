@@ -16,12 +16,6 @@ class RapController extends Controller
         return view('components.admin.rap.them-moi-rap', compact('rap'));
     }
 
-    public function ListRap()
-    {
-        $raps = RAP::whereNotIn('maRap', ['RAP0001'])->get();
-        return view('components.admin.rap.danh-sach-rap', compact('raps'));
-    }
-
     public function ValidateDataRap(SaveRapRequest $request)
     {
         $validator = Validator::make($request->all(), $request->rules());

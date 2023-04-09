@@ -12,6 +12,9 @@ class RAP extends Model
     public $timestamps = false;
     protected $table = 'RAP';
     protected $primaryKey = 'maRap';
+    protected $casts = [
+        'maRap' => 'string'
+    ];
     protected $fillable = [
         'maRap',
         'tenRap',

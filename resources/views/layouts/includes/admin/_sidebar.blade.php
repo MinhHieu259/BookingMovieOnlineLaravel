@@ -32,8 +32,8 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item {{request()->is('admin/them-moi-rap') || request()->is('admin/danh-sach-rap') ? 'menu-is-opening menu-open' : ''}}">
-                    <a href="#" class="nav-link {{request()->is('admin/them-moi-rap') || request()->is('admin/danh-sach-rap') ? 'active' : ''}}">
+                <li class="nav-item {{request()->is('admin/them-moi-rap') ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{request()->is('admin/them-moi-rap') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Quản lý thông tin rạp
@@ -41,12 +41,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('admin.listrap')}}" class="nav-link {{request()->is('admin/danh-sach-rap') ? 'active' : ''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách rạp</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="{{route('admin.addrap')}}" class="nav-link {{request()->is('admin/them-moi-rap') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
