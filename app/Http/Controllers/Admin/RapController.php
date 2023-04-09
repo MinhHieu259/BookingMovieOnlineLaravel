@@ -37,7 +37,6 @@ class RapController extends Controller
     {
         $rap = RAP::first();
         if ($rap){
-            $rap->maRap = '';
             $rap->tenRap = $request->input('tenRap');
             if($request->hasFile('anhDaiDien')){
                 if (file_exists($rap->anhDaiDien)) {

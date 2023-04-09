@@ -12,6 +12,9 @@ class ChiTietRap extends Model
     protected $table = 'ChiTietRap';
     protected $primaryKey = 'maChiTietRap';
     public $timestamps = false;
+    protected $casts = [
+        'maChiTietRap' => 'string'
+    ];
     protected $fillable = [
         'maChiTietRap',
         'tenRap',

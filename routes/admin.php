@@ -16,9 +16,11 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::get('/trang-chu', [PageController::class, 'index'])->name('admin.trangchu');
     //Route For Cum Rap
     Route::get('/them-moi-cum-rap', [CumRapController::class, 'AddNewCumRap'])->name('admin.addcumrap');
+    Route::get('/cap-nhat-cum-rap/{maRap}', [CumRapController::class, 'EditCumRap'])->name('admin.editcumrap');
     Route::get('/danh-sach-cum-rap', [CumRapController::class, 'ListCumRap'])->name('admin.listcumrap');
     Route::post('/validate-cum-rap', [CumRapController::class, 'ValidationCumRap'])->name('admin.cumrapvalidate');
     Route::post('/save-cum-rap', [CumRapController::class, 'SaveDataCumRap'])->name('admin.savecumrap');
+    Route::post('/update-cum-rap/{maRap}', [CumRapController::class, 'UpdateDataCumRap'])->name('admin.updatecumrap');
     //Route For Rap
     Route::get('/them-moi-rap', [RapController::class, 'AddRap'])->name('admin.addrap');
     Route::post('/validate-data-rap', [RapController::class, 'ValidateDataRap'])->name('admin.validateAddRap');

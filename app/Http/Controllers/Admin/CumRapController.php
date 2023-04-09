@@ -18,6 +18,13 @@ class CumRapController extends Controller
         return view('components.admin.cum-rap.them-moi-cum-rap', compact('tinhs'));
     }
 
+    public function EditCumRap($maRap)
+    {
+        $tinhs = Tinh::all();
+        $cumrap = ChiTietRap::find($maRap);
+        return view('components.admin.cum-rap.cap-nhat-cum-rap', compact('tinhs', 'cumrap'));
+    }
+
     public function ListCumRap()
     {
         $cumraps = ChiTietRap::all();
@@ -64,5 +71,27 @@ class CumRapController extends Controller
                 'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
             ]);
         }
+    }
+
+    public function UpdateDataCumRap(SaveCumRap $request, $maRap)
+    {
+        $cumrap = ChiTietRap::find($maRap);
+        $cumrap->tenRap = $request->input('tenRap');
+        $cumrap->diaChi = $request->input('diaChi');
+        $cumrap->map = $request->input('map');
+        $cumrap->moTa = $request->input('motaRap');
+        $cumrap->maTinh = $request->input('tinh');
+        $cumrap->save();
+//        if($cumrap->wasRecentlyCreated){
+            return response()->json([
+                'status' => 200,
+                'message' => 'Cập nhật cụm rạp thành công'
+            ]);
+//        } else {
+//            return response()->json([
+//                'status' => 500,
+//                'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
+//            ]);
+//        }
     }
 }
