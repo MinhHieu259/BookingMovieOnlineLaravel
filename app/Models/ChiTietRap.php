@@ -22,7 +22,8 @@ class ChiTietRap extends Model
         'map',
         'moTa',
         'maTinh',
-        'maRap'
+        'maRap',
+        'deleted'
     ];
 
     public function Tinh(){

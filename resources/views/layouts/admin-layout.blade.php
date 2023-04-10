@@ -70,6 +70,7 @@
 <script src="{{asset('admin/function/common.js')}}"></script>
 <script src="{{asset('assets/toastr/toastr.min.js')}}"></script>
 @stack('js')
+@stack('popup')
 @include('commons.popup.popup-confirm')
 </body>
 </html>

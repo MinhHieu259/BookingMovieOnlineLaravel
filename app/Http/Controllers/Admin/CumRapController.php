@@ -27,8 +27,17 @@ class CumRapController extends Controller
 
     public function ListCumRap()
     {
-        $cumraps = ChiTietRap::all();
+        $cumraps = ChiTietRap::where('deleted', '1')->get();
         return view('components.admin.cum-rap.danh-sach-cum-rap', compact('cumraps'));
+    }
+
+    public function ListCumRapToTable()
+    {
+        $cumraps = ChiTietRap::where('deleted', '1')->get();
+        return response()->json([
+        'status' => 200,
+        'data' => $cumraps
+    ]);;
     }
 
     public function ValidationCumRap(SaveCumRap $request)
@@ -60,7 +69,7 @@ class CumRapController extends Controller
         $cumrap->maTinh = $request->input('tinh');
         $cumrap->maRap = $rap->maRap;
         $cumrap->save();
-        if($cumrap->wasRecentlyCreated){
+        if ($cumrap->wasRecentlyCreated) {
             return response()->json([
                 'status' => 200,
                 'message' => 'Thêm mới cụm rạp thành công'
@@ -83,15 +92,33 @@ class CumRapController extends Controller
         $cumrap->maTinh = $request->input('tinh');
         $cumrap->save();
 //        if($cumrap->wasRecentlyCreated){
-            return response()->json([
-                'status' => 200,
-                'message' => 'Cập nhật cụm rạp thành công'
-            ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cập nhật cụm rạp thành công'
+        ]);
 //        } else {
 //            return response()->json([
 //                'status' => 500,
 //                'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
 //            ]);
 //        }
+    }
+
+    public function DeleteCumRap($maCum)
+    {
+        $cumRap = ChiTietRap::find($maCum);
+        if ($cumRap){
+            $cumRap->deleted = 2;
+            $cumRap->save();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Xóa cụm rạp thành công'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400,
+                'message' => 'Cụm rạp không tồn tại trong hệ thống'
+            ]);
+        }
     }
 }

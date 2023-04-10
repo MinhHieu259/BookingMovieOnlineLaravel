@@ -1,144 +1,96 @@
-function validationCumRap()
-{
-    var tenRap = $('#tenRap')
-    var diaChi = $('#diaChi')
-    var map = $('#map')
-    var motaRap = $('#motaRap')
-    var tinhForRap = $('#tinh')
+function initTableCumRap() {
+    var maCumDelete = ''
+    $('#table-cum-rap').DataTable({
+        "processing": true,
+        "columns": [
+            {data: "maChiTietRap"},
+            {data: "tenRap"},
+            {data: "diaChi"},
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return ' <a href="cap-nhat-cum-rap/'+data.maChiTietRap+'" class="btn btn-warning btn-sm float-left">Cập nhật</a>' +
+                        '<button class="btn btn-danger btn-sm float-right btnDeleteCumRap" data-ma-cum="'+data.maChiTietRap+'">Xóa</button>';
+                }
+            }
+        ],
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+}
 
-    function SaveCumRap(e) {
-        e.preventDefault()
-        var formData = new FormData();
-        formData.append('tenRap', tenRap.val());
-        formData.append('diaChi', diaChi.val());
-        formData.append('map', map.val());
-        formData.append('motaRap', motaRap.val());
-        formData.append('tinh', tinhForRap.val());
-        $.ajax({
-            type: "POST",
-            url: "save-cum-rap",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response.status == 200) {
-                    $('#popupCofirm').modal('hide')
-                    toastr["success"](response.message, 'Thành công');
-                } else if (response.status == 500) {
-                    console.log(response.message)
-                }
-            },
-            error: function (error) {
-                toastr["success"](error, 'Lỗi');
+function initDataTableCumRap() {
+    $.ajax({
+        type: "GET",
+        url: "get-list-cum-rap",
+        contentType: 'application/json',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 200) {
+                $('#table-cum-rap').DataTable().clear();
+                $('#table-cum-rap').DataTable().rows.add(response.data);
+                $('#table-cum-rap').DataTable().draw();
             }
-        });
-    }
-
-    $('#btnSaveCumRap').on('click', function () {
-        var formData = new FormData();
-        formData.append('tenRap', tenRap.val());
-        formData.append('diaChi', diaChi.val());
-        formData.append('map', map.val());
-        formData.append('motaRap', motaRap.val());
-        formData.append('tinh', tinhForRap.val());
-        $.ajax({
-            type: "POST",
-            url: "validate-cum-rap",
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function () {
-                $('input').removeClass('is-invalid')
-                $('.input-error').text('')
-            },
-            success: function (response) {
-                if (response.status == 200) {
-                    $('#popupCofirm').modal('show')
-                    popupConfirm(
-                        'Xác nhận lưu thông tin cụm rạp ?',
-                            SaveCumRap
-                    )
-                }
-            },
-            error: function (error) {
-                console.log(error.responseJSON.errors);
-                var arrayErrors = [];
-                $.each(error.responseJSON.errors, function (prefix, val) {
-                    $('#' + prefix).addClass("is-invalid");
-                    $('#' + prefix + "Error").text(val);
-                    arrayErrors.push(prefix);
-                })
-                $('#' + arrayErrors[0]).focus();
-            }
-        });
-    })
-    function UpdateCumRap(e) {
-        e.preventDefault()
-        var formData = new FormData();
-        formData.append('tenRap', tenRap.val());
-        formData.append('diaChi', diaChi.val());
-        formData.append('map', map.val());
-        formData.append('motaRap', motaRap.val());
-        formData.append('tinh', tinhForRap.val());
-        $.ajax({
-            type: "POST",
-            url: "/admin/update-cum-rap/"+ $('#btnAgree').data('ma-cum'),
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response.status == 200) {
-                    $('#popupCofirm').modal('hide')
-                    toastr["success"](response.message, 'Thành công');
-                } else if (response.status == 500) {
-                    console.log(response.message)
-                }
-            },
-            error: function (error) {
-                toastr["success"](error, 'Lỗi');
-            }
-        });
-    }
-    $('#btnUpdateCumRap').on('click', function () {
-        var formData = new FormData();
-        formData.append('tenRap', tenRap.val());
-        formData.append('diaChi', diaChi.val());
-        formData.append('map', map.val());
-        formData.append('motaRap', motaRap.val());
-        formData.append('tinh', tinhForRap.val());
-        $.ajax({
-            type: "POST",
-            url: "/admin/validate-cum-rap",
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function () {
-                $('input').removeClass('is-invalid')
-                $('.input-error').text('')
-            },
-            success: function (response) {
-                if (response.status == 200) {
-                    $('#popupCofirm').modal('show')
-                    $('#btnAgree').attr('data-ma-cum', $('#btnUpdateCumRap').data('ma-cum'))
-                    popupConfirm(
-                        'Xác nhận cập nhật thông tin cụm rạp ?',
-                        UpdateCumRap
-                    )
-                }
-            },
-            error: function (error) {
-                console.log(error);
-                var arrayErrors = [];
-                $.each(error.responseJSON.errors, function (prefix, val) {
-                    $('#' + prefix).addClass("is-invalid");
-                    $('#' + prefix + "Error").text(val);
-                    arrayErrors.push(prefix);
-                })
-                $('#' + arrayErrors[0]).focus();
-            }
-        });
+        },
     })
 }
+
+function functionCumRap() {
+    function DeleteCumRap(maCum) {
+        $.ajax({
+            type: "DELETE",
+            url: "/admin/delete-cum-rap/" + maCum,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == 200) {
+                    $('#popupCofirm').modal('hide')
+                    toastr["success"](response.message, 'Thành công');
+                    // var row = $("#table-cum-rap").find("tbody tr").filter(function () {
+                    //     return $(this).find(".btnDeleteCumRap").data("ma-cum") === maCum;
+                    // });
+                    // row.remove();
+                    $('#table-cum-rap').DataTable().destroy();
+                    initTableCumRap();
+                    initDataTableCumRap();
+                    $('#popupCofirmDeleteCumRap').modal('hide')
+                } else if (response.status == 500) {
+                    console.log(response.message)
+                }
+            },
+            error: function (error) {
+                toastr["success"](error, 'Lỗi');
+            }
+        });
+    }
+
+    $('#table-cum-rap').on('draw.dt', function () {
+        $('.btnDeleteCumRap').on('click', function () {
+            $('#popupCofirmDeleteCumRap').modal('show')
+            maCumDelete = $(this).attr("data-ma-cum");
+            $('#btnAgreeDeleteCum').attr('data-ma-cum', maCumDelete)
+        })
+    })
+    $('#btnAgreeDeleteCum').on('click', (e) => {
+        e.preventDefault();
+        DeleteCumRap(maCumDelete)
+    })
+}
+
+function btnBackDeleteCum() {
+    $('#btnRefuseDeleteCum').on('click', () => {
+        $('#popupCofirmDeleteCumRap').modal('hide')
+    })
+}
+
 $(document).ready(function () {
-    validationCumRap()
+    initTableCumRap()
+    initDataTableCumRap()
+    functionCumRap()
+    btnBackDeleteCum()
 })
