@@ -10,6 +10,11 @@ class DoAn extends Model
     use HasFactory;
 
     protected $table = 'DoAn';
+    protected $primaryKey = 'maDoAn';
+    public $timestamps = false;
+    protected $casts = [
+        'maDoAn' => 'string'
+    ];
     protected $fillable = [
         'maDoAn',
         'tenDoAn',

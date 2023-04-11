@@ -31,6 +31,8 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     //Route For Do An
     Route::get('/them-moi-do-an', [DoAnController::class, 'AddFood'])->name('admin.adddoan');
     Route::get('/danh-sach-do-an', [DoAnController::class, 'ListFood'])->name('admin.listdoan');
+    Route::post('/validate-do-an', [DoAnController::class, 'ValidateDoAn'])->name('admin.doanvalidate');
+    Route::post('/save-do-an', [DoAnController::class, 'SaveData'])->name('admin.savedoan');
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');
 });

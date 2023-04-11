@@ -2,6 +2,7 @@
 @section('title', 'Thêm mới đồ ăn cụm rạp')
 @push('js')
     <script src="{{asset('admin/function/auth.js')}}"></script>
+    <script src="{{asset('admin/function/do-an/add-edit-do-an.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $('.select2').select2({
@@ -48,12 +49,41 @@
                         <!-- form start -->
                         <form enctype="multipart/form-data">
                             <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tenDoAn">Tên đồ ăn</label>
+                                            <input type="text" class="form-control" id="tenDoAn" placeholder="Nhập tên đồ ăn" autocomplete="off">
+                                            <span class="text-danger input-error" id="tenDoAnError"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gia">Giá tiền</label>
+                                            <input type="text" class="form-control" id="gia" placeholder="Nhập giá tiền" autocomplete="off">
+                                            <span class="text-danger input-error" id="giaError"></span>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Cụm rạp</label>
+                                            <select id="maChiTietRap" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                @foreach($cumraps as $index => $cumrap)
+                                                    <option value="{{$cumrap->maChiTietRap}}">{{$cumrap->tenRap}}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="text-danger input-error" id="maChiTietRapError"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary" id="btnSaveCumRap">Lưu thông tin</button>
+                                <button type="button" class="btn btn-primary" id="btnSaveDoAn">Lưu thông tin</button>
                             </div>
                         </form>
                     </div>

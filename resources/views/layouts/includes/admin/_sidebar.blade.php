@@ -72,6 +72,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{Route::currentRouteName() == 'admin.adddoan' || Route::currentRouteName() == 'admin.listdoan' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.adddoan' || Route::currentRouteName() == 'admin.listdoan' ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Quản lý đồ ăn
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.listdoan')}}" class="nav-link {{Route::currentRouteName() == 'admin.listdoan' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách đồ ăn</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.adddoan')}}" class="nav-link {{Route::currentRouteName() == 'admin.adddoan' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới đồ ăn</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
