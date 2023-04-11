@@ -34,9 +34,10 @@
             <table id="table-cum-rap" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th style="width: 5%">STT</th>
-                    <th>Tên Rạp</th>
-                    <th>Địa chỉ</th>
+                    <th style="width: 10%">Mã đồ ăn</th>
+                    <th>Tên đồ ăn</th>
+                    <th>Giá</th>
+                    <th>Cụm rạp</th>
                     <th style="width: 12%">Thao tác</th>
                 </tr>
                 </thead>
@@ -45,6 +46,7 @@
                     <tr>
                         <td>1</td>
                         <td>1</td>
+                        <td>11</td>
                         <td>11</td>
                         <td class="text-center">
                             <a href="" class="btn btn-warning btn-sm float-left">Cập nhật</a>

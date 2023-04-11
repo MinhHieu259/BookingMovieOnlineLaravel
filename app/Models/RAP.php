@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class RAP extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $table = 'RAP';
     protected $primaryKey = 'maRap';
@@ -20,6 +22,12 @@ class RAP extends Model
         'tenRap',
         'anhDaiDien'
     ];
+
+    public static function getInforRap()
+    {
+        $result = DB::select('EXEC getRapInformation');
+        return $result[0] ?? [];
+    }
 
 //    public function getAvatarUrlAttribute()
 //    {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DoAn extends Model
 {
@@ -25,5 +26,17 @@ class DoAn extends Model
     public function ChiTietRap()
     {
         return $this->belongsTo(ChiTietRap::class, 'maChiTietRap');
+    }
+
+    public static function SaveDoAn($request)
+    {
+        $data = [
+            '',
+            (string)$request->input('tenDoAn'),
+            (string)$request->input('gia'),
+            (string)$request->input('maChiTietRap')
+        ];
+        $results = DB::select('EXEC SaveDoAn ?, ?, ?, ?', $data);
+        return $results;
     }
 }

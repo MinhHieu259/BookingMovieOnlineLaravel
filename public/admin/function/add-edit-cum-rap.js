@@ -23,7 +23,7 @@ function addEditCumRap(){
                 if (response.status == 200) {
                     $('#popupCofirm').modal('hide')
                     toastr["success"](response.message, 'Thành công');
-                } else if (response.status == 500) {
+                } else if (response.status == 500 || response.status == 400) {
                     console.log(response.message)
                 }
             },

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tinh extends Model
 {
@@ -14,4 +15,10 @@ class Tinh extends Model
         'maTinh',
         'tenTinh'
     ];
+
+    public static function getAllTinh()
+    {
+        $results = DB::select('EXEC getAllProvinces');
+        return $results;
+    }
 }

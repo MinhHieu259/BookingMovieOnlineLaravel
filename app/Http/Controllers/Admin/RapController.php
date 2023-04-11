@@ -12,7 +12,7 @@ class RapController extends Controller
 {
     public function AddRap()
     {
-        $rap = RAP::first();
+        $rap = RAP::getInforRap();
         return view('components.admin.rap.them-moi-rap', compact('rap'));
     }
 
@@ -35,7 +35,7 @@ class RapController extends Controller
 
     public function SaveDataRap(Request $request)
     {
-        $rap = RAP::first();
+        $rap = RAP::getInforRap();
         if ($rap){
             $rap->tenRap = $request->input('tenRap');
             if($request->hasFile('anhDaiDien')){
