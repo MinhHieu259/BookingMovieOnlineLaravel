@@ -37,7 +37,7 @@ class CumRapController extends Controller
         return response()->json([
             'status' => 200,
             'data' => $cumraps
-        ]);;
+        ]);
     }
 
     public function ValidationCumRap(SaveCumRap $request)

@@ -39,4 +39,34 @@ class DoAn extends Model
         $results = DB::select('EXEC SaveDoAn ?, ?, ?, ?', $data);
         return $results;
     }
+
+    public static function getDetailFood($maDoAn)
+    {
+        $results = DB::select('EXEC getDetailFood ?', [$maDoAn]);
+        return $results[0];
+    }
+
+    public static function getListFood()
+    {
+        $results = DB::select('EXEC getListFood');
+        return $results;
+    }
+
+    public static function UpdateDoAn($request, $maDoAn)
+    {
+        $data = [
+            (string)$maDoAn,
+            (string)$request->input('tenDoAn'),
+            (string)$request->input('gia'),
+            (string)$request->input('maChiTietRap')
+        ];
+        $results = DB::select('EXEC UpdateDoAn ?, ?, ?, ?', $data);
+        return $results;
+    }
+
+    public static function DeleteDoAn($maDoAn)
+    {
+        $results = DB::select('EXEC DeleteDoAn ?', [$maDoAn]);
+        return $results;
+    }
 }

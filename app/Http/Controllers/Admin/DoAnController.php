@@ -20,7 +20,17 @@ class DoAnController extends Controller
 
     public function ListFood()
     {
-        return view('components.admin.do-an.danh-sach-do-an');
+        $doans = DoAn::getListFood();
+        return view('components.admin.do-an.danh-sach-do-an', compact('doans'));
+    }
+
+    public function ListFoodToTable()
+    {
+        $doans = DoAn::getListFood();
+        return response()->json([
+            'status' => 200,
+            'data' => $doans
+        ]);
     }
 
     public function ValidateDoAn(AddDoAnRequest $request)
@@ -60,6 +70,55 @@ class DoAnController extends Controller
 //            ]);
 //        }
         $results = DoAn::SaveDoAn($request);
+        if ($results[0]->result == 1) {
+            return response()->json([
+                'status' => 200,
+                'message' => $results[0]->message,
+            ]);
+        } else if ($results[0]->result == 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => $results[0]->message
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => $results[0]->message
+            ]);
+        }
+    }
+
+    public function EditFood($maDoAn)
+    {
+        $cumraps = ChiTietRap::all();
+        $doAn = DoAn::getDetailFood($maDoAn);
+        return view('components.admin.do-an.cap-nhat-do-an', compact('cumraps', 'doAn'));
+    }
+
+    public function UpdateDoAn(AddDoAnRequest $request, $maDoAn)
+    {
+        $results = DoAn::UpdateDoAn($request, $maDoAn);
+        if ($results[0]->result == 1) {
+            return response()->json([
+                'status' => 200,
+                'message' => $results[0]->message,
+            ]);
+        } else if ($results[0]->result == 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => $results[0]->message
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => $results[0]->message
+            ]);
+        }
+    }
+
+    public function DeleteDoAn($maDoAn)
+    {
+        $results = DoAn::DeleteDoAn($maDoAn);
         if ($results[0]->result == 1) {
             return response()->json([
                 'status' => 200,

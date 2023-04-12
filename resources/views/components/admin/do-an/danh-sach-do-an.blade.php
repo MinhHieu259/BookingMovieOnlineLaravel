@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 @endpush
 @push('popup')
-    @include('layouts.includes.admin.popup.cum-rap.popup-delete-cum-rap')
+    @include('layouts.includes.admin.popup.do-an.popup-delete-do-an')
 @endpush
 
 @section('content')
@@ -31,7 +31,7 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <table id="table-cum-rap" class="table table-bordered table-hover">
+            <table id="table-do-an" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th style="width: 10%">Mã đồ ăn</th>
@@ -43,18 +43,6 @@
                 </thead>
                 <tbody>
 
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>11</td>
-                        <td>11</td>
-                        <td class="text-center">
-                            <a href="" class="btn btn-warning btn-sm float-left">Cập nhật</a>
-                            <button class="btn btn-danger btn-sm float-right btnDeleteCumRap">Xóa</button>
-                        </td>
-                    </tr>
-
-
                 </tbody>
             </table>
         </div>
@@ -65,6 +53,7 @@
 
 @push('js')
     <script src="{{asset('admin/function/auth.js')}}"></script>
+    <script src="{{asset('admin/function/do-an/list-delete-do-an.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -74,17 +63,5 @@
     <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-    <script>
-        $(function () {
-            $('#table-cum-rap').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
+
 @endpush

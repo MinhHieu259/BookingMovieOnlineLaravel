@@ -24,15 +24,22 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::post('/save-cum-rap', [CumRapController::class, 'SaveDataCumRap'])->name('admin.savecumrap');
     Route::post('/update-cum-rap/{maRap}', [CumRapController::class, 'UpdateDataCumRap'])->name('admin.updatecumrap');
     Route::delete('/delete-cum-rap/{maCum}', [CumRapController::class, 'DeleteCumRap'])->name('admin.deletecumrap');
+
     //Route For Rap
     Route::get('/them-moi-rap', [RapController::class, 'AddRap'])->name('admin.addrap');
     Route::post('/validate-data-rap', [RapController::class, 'ValidateDataRap'])->name('admin.validateAddRap');
     Route::post('/save-data-rap', [RapController::class, 'SaveDataRap'])->name('admin.savedatarap');
+
     //Route For Do An
     Route::get('/them-moi-do-an', [DoAnController::class, 'AddFood'])->name('admin.adddoan');
+    Route::get('/cap-nhat-do-an/{maDoAn}', [DoAnController::class, 'EditFood'])->name('admin.editdoan');
     Route::get('/danh-sach-do-an', [DoAnController::class, 'ListFood'])->name('admin.listdoan');
+    Route::get('/get-list-do-an', [DoAnController::class, 'ListFoodToTable'])->name('admin.listfoodtotable');
     Route::post('/validate-do-an', [DoAnController::class, 'ValidateDoAn'])->name('admin.doanvalidate');
     Route::post('/save-do-an', [DoAnController::class, 'SaveData'])->name('admin.savedoan');
+    Route::post('/update-do-an/{maDoAn}', [DoAnController::class, 'UpdateDoAn'])->name('admin.updatedoan');
+    Route::delete('/delete-do-an/{maDoAn}', [DoAnController::class, 'DeleteDoAn'])->name('admin.deletedoan');
+
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');
 });
