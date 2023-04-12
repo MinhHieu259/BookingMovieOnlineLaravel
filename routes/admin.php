@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CumRapController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DoAnController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PhongController;
 use App\Http\Controllers\Admin\RapController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,12 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::post('/save-do-an', [DoAnController::class, 'SaveData'])->name('admin.savedoan');
     Route::post('/update-do-an/{maDoAn}', [DoAnController::class, 'UpdateDoAn'])->name('admin.updatedoan');
     Route::delete('/delete-do-an/{maDoAn}', [DoAnController::class, 'DeleteDoAn'])->name('admin.deletedoan');
+
+    //Route For Phong
+    Route::get('/them-moi-phong', [PhongController::class, 'AddPhong'])->name('admin.addphong');
+    Route::get('/danh-sach-phong', [PhongController::class, 'ListPhong'])->name('admin.listphong');
+    Route::get('/danh-sach-phong/{maCum}', [PhongController::class, 'ListPhongOfCum'])->name('admin.listphongofcum');
+    Route::get('/danh-sach-phong-table/{maCum}', [PhongController::class, 'ListPhongOfCumTable'])->name('admin.listphongtable');
 
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');

@@ -95,6 +95,23 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{Route::currentRouteName() == 'admin.listphong' || Route::currentRouteName() == 'admin.listphongofcum' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.listphong' || Route::currentRouteName() == 'admin.listphongofcum' ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Quản lý phòng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.listphong')}}" class="nav-link {{Route::currentRouteName() == 'admin.listphong' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách phòng</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
