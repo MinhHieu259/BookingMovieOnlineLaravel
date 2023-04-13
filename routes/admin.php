@@ -42,10 +42,11 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::delete('/delete-do-an/{maDoAn}', [DoAnController::class, 'DeleteDoAn'])->name('admin.deletedoan');
 
     //Route For Phong
-    Route::get('/them-moi-phong', [PhongController::class, 'AddPhong'])->name('admin.addphong');
     Route::get('/danh-sach-phong', [PhongController::class, 'ListPhong'])->name('admin.listphong');
     Route::get('/danh-sach-phong/{maCum}', [PhongController::class, 'ListPhongOfCum'])->name('admin.listphongofcum');
     Route::get('/danh-sach-phong-table/{maCum}', [PhongController::class, 'ListPhongOfCumTable'])->name('admin.listphongtable');
+    Route::get('/chi-tiet-phong/{maCum}/{maPhong}', [PhongController::class, 'EditPhong'])->name('admin.detailphong');
+    Route::post('/them-moi-phong/{maCum}', [PhongController::class, 'InsertPhong'])->name('admin.insertphong');
 
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');

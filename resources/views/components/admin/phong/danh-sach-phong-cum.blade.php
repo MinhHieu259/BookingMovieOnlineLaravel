@@ -7,7 +7,8 @@
 {{--    <link rel="stylesheet" href="{{asset('admin/css/phong.scss')}}">--}}
 @endpush
 @push('popup')
-    @include('layouts.includes.admin.popup.cum-rap.popup-delete-cum-rap')
+    @include('layouts.includes.admin.popup.phong.popup-add-phong')
+    @include('layouts.includes.admin.popup.phong.popup-edit-phong')
 @endpush
 
 @section('content')
@@ -25,6 +26,9 @@
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
+
+            <button id="btnAddPhong" class="btn btn-success btn-sm">Thêm mới phòng</button>
+
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->

@@ -32,4 +32,21 @@ class Phong extends Model
         $results = DB::select('EXEC getListPhong ?', [$maCum]);
         return $results;
     }
+
+    public static function InsertPhong($request, $maCum)
+    {
+        $data = [
+            '',
+            (string)$request->input('tenPhong'),
+            (string)$maCum
+        ];
+        $results = DB::select('EXEC SavePhong ?, ?, ?', $data);
+        return $results;
+    }
+
+    public static function EditPhong($maCum, $maPhong)
+    {
+        $results = DB::select('EXEC getDetailPhong ?, ?', [$maCum, $maPhong]);
+        return $results[0];
+    }
 }
