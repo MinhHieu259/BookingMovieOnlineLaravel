@@ -3,14 +3,161 @@
 @section('content')
     <div class="bg-white border-top border-bottom mt-3 pt-4">
         <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide mb-3" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/bdb25223a7aa414a9a9530cc9279ff73.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/e9270c4e3e4c46f99276313a6f55e1bd.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/37b6bc0472184a8899e2fb87f22932fc.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
             <h2 class="text-center">
                 <a class="text-processing" href="{{route('dang-chieu')}}">Đang chiếu</a>
                 <span class="saperate">|</span>
                 <a href="{{route('sap-chieu')}}" class="text-pending">Sắp chiếu</a>
             </h2>
 
-            <div class="container mt-3 p-5">
+            <div class="container">
                 <div class="owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card card-carousel">
+                            <img
+                                src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/short/63997b15039b6730562464.jpg"
+                                alt="anh"
+                                class="card-img-top"
+                            />
+                            <a href="#" class="btn btn_book">Mua vé</a>
+                            <div class="card-body" style="padding: 10px;">
+                                <h6 class="name-film-slide">Nhà bà nữ</h6>
+                                <span class="date-show">22/01</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="item">
                         <div class="card card-carousel">
                             <img

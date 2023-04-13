@@ -59,8 +59,45 @@ class PhongController extends Controller
         ]);
     }
 
-    public function UpdatePhong()
+    public function UpdatePhong(AddPhongRequest $request, $maCum, $maPhong)
     {
+        $results = Phong::UpdatePhong($request, $maCum, $maPhong);
+        if ($results[0]->result == 1) {
+            return response()->json([
+                'status' => 200,
+                'message' => $results[0]->message,
+            ]);
+        } else if ($results[0]->result == 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => $results[0]->message
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => $results[0]->message
+            ]);
+        }
+    }
 
+    public function DeletePhong($maPhong)
+    {
+        $results = Phong::DeletePhong($maPhong);
+        if ($results[0]->result == 1) {
+            return response()->json([
+                'status' => 200,
+                'message' => $results[0]->message,
+            ]);
+        } else if ($results[0]->result == 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => $results[0]->message
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => $results[0]->message
+            ]);
+        }
     }
 }

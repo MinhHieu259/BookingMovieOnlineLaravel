@@ -1,0 +1,11 @@
+.owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: black !important;
+    width: 7px !important;
+    height: 7px !important;
+}
+
+.owl-dots .owl-dot span, .owl-theme .owl-dots .owl-dot:hover span {
+    width: 7px !important;
+    height: 7px !important;
+}
+

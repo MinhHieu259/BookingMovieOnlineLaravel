@@ -9,6 +9,7 @@
 @push('popup')
     @include('layouts.includes.admin.popup.phong.popup-add-phong')
     @include('layouts.includes.admin.popup.phong.popup-edit-phong')
+    @include('layouts.includes.admin.popup.phong.popup-delete-phong')
 @endpush
 
 @section('content')

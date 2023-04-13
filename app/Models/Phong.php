@@ -49,4 +49,21 @@ class Phong extends Model
         $results = DB::select('EXEC getDetailPhong ?, ?', [$maCum, $maPhong]);
         return $results[0];
     }
+
+    public static function UpdatePhong($request, $maCum, $maPhong)
+    {
+        $data = [
+            (string)$maCum,
+            (string)$maPhong,
+            (string)$request->input('tenPhong')
+        ];
+        $results = DB::select('EXEC UpdatePhong ?, ?, ?', $data);
+        return $results;
+    }
+
+    public static function DeletePhong($maPhong)
+    {
+        $results = DB::select('EXEC DeletePhong ?', [$maPhong]);
+        return $results;
+    }
 }

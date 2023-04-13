@@ -113,27 +113,66 @@ function InsertPhong()
 function UpdatePhong()
 {
     $('#btnAgreeUpdatePhong').click((e) => {
-        // e.preventDefault()
-        // var formData = new FormData();
-        // formData.append('tenDoAn', tenDoAn.val());
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/admin/update-do-an/" + $('#btnAgree').data('ma-do-an'),
-        //     data: formData,
-        //     processData: false,
-        //     contentType: false,
-        //     success: function (response) {
-        //         if (response.status == 200) {
-        //             $('#popupCofirm').modal('hide')
-        //             toastr["success"](response.message, 'Thành công');
-        //         } else if (response.status == 500) {
-        //             console.log(response.message)
-        //         }
-        //     },
-        //     error: function (error) {
-        //         toastr["success"](error, 'Lỗi');
-        //     }
-        // });
+        e.preventDefault()
+        var formData = new FormData();
+        formData.append('tenPhong', $('#tenPhongEdit').val());
+        $.ajax({
+            type: "POST",
+            url: "/admin/cap-nhat-phong/" + window.location.href.split('/').pop()+ "/"+$('#btnAgreeUpdatePhong').data('ma-phong'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == 200) {
+                    $('#popupCofirm').modal('hide')
+                    toastr["success"](response.message, 'Thành công');
+                } else if (response.status == 500) {
+                    console.log(response.message)
+                }
+            },
+            error: function (error) {
+                toastr["success"](error, 'Lỗi');
+            }
+        });
+    })
+}
+
+function DeletePhong()
+{
+    var maPhongDelete = ''
+    $('#btnRefuseDeletePhong').click(function () {
+        $('#popupCofirmDeletePhong').modal('hide')
+    })
+    $('#table-phong').on('draw.dt', function () {
+        $('.btnDeletePhong').on('click', function () {
+            $('#popupCofirmDeletePhong').modal('show')
+            maPhongDelete = $(this).attr("data-ma-phong");
+            $('#btnAgreeDeletePhong').attr('data-ma-phong', maPhongDelete)
+        })
+    })
+
+    $('#btnAgreeDeletePhong').on('click', (e) => {
+        e.preventDefault();
+        $.ajax({
+            type: "DELETE",
+            url: "/admin/delete-phong/" + maPhongDelete,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == 200) {
+                    toastr["success"](response.message, 'Thành công');
+                    $('#table-phong').DataTable().destroy();
+                    initTablePhong()
+                    initDataTablePhong()
+                    $('#popupCofirmDeletePhong').modal('hide')
+                } else if (response.status == 500) {
+                    console.log(response.message)
+                }
+            },
+            error: function (error) {
+                toastr["success"](error, 'Lỗi');
+            }
+        });
     })
 }
 
@@ -144,4 +183,5 @@ $(document).ready(function () {
     btnEditPhong()
     InsertPhong()
     UpdatePhong()
+    DeletePhong()
 })

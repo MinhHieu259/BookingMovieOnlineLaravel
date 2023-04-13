@@ -47,6 +47,8 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::get('/danh-sach-phong-table/{maCum}', [PhongController::class, 'ListPhongOfCumTable'])->name('admin.listphongtable');
     Route::get('/chi-tiet-phong/{maCum}/{maPhong}', [PhongController::class, 'EditPhong'])->name('admin.detailphong');
     Route::post('/them-moi-phong/{maCum}', [PhongController::class, 'InsertPhong'])->name('admin.insertphong');
+    Route::post('/cap-nhat-phong/{maCum}/{maPhong}', [PhongController::class, 'UpdatePhong'])->name('admin.updatephong');
+    Route::delete('/delete-phong/{maPhong}', [PhongController::class, 'DeletePhong'])->name('admin.deletephong');
 
     //Route For Auth
     Route::post('/logout-admin', [AuthController::class, 'LogoutAdmin'])->name('admin.logout');

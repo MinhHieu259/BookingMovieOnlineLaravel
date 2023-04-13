@@ -21,9 +21,9 @@
     />
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}" />
+
 </head>
 <body>
 @include('layouts.includes.user._header')
@@ -51,27 +51,32 @@
 ></script>
 <script src="{{asset('assets/js/slider.js')}}"></script>
 <script src="{{asset('assets/js/owl.carousel.js')}}"></script>
+
 <script>
-    $(".owl-carousel").owlCarousel({
-        loop: true,
-        margin: 10,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-                nav: true,
+    $(document).ready(function() {
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            nav:false,
+            dots: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                },
             },
-            600: {
-                items: 3,
-                nav: true,
-            },
-            1000: {
-                items: 5,
-                nav: true,
-                loop: true,
-            },
-        },
-    });
+        });
+
+        $('.carousel').carousel({
+            interval: 2000
+        })
+    })
 </script>
 
 <!-- Modal login -->
