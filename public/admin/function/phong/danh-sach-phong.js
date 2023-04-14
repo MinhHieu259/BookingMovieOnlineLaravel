@@ -122,16 +122,33 @@ function UpdatePhong()
             data: formData,
             processData: false,
             contentType: false,
+            beforeSend: function () {
+                $('input').removeClass('is-invalid')
+                $('.input-error').text('')
+            },
             success: function (response) {
                 if (response.status == 200) {
-                    $('#popupCofirm').modal('hide')
                     toastr["success"](response.message, 'Thành công');
+                    $('#table-phong').DataTable().destroy();
+                    initTablePhong()
+                    initDataTablePhong()
                 } else if (response.status == 500) {
                     console.log(response.message)
                 }
+                $('#popupEditPhong').modal('hide')
             },
             error: function (error) {
-                toastr["success"](error, 'Lỗi');
+                if (error.status == 422) {
+                    var arrayErrors = [];
+                    $.each(error.responseJSON.errors, function (prefix, val) {
+                        $('#' + prefix+"Edit").addClass("is-invalid");
+                        $('#' + prefix +"Edit"+"Error").text(val);
+                        arrayErrors.push(prefix+"Edit");
+                    })
+                    $('#' + arrayErrors[0]).focus();
+                } else {
+                    toastr["success"](error, 'Lỗi');
+                }
             }
         });
     })
