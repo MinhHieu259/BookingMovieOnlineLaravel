@@ -56,7 +56,6 @@
 @endsection
 
 @push('js')
-    <script src="{{asset('admin/function/auth.js')}}"></script>
     <script src="{{asset('admin/function/phong/danh-sach-phong.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>

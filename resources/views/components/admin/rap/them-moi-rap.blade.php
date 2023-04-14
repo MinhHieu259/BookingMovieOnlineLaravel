@@ -78,6 +78,5 @@
 @endsection
 
 @push('js')
-    <script src="{{asset('admin/function/auth.js')}}"></script>
     <script src="{{asset('admin/function/rap.js')}}"></script>
 @endpush

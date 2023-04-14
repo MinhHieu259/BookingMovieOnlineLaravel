@@ -35,7 +35,7 @@ class RapController extends Controller
 
     public function SaveDataRap(Request $request)
     {
-        $rap = RAP::getInforRap();
+        $rap = RAP::first();
         if ($rap){
             $rap->tenRap = $request->input('tenRap');
             if($request->hasFile('anhDaiDien')){

@@ -1,7 +1,6 @@
 @extends('layouts.admin-layout')
 @section('title', 'Thêm mới cụm rạp')
 @push('js')
-    <script src="{{asset('admin/function/auth.js')}}"></script>
     <script src="{{asset('admin/function/add-edit-cum-rap.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
