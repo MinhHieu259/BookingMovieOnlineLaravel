@@ -112,6 +112,29 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{Route::currentRouteName() == 'admin.listdanhmuc' || Route::currentRouteName() == 'admin.adddanhmuc' || Route::currentRouteName() == 'admin.capnhatdanhmuc' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.listdanhmuc' || Route::currentRouteName() == 'admin.adddanhmuc' || Route::currentRouteName() == 'admin.capnhatdanhmuc' ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Quản lý danh mục
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.listdanhmuc')}}" class="nav-link {{Route::currentRouteName() == 'admin.listdanhmuc' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách danh mục</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.adddanhmuc')}}" class="nav-link {{Route::currentRouteName() == 'admin.adddanhmuc' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới danh mục</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
