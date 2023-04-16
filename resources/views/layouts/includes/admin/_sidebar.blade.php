@@ -135,14 +135,28 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                <li class="nav-item {{Route::currentRouteName() == 'admin.addphim' || Route::currentRouteName() == 'admin.listphim' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.addphim' || Route::currentRouteName() == 'admin.listphim' ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
+                            Quản lý phim
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.listphim')}}" class="nav-link {{Route::currentRouteName() == 'admin.listphim' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách phim</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.addphim')}}" class="nav-link {{Route::currentRouteName() == 'admin.addphim' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới phim</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-header">EXAMPLES</li>

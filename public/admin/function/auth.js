@@ -7,7 +7,7 @@ function LogoutAdmin() {
        e.preventDefault()
         $.ajax({
             type: "POST",
-            url: "logout-admin",
+            url: "/admin/logout-admin",
             success: function (response) {
                 window.location.href = response.redirect;
             },
