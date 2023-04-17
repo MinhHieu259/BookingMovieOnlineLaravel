@@ -10,10 +10,16 @@ class NhaSanXuat extends Model
     use HasFactory;
 
     protected $table = 'NhaSanXuat';
+    protected $primaryKey = 'maNhaSanXuat';
+    protected $casts = [
+        'maNhaSanXuat' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maNhaSanXuat',
         'tenNhaSanXuat',
-        'maPhim'
+        'maPhim',
+        'deleted'
     ];
 
     public function Phim()

@@ -10,10 +10,16 @@ class DaoDien extends Model
     use HasFactory;
 
     protected $table = 'DaoDien';
+    protected $primaryKey = 'maDaoDien';
+    protected $casts = [
+        'maDaoDien' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maDaoDien',
         'tenDaoDien',
-        'maPhim'
+        'maPhim',
+        'deleted'
     ];
 
     public function Phim()

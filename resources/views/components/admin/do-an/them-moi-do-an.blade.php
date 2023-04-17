@@ -47,14 +47,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tenDoAn">Tên đồ ăn</label>
+                                            <label for="tenDoAn">Tên đồ ăn <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="tenDoAn" placeholder="Nhập tên đồ ăn" autocomplete="off">
                                             <span class="text-danger input-error" id="tenDoAnError"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="gia">Giá tiền</label>
+                                            <label for="gia">Giá tiền <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="gia" placeholder="Nhập giá tiền" autocomplete="off">
                                             <span class="text-danger input-error" id="giaError"></span>
                                         </div>
@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Cụm rạp</label>
+                                            <label>Cụm rạp <span class="text-danger">*</span></label>
                                             <select id="maChiTietRap" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                                 @foreach($cumraps as $index => $cumrap)
                                                     <option value="{{$cumrap->maChiTietRap}}">{{$cumrap->tenRap}}</option>

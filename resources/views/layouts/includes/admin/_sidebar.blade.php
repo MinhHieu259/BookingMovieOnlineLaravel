@@ -137,7 +137,7 @@
                 </li>
                 <li class="nav-item {{Route::currentRouteName() == 'admin.addphim' || Route::currentRouteName() == 'admin.listphim' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.addphim' || Route::currentRouteName() == 'admin.listphim' ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fa-solid fa-film"></i>
                         <p>
                             Quản lý phim
                             <i class="right fas fa-angle-left"></i>

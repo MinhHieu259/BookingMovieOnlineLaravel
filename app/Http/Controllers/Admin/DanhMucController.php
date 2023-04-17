@@ -53,6 +53,7 @@ class DanhMucController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => $results[0]->message,
+                'maDanhMuc' => $results[0]->maDanhMuc
             ]);
         } else if ($results[0]->result == 0) {
             return response()->json([

@@ -47,21 +47,21 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nameRap">Tên rạp</label>
+                                            <label for="nameRap">Tên rạp <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="tenRap" value="{{$cumrap->tenRap}}" placeholder="Nhập tên rạp" autocomplete="off">
                                             <span class="text-danger input-error" id="tenRapError"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nameRap">Địa chỉ</label>
+                                            <label for="nameRap">Địa chỉ <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="diaChi" value="{{$cumrap->diaChi}}" placeholder="Nhập địa chỉ rạp" autocomplete="off">
                                             <span class="text-danger input-error" id="diaChiError"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="map">Thông tin bản đồ</label>
+                                    <label for="map">Thông tin bản đồ <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" value="{{$cumrap->map}}" id="map" placeholder="Nhập địa chỉ bản đồ" autocomplete="off">
                                     <span class="text-danger input-error" id="mapError"></span>
                                 </div>

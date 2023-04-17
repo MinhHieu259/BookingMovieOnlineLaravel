@@ -10,10 +10,16 @@ class DienVien extends Model
     use HasFactory;
 
     protected $table = 'DienVien';
+    protected $primaryKey = 'maDienVien';
+    protected $casts = [
+        'maDienVien' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maDienVien',
         'tenDienVien',
-        'maPhim'
+        'maPhim',
+        'deleted'
     ];
 
     public function Phim()

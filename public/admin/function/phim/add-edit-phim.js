@@ -1,5 +1,14 @@
 
 var images = [];
+var tenPhim = $('#tenPhim')
+var Trailer = $('#Trailer')
+var moTa = $('#moTa')
+var ngayKhoiChieu = $('#ngayKhoiChieu')
+var danhMucPhim = $('#danhMuc')
+var giaVe = $('#giaVe')
+var dienVien = $('#dienVien')
+var nhaSanXuat = $('#nhaSanXuat')
+var daoDien = $('#daoDien')
 
 function uploadImage() {
 
@@ -15,7 +24,6 @@ function uploadImage() {
         $.each(this.files, function (index, file) {
             // Tạo một đối tượng URL để tạo đường dẫn tạm thời đến hình ảnh
             images.push(file);
-            console.log(images)
         });
         $("#image-preview-container").html('');
         $.each(images, function (index, image) {
@@ -43,9 +51,9 @@ function uploadImage() {
             // Tạo một đối tượng URL để tạo đường dẫn tạm thời đến hình ảnh
             var url = URL.createObjectURL(image);
 
-            var deleteButtonHtml = '<button class="btn btn-danger btn-delete-image"  data-index="' + index + '">Xóa</button>';
+            var deleteButtonHtml = '<button class="btn btn-danger btn-delete-image" data-index="' + index + '">Xóa</button>';
 
-            var imgHtml = '<img width="500" src="' + url + '" alt="Image preview">';
+            var imgHtml = '<img width="300" src="' + url + '" alt="Image Film">';
 
             var imageContainerHtml = '<div class="image-container">' + imgHtml + deleteButtonHtml + '</div>';
             $("#image-preview-container").append(imageContainerHtml);
@@ -53,14 +61,91 @@ function uploadImage() {
     });
 }
 
-function addFilm() {
-    $('#btnSaveFilm').click(function () {
-        console.log($('#dienVien').val())
-        console.log(images)
+function insertFilm(e)
+{
+    e.preventDefault()
+    var formData = new FormData();
+    formData.append('tenPhim', tenPhim.val());
+    formData.append('Trailer', Trailer.val());
+    formData.append('moTa', moTa.val());
+    formData.append('ngayKhoiChieu', ngayKhoiChieu.val());
+    formData.append('danhMuc', danhMucPhim.val());
+    formData.append('giaVe', giaVe.val());
+    formData.append('dienVien', dienVien.val());
+    formData.append('nhaSanXuat', nhaSanXuat.val());
+    formData.append('daoDien', daoDien.val());
+    for (var i = 0; i < images.length; i++) {
+        formData.append('hinhAnh[]', images[i]);
+    }
+    $.ajax({
+        type: "POST",
+        url: "insert-phim",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response)
+            if (response.status == 200) {
+                $('#popupCofirm').modal('hide')
+                toastr["success"](response.message, 'Thành công');
+            } else if (response.status == 500) {
+                console.log(response.message)
+            }
+        },
+        error: function (error) {
+            toastr["success"](error, 'Lỗi');
+        }
+    });
+}
+
+function validatePhim() {
+    $('#btnSaveFilm').click(() => {
+        var formData = new FormData();
+        formData.append('tenPhim', tenPhim.val());
+        formData.append('Trailer', Trailer.val());
+        formData.append('moTa', moTa.val());
+        formData.append('ngayKhoiChieu', ngayKhoiChieu.val());
+        formData.append('danhMuc', danhMucPhim.val());
+        formData.append('giaVe', giaVe.val());
+        formData.append('dienVien', dienVien.val());
+        formData.append('nhaSanXuat', nhaSanXuat.val());
+        formData.append('daoDien', daoDien.val());
+        $.ajax({
+            type: "POST",
+            url: "/admin/validate-phim",
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('input').removeClass('is-invalid')
+                $('textarea').removeClass('is-invalid')
+                $('.input-error').text('')
+            },
+            success: function (response) {
+                if (response.status == 200) {
+                    $('#popupCofirm').modal('show')
+                    popupConfirm(
+                        'Xác nhận lưu thông tin phim ?',
+                        insertFilm
+                    )
+                }
+            },
+            error: function (error) {
+                console.log(error.responseJSON.errors);
+                var arrayErrors = [];
+                $.each(error.responseJSON.errors, function (prefix, val) {
+                    $('#' + prefix).addClass("is-invalid");
+                    $('#' + prefix + "Error").text(val);
+                    arrayErrors.push(prefix);
+                })
+                $('#' + arrayErrors[0]).focus();
+            }
+        });
     })
 }
 
+
 $(document).ready(function () {
     uploadImage()
-    addFilm()
+    validatePhim()
 })

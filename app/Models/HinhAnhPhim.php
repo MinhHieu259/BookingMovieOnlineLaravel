@@ -10,10 +10,16 @@ class HinhAnhPhim extends Model
     use HasFactory;
 
     protected $table = 'HinhAnhPhim';
+    protected $primaryKey ='maHinhAnh';
+    protected $casts =[
+        'maHinhAnh' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maHinhAnh',
         'linkHinhAnh',
-        'maPhim'
+        'maPhim',
+        'deleted'
     ];
 
     public function Phim()

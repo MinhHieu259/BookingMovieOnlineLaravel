@@ -10,14 +10,20 @@ class Phim extends Model
     use HasFactory;
 
     protected $table = 'PHIM';
+    protected $primaryKey = 'maPhim';
+    public $timestamps = false;
+    protected $casts = [
+        'maPhim' => 'string'
+    ];
     protected $fillable = [
         'maPhim',
         'tenPhim',
         'ngayKhoiChieu',
         'moTaPhim',
         'linkTrailer',
-        'maChiTietRap',
-        'maDanhMuc'
+        'maDanhMuc',
+        'giaVe',
+        'deleted'
     ];
 
     public function ChiTietRap()

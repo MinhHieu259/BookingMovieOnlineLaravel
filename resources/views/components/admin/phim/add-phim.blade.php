@@ -10,11 +10,12 @@
     </script>
     <script>
         $('#reservationdate').datetimepicker({
-            format: 'L'
+            format: 'DD/MM/YYYY'
         });
     </script>
 @endpush
 @push('css')
+    <link rel="stylesheet" href="{{asset('admin/css/phim.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
@@ -55,7 +56,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tenPhim">Tên phim</label>
+                                            <label for="tenPhim">Tên phim <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="tenPhim"
                                                    placeholder="Nhập tên phim" autocomplete="off">
                                             <span class="text-danger input-error" id="tenPhimError"></span>
@@ -64,7 +65,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="Trailer">Trailer</label>
+                                            <label for="Trailer">Trailer <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="Trailer"
                                                    placeholder="Nhập link trailer" autocomplete="off">
                                             <span class="text-danger input-error" id="TrailerError"></span>
@@ -75,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="moTa">Mô tả</label>
+                                            <label for="moTa">Mô tả <span class="text-danger">*</span></label>
                                             <textarea class="form-control" rows="3" id="moTa" placeholder="Nhập mô tả phim"></textarea>
                                             <span class="text-danger input-error" id="moTaError"></span>
                                         </div>
@@ -85,26 +86,26 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="ngayKhoiChieu">Ngày khởi chiếu</label>
+                                            <label for="ngayKhoiChieu">Ngày khởi chiếu <span class="text-danger">*</span></label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                                 <input type="text" id="ngayKhoiChieu" class="form-control datetimepicker-input" data-target="#reservationdate">
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
-                                                <span class="text-danger input-error" id="ngayKhoiChieuError"></span>
                                             </div>
+                                            <span class="text-danger input-error" id="ngayKhoiChieuError"></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Danh mục</label>
-                                            <select id="danhMucPhim" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" data-select2-id="danhMucPhim">
-                                                <option value="1">Hello1</option>
-                                                <option value="2">Hello2</option>
-                                                <option value="3">Hello3</option>
+                                            <label>Danh mục <span class="text-danger">*</span></label>
+                                            <select id="danhMuc" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" data-select2-id="danhMuc">
+                                                @foreach($danhmucs as $index => $danhmuc)
+                                                    <option value="{{$danhmuc->maDanhMuc}}">{{$danhmuc->tenDanhMuc}}</option>
+                                                @endforeach
                                             </select>
-                                            <span class="text-danger input-error" id="danhMucPhimError"></span>
+                                            <span class="text-danger input-error" id="danhMucError"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +113,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="giaVe">Giá vé</label>
+                                            <label for="giaVe">Giá vé <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="giaVe"
                                                    placeholder="Nhập giá vé" autocomplete="off">
                                             <span class="text-danger input-error" id="giaVeError"></span>
@@ -122,7 +123,7 @@
 
                                 <div class="card card-default">
                                     <div class="card-header">
-                                        <h3 class="card-title">Thông tin diễn viên</h3>
+                                        <h3 class="card-title">Thông tin diễn viên </h3>
 
                                         <div class="card-tools">
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -135,16 +136,13 @@
                                         <div class="row">
                                            <div class="col-md-12">
                                                <div class="form-group">
-                                                   <label>Chọn diễn viên</label>
+                                                   <label>Chọn diễn viên <span class="text-danger">*</span></label>
                                                    <select class="select2" multiple="multiple" id="dienVien" data-placeholder="Chọn diễn viên" style="width: 100%;">
-                                                       <option>Alabama</option>
-                                                       <option>Alaska</option>
-                                                       <option>California</option>
-                                                       <option>Delaware</option>
-                                                       <option>Tennessee</option>
-                                                       <option>Texas</option>
-                                                       <option>Washington</option>
+                                                       @foreach($dienviens as $index => $dienvien)
+                                                       <option value="{{$dienvien->maDienVien}}">{{$dienvien->tenDienVien}}</option>
+                                                       @endforeach
                                                    </select>
+                                                   <span class="text-danger input-error" id="dienVienError"></span>
                                                </div>
                                            </div>
                                         </div>
@@ -166,16 +164,13 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Chọn nhà sản xuất</label>
-                                                    <select class="select2" multiple="multiple" id="nhaSanXuat" data-placeholder="Chọn diễn viên" style="width: 100%;">
-                                                        <option>Alabama</option>
-                                                        <option>Alaska</option>
-                                                        <option>California</option>
-                                                        <option>Delaware</option>
-                                                        <option>Tennessee</option>
-                                                        <option>Texas</option>
-                                                        <option>Washington</option>
+                                                    <label>Chọn nhà sản xuất <span class="text-danger">*</span></label>
+                                                    <select class="select2" multiple="multiple" id="nhaSanXuat" data-placeholder="Chọn nhà sản xuất" style="width: 100%;">
+                                                       @foreach($nhasxs as $index => $nhasx)
+                                                        <option value="{{$nhasx->maNhaSanXuat}}">{{$nhasx->tenNhaSanXUat}}</option>
+                                                        @endforeach
                                                     </select>
+                                                    <span class="text-danger input-error" id="nhaSanXuatError"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,16 +192,13 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Chọn đạo diễn</label>
+                                                    <label>Chọn đạo diễn <span class="text-danger">*</span></label>
                                                     <select class="select2" multiple="multiple" id="daoDien" data-placeholder="Chọn đạo diễn" style="width: 100%;">
-                                                        <option>Alabama</option>
-                                                        <option>Alaska</option>
-                                                        <option>California</option>
-                                                        <option>Delaware</option>
-                                                        <option>Tennessee</option>
-                                                        <option>Texas</option>
-                                                        <option>Washington</option>
+                                                        @foreach($daodiens as $index => $daodien)
+                                                            <option value="{{$daodien->maDaoDien}}">{{$daodien->tenDaoDien}}</option>
+                                                        @endforeach
                                                     </select>
+                                                    <span class="text-danger input-error" id="daoDienError"></span>
                                                 </div>
                                             </div>
                                         </div>

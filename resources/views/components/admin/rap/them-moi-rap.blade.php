@@ -33,7 +33,7 @@
                         <form enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nameRap">Tên rạp</label>
+                                    <label for="nameRap">Tên rạp <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="tenRap" placeholder="Nhập tên rạp" @if(isset($rap->tenRap)) value="{{$rap->tenRap}}" @endif autocomplete="off">
                                     <span class="text-danger input-error" id="tenRapError"></span>
                                 </div>
