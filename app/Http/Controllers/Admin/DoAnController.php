@@ -52,23 +52,6 @@ class DoAnController extends Controller
 
     public function SaveData(AddDoAnRequest $request)
     {
-//        $doan = new DoAn();
-//        $doan->maDoAn = '';
-//        $doan->tenDoAn = $request->input('tenDoAn');
-//        $doan->gia = $request->input('gia');
-//        $doan->maChiTietRap = $request->input('maChiTietRap');
-//        $doan->save();
-//        if ($doan->wasRecentlyCreated) {
-//            return response()->json([
-//                'status' => 200,
-//                'message' => 'Thêm mới đồ ăn thành công'
-//            ]);
-//        } else {
-//            return response()->json([
-//                'status' => 500,
-//                'message' => 'Bị lỗi bạn vui lòng kiểm tra lại'
-//            ]);
-//        }
         $results = DoAn::SaveDoAn($request);
         if ($results[0]->result == 1) {
             return response()->json([

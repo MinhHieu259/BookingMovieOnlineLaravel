@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Phim extends Model
 {
@@ -34,5 +35,16 @@ class Phim extends Model
     public function DanhMucPhim()
     {
         return $this->belongsTo(DanhMucPhim::class, 'maDanhMuc');
+    }
+
+    public function DienVien()
+    {
+        return $this->hasMany(ChiTietDienVien::class, 'maPhim');
+    }
+
+    public static function DeletePhim($maPhim)
+    {
+        $results = DB::select('EXEC DeletePhim ?', [$maPhim]);
+        return $results;
     }
 }

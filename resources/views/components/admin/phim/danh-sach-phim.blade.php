@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 @endpush
 @push('popup')
-{{--    @include('layouts.includes.admin.popup.do-an.popup-delete-do-an')--}}
+    @include('layouts.includes.admin.popup.phim.popup-delete-phim')
 @endpush
 
 @section('content')
@@ -31,7 +31,7 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <table id="table-do-an" class="table table-bordered table-hover">
+            <table id="table-phim" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th style="width: 10%">Mã phim</th>
@@ -51,7 +51,7 @@
 @endsection
 
 @push('js')
-{{--    <script src="{{asset('admin/function/phim/list-delete-phim.js')}}"></script>--}}
+    <script src="{{asset('admin/function/phim/list-delete-phim.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
