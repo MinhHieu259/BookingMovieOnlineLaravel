@@ -1,0 +1,11 @@
+.input-in-table{
+    padding: 0 !important;
+    border-radius: 0;
+    border: none !important;
+}
+.input-in-table:focus{
+    border: #80bdff 1px solid !important;
+}
+.td-table-input{
+    padding: 0 !important;
+}

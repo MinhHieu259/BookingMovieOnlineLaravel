@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 @section('title', 'Thêm mới dãy ghế')
 @push('js')
-{{--    <script src="{{asset('admin/function/do-an/add-edit-do-an.js')}}"></script>--}}
+    <script src="{{asset('admin/function/day-ghe/add-edit-day-ghe.js')}}"></script>
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script>
         $('.select2').select2()
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/css/dayghe.css')}}">
 @endpush
 @section('content')
     <!-- Content Header (Page header) -->
@@ -36,6 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <form id="form-add-day-ghe">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Nhập thông tin dãy ghế</h3>
@@ -45,19 +47,33 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tenDayGhe">Tên dãy ghế <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="tenDayGhe" placeholder="Nhập tên dãy ghế" autocomplete="off">
-                                            <span class="text-danger input-error" id="tenDayGheError"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="soLuongGhe">Số lượng ghế <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="soLuongGhe" placeholder="Nhập số lượng ghế" autocomplete="off">
-                                            <span class="text-danger input-error" id="soLuongGheError"></span>
-                                        </div>
+                                   <div class="col-md-6">
+                                       <button id="btnAddGhe" style="margin-right: 10px; margin-bottom: 10px;width: 7%" class="btn btn-success btn-sm float-left">+</button>
+                                   </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered" id="table-input-day-ghe">
+                                            <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên dãy ghế</th>
+                                                <th>Số ghế mỗi dãy</th>
+                                                <th>Xóa</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($dayghes as $index => $dayghe)
+                                            <tr>
+                                                <td class="td-table-input text-right"><span class="mr-3">1</span></td>
+                                                <td class="td-table-input"><input class="form-control input-in-table" name="tenDayGhe[]" type="text" value="{{$dayghe->tenDayGhe}}"></td>
+                                                <td class="td-table-input"><input class="form-control input-in-table" name="soGheMoiDay[]" type="text" value="{{$dayghe->soGheMoiDay}}"></td>
+                                                <td style="padding: 0px; text-align: center;"><button style="margin-top: 3%" class="btn btn-danger btn-sm btn-delete-dayghe">X</button></td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
@@ -65,10 +81,11 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary" id="btnSaveDayGhe">Lưu thông tin</button>
+                                <button type="submit" class="btn btn-primary" id="btnSaveDayGhe">Lưu thông tin</button>
                             </div>
 
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

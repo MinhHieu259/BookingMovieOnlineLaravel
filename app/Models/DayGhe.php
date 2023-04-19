@@ -10,8 +10,15 @@ class DayGhe extends Model
     use HasFactory;
 
     protected $table = 'DayGhe';
+    protected $primaryKey = 'maDayGhe';
+    protected $casts = [
+        'maDayGhe' => 'string'
+    ];
+    public $timestamps =false;
     protected $fillable = [
         'maDayGhe',
-        'tenDayGhe'
+        'tenDayGhe',
+        'soGheMoiDay',
+        'maPhong'
     ];
 }
