@@ -40,7 +40,8 @@ class AddFilmRequest extends FormRequest
                 'required'
             ],
             'giaVe' => [
-                'required'
+                'required',
+                'numeric'
             ],
             'dienVien' => [
                 'required'
@@ -64,6 +65,7 @@ class AddFilmRequest extends FormRequest
             'ngayKhoiChieu.required' => 'Ngày khởi chiếu không được để trống',
             'danhMuc.required' => 'Danh mục phim không được để trống',
             'giaVe.required' => 'Giá vé không được để trống',
+            'giaVe.numeric' => 'Giá vé nhập không đúng định dạng',
             'dienVien.required' => 'Thông tin diễn viên không được để trống',
             'nhaSanXuat.required' => 'Thông tin nhà sản xuất không được để trống',
             'daoDien.required' => 'Thông tin đạo diễn không được để trống',

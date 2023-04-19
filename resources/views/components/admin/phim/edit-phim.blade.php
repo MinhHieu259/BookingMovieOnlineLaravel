@@ -139,7 +139,7 @@
                                                    <label>Chọn diễn viên <span class="text-danger">*</span></label>
                                                    <select class="select2" multiple="multiple" id="dienVienEdit" data-placeholder="Chọn diễn viên" style="width: 100%;">
                                                        @foreach($dienviens as $index => $dienvien)
-                                                       <option value="{{$dienvien->maDienVien}}" {{ in_array($dienvien->maDienVien, $dienVienOfFilm) ? 'selected' : '' }}>{{$dienvien->tenDienVien}}</option>
+                                                       <option value="{{$dienvien->maDienVien}}" {{ in_array($dienvien->maDienVien, json_decode($phim->maDienVien)) ? 'selected' : '' }}>{{$dienvien->tenDienVien}}</option>
                                                        @endforeach
                                                    </select>
                                                    <span class="text-danger input-error" id="dienVienEditError"></span>
@@ -167,7 +167,7 @@
                                                     <label>Chọn nhà sản xuất <span class="text-danger">*</span></label>
                                                     <select class="select2" multiple="multiple" id="nhaSanXuatEdit" data-placeholder="Chọn nhà sản xuất" style="width: 100%;">
                                                        @foreach($nhasxs as $index => $nhasx)
-                                                        <option value="{{$nhasx->maNhaSanXuat}}" {{ in_array($nhasx->maNhaSanXuat, $nhaSxOfFilm) ? 'selected' : '' }}>{{$nhasx->tenNhaSanXUat}}</option>
+                                                        <option value="{{$nhasx->maNhaSanXuat}}" {{ in_array($nhasx->maNhaSanXuat, json_decode($phim->maNhaSanXuat)) ? 'selected' : '' }}>{{$nhasx->tenNhaSanXUat}}</option>
                                                         @endforeach
                                                     </select>
                                                     <span class="text-danger input-error" id="nhaSanXuatEditError"></span>
@@ -195,7 +195,7 @@
                                                     <label>Chọn đạo diễn <span class="text-danger">*</span></label>
                                                     <select class="select2" multiple="multiple" id="daoDienEdit" data-placeholder="Chọn đạo diễn" style="width: 100%;">
                                                         @foreach($daodiens as $index => $daodien)
-                                                            <option value="{{$daodien->maDaoDien}}" {{ in_array($daodien->maDaoDien, $daoDienOfFilm) ? 'selected' : '' }}>{{$daodien->tenDaoDien}}</option>
+                                                            <option value="{{$daodien->maDaoDien}}" {{ in_array($daodien->maDaoDien, json_decode($phim->maDaoDien)) ? 'selected' : '' }}>{{$daodien->tenDaoDien}}</option>
                                                         @endforeach
                                                     </select>
                                                     <span class="text-danger input-error" id="daoDienEditError"></span>

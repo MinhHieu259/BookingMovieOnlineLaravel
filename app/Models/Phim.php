@@ -14,7 +14,10 @@ class Phim extends Model
     protected $primaryKey = 'maPhim';
     public $timestamps = false;
     protected $casts = [
-        'maPhim' => 'string'
+        'maPhim' => 'string',
+//        'maDienVien' => 'array',
+//        'maDaoDien' => 'array',
+//        'maNhaSanXuat' => 'array'
     ];
     protected $fillable = [
         'maPhim',
@@ -24,7 +27,10 @@ class Phim extends Model
         'linkTrailer',
         'maDanhMuc',
         'giaVe',
-        'deleted'
+        'deleted',
+        'maDienVien',
+        'maDaoDien',
+        'maNhaSanXuat'
     ];
 
     public function ChiTietRap()

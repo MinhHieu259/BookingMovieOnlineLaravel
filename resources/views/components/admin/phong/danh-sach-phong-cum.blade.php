@@ -41,8 +41,8 @@
                 <thead>
                 <tr>
                     <th style="width: 10%">Mã phòng</th>
-                    <th>Tên phòng</th>
-                    <th style="width: 12%">Thao tác</th>
+                    <th style="width: 70%">Tên phòng</th>
+                    <th style="width: 20%">Thao tác</th>
                 </tr>
                 </thead>
                 <tbody>

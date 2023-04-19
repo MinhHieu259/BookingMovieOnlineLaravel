@@ -49,31 +49,35 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
+                ->group(base_path('routes/admin/admin.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/cumrap.php'));
+                ->group(base_path('routes/admin/cumrap.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/rap.php'));
+                ->group(base_path('routes/admin/rap.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/doan.php'));
+                ->group(base_path('routes/admin/doan.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/phong.php'));
+                ->group(base_path('routes/admin/phong.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/danh-muc-phim.php'));
+                ->group(base_path('routes/admin/danh-muc-phim.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path('routes/phim.php'));
+                ->group(base_path('routes/admin/phim.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin/day-ghe.php'));
         });
     }
 
