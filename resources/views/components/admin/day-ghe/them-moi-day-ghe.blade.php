@@ -57,10 +57,10 @@
                                         <table class="table-bordered" style="width: 100%" id="table-input-day-ghe">
                                             <thead>
                                             <tr>
-                                                <th>STT</th>
-                                                <th>Tên dãy ghế</th>
-                                                <th>Số ghế mỗi dãy</th>
-                                                <th>Xóa</th>
+                                                <th style="width: 20%" class="pl-2">STT</th>
+                                                <th style="width: 30%" class="pl-2">Tên dãy ghế</th>
+                                                <th style="width: 30%" class="pl-2">Số ghế mỗi dãy</th>
+                                                <th style="width: 20%" class="pl-2">Xóa</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -68,7 +68,7 @@
                                             <tr>
                                                 <td class="td-table-input text-right"><span class="mr-3">{{$index + 1}}</span></td>
                                                 <td class="td-table-input"><input class="form-control input-in-table" name="tenDayGhe[]" type="text" value="{{$dayghe->tenDayGhe}}"></td>
-                                                <td class="td-table-input"><input class="form-control input-in-table" name="soGheMoiDay[]" type="text" value="{{$dayghe->soGheMoiDay}}"></td>
+                                                <td class="td-table-input"><input class="form-control input-in-table" style="text-align: right !important;" name="soGheMoiDay[]" type="text" value="{{$dayghe->soGheMoiDay}}"></td>
                                                 <td style="padding: 0px; text-align: center;"><button style="margin-top: 3%" class="btn btn-danger btn-sm btn-delete-dayghe">X</button></td>
                                             </tr>
                                             @endforeach

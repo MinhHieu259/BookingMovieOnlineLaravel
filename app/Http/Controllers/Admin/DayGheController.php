@@ -52,4 +52,13 @@ class DayGheController extends Controller
             return response()->json(['status' => 500, 'message' => $e->getMessage()]);
         }
     }
+
+    public function GetListDayGhe($maPhong)
+    {
+        $dayGhes = DayGhe::where('maPhong', $maPhong)->get();
+        return response()->json([
+            'status' => 200,
+            'dayGhe' => $dayGhes
+        ]);
+    }
 }

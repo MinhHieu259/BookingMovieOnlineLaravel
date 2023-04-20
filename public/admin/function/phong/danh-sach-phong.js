@@ -9,7 +9,8 @@ function initTablePhong() {
                 render: function (data, type, row) {
                     return ' <a data-ma-phong="' + data.maPhong + '" class="btn btn-warning btn-sm float-left btnEditPhong">Cập nhật</a>' +
                         '<button style="margin-left: 15px" class="btn btn-danger btn-sm float-left btnDeletePhong" data-ma-phong="' + data.maPhong + '">Xóa</button>'+
-                        '<a href="/admin/them-moi-day-ghe/'+window.location.href.split('/').pop()+'/'+data.maPhong+'" class="btn btn-success btn-sm float-right btnQlGhe" data-ma-phong="' + data.maPhong + '">Quản lý ghế</a>';
+                        '<a href="/admin/them-moi-day-ghe/'+window.location.href.split('/').pop()+'/'+data.maPhong+'" class="btn btn-success btn-sm float-right btnQlGhe" data-ma-phong="' + data.maPhong + '">Quản lý ghế</a>'+
+                        '<a href="/admin/quan-ly-suat-chieu/'+window.location.href.split('/').pop()+'/'+data.maPhong+'" class="btn btn-success mt-1 btn-sm btnSuatChieu" data-ma-phong="' + data.maPhong + '">Quản lý suất chiếu</a>';
                 }
             }
         ],
