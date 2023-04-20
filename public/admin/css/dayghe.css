@@ -4,8 +4,9 @@
     border: none !important;
 }
 .input-in-table:focus{
-    border: #80bdff 1px solid !important;
+    box-shadow: 0 0 0 1px #80bdff inset;
 }
 .td-table-input{
     padding: 0 !important;
 }
+

@@ -54,7 +54,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <table class="table table-bordered" id="table-input-day-ghe">
+                                        <table class="table-bordered" style="width: 100%" id="table-input-day-ghe">
                                             <thead>
                                             <tr>
                                                 <th>STT</th>
@@ -66,7 +66,7 @@
                                             <tbody>
                                             @foreach($dayghes as $index => $dayghe)
                                             <tr>
-                                                <td class="td-table-input text-right"><span class="mr-3">1</span></td>
+                                                <td class="td-table-input text-right"><span class="mr-3">{{$index + 1}}</span></td>
                                                 <td class="td-table-input"><input class="form-control input-in-table" name="tenDayGhe[]" type="text" value="{{$dayghe->tenDayGhe}}"></td>
                                                 <td class="td-table-input"><input class="form-control input-in-table" name="soGheMoiDay[]" type="text" value="{{$dayghe->soGheMoiDay}}"></td>
                                                 <td style="padding: 0px; text-align: center;"><button style="margin-top: 3%" class="btn btn-danger btn-sm btn-delete-dayghe">X</button></td>
