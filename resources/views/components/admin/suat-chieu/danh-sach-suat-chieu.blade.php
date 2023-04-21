@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Danh sách lịch chiếu</h1>
+                    <h1 class="m-0">Danh sách lịch chiếu (Phim {{$phim->tenPhim}})</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,12 +31,14 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <table id="table-phim" class="table table-bordered table-hover">
+            <a href="{{route('admin.addLichChieu', $phim->maPhim)}}" class="btn btn-success btn-sm mb-3">Thêm mới lịch chiếu</a>
+            <table id="table-suat-chieu" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th style="width: 10%">Mã phim</th>
-                    <th>Tên phim</th>
-                    <th>Giá</th>
+                    <th style="width: 10%">Mã suất chiếu</th>
+                    <th>Ngày chiếu</th>
+                    <th>Giờ chiếu</th>
+                    <th>Phòng</th>
                     <th style="width: 20%">Thao tác</th>
                 </tr>
                 </thead>

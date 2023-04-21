@@ -11,7 +11,7 @@ function initTablePhim() {
                 render: function (data, type, row) {
                     return ' <a href="cap-nhat-phim/'+data.maPhim+'" class="btn btn-warning btn-sm float-left">Cập nhật</a>' +
                         '<button class="btn btn-danger btn-sm float-left btnDeletePhim" style="margin-left: 10px" data-ma-phim="'+data.maPhim+'">Xóa</button>'+
-                        '<a href="/admin/quan-ly-lich-chieu/'+window.location.href.split('/').pop()+'/'+data.maPhim+'" style="margin-left: 10px" class="btn btn-success btn-sm btnSuatChieu" data-ma-phong="' + data.maPhim + '">Lịch chiếu</a>';
+                        '<a href="/admin/danh-sach-lich-chieu/'+data.maPhim+'" style="margin-left: 10px" class="btn btn-success btn-sm btnSuatChieu" data-ma-phong="' + data.maPhim + '">Lịch chiếu</a>';
                     ;
                 }
             }
