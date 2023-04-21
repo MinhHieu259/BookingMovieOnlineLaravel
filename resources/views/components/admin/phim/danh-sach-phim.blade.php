@@ -37,7 +37,7 @@
                     <th style="width: 10%">Mã phim</th>
                     <th>Tên phim</th>
                     <th>Giá</th>
-                    <th style="width: 12%">Thao tác</th>
+                    <th style="width: 20%">Thao tác</th>
                 </tr>
                 </thead>
                 <tbody>

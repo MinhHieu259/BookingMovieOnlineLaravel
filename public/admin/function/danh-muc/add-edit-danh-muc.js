@@ -125,4 +125,22 @@ function ValidateUpdateDanhMuc(){
 $(document).ready(function () {
     validateDanhMuc()
     ValidateUpdateDanhMuc()
+    Validator({
+        rules:{
+            '#tenDanhMuc': {
+                required: {
+                    message: 'Tên danh mục không được để trống'
+                }
+            }
+        }
+    })
+    Validator({
+        rules:{
+            '#tenDanhMucEdit': {
+                required: {
+                    message: 'Tên danh mục không được để trống'
+                }
+            }
+        }
+    })
 })

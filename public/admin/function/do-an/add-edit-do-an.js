@@ -133,7 +133,40 @@ function ValidateUpdate(){
     })
 }
 
+// function validateFrontFood()
+// {
+//     var ruleTenDoAn = {
+//         required: "Tên đồ ăn không được để trống",
+//     };
+//
+//     var ruleGiaTien = {
+//         required: "Giá không được để trống",
+//     };
+//
+//     $('#tenDoAn').blur(function (){
+//         validateInput('tenDoAn', ruleTenDoAn);
+//     })
+//     $('#gia').blur(function (){
+//         validateInput('gia', ruleGiaTien);
+//     })
+// }
+
+
 $(document).ready(function () {
     validateDoAn()
     ValidateUpdate()
+    Validator({
+        rules:{
+            '#tenDoAn': {
+                required: {
+                    message: 'Tên đồ ăn không được để trống'
+                }
+            },
+            '#gia': {
+                required: {
+                    message: 'Giá không được để trống'
+                }
+            }
+        }
+    })
 })

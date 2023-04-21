@@ -1,4 +1,3 @@
-
 //Set csrf cho ajax
 function ajaxSetting() {
     $.ajaxSetup({
@@ -22,7 +21,70 @@ function popupConfirm(title, method) {
     })
 }
 
-$(document).ready(function() {
+
+// function validateInput(id, validation) {
+//     var input = $('#' + id);
+//     var value = input.val();
+//     var message = '';
+//
+//     if (validation.required && value.trim() === '') {
+//         message = validation.required;
+//     }
+//     else if (validation.min && value.length < validation.min.length) {
+//         message = validation.min.message;
+//     }
+//     else if (validation.max && value.length > validation.max) {
+//         message = validation.max;
+//     }
+//
+//     if (message !== '') {
+//         input.addClass('is-invalid');
+//         $('#' + id + 'Error').text(message);
+//     } else {
+//         input.removeClass('is-invalid');
+//         $('#' + id + 'Error').text('');
+//     }
+// }
+
+function Validator(options) {
+    console.log(options.rules)
+    $.each(options.rules, function (key, value) {
+        console.log(value)
+        $(key).on("blur", function() {
+            var isValid = true;
+            if (isValid && value.required && $(key).val().trim() === "") {
+                $(key).addClass("is-invalid");
+                $(key + "Error").text(value.required.message);
+                isValid = false;
+            } else {
+                $(key).removeClass("is-invalid");
+                $(key + "Error").text("");
+            }
+
+            if (isValid && value.min && $(key).val().length < value.min.length) {
+                $(key).addClass("is-invalid");
+                $(key + "Error").text(value.min.message);
+                isValid = false;
+            } else if (isValid) {
+                $(key).removeClass("is-invalid");
+                $(key + "Error").text("");
+            }
+
+            if (isValid && value.max && $(key).val().length > value.max.length) {
+                $(key).addClass("is-invalid");
+                $(key + "Error").text(value.max.message);
+                isValid = false;
+                $(key).maxLength = value.max.length
+            } else if (isValid) {
+                $(key).removeClass("is-invalid");
+                $(key + "Error").text("");
+            }
+        });
+    });
+}
+
+
+$(document).ready(function () {
     ajaxSetting()
     popupConfirm()
     toastr.options = {

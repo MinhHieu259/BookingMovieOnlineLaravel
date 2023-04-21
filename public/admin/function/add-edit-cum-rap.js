@@ -143,4 +143,23 @@ function addEditCumRap(){
 
 $(document).ready(function () {
     addEditCumRap()
+    Validator({
+        rules:{
+            '#tenRap': {
+                required: {
+                    message: 'Tên danh mục không được để trống'
+                }
+            },
+            '#diaChi': {
+                required: {
+                    message: 'Địa chỉ không được để trống'
+                }
+            },
+            '#map': {
+                required: {
+                    message: 'Địa chỉ bản đồ không được để trống'
+                }
+            }
+        }
+    })
 })
