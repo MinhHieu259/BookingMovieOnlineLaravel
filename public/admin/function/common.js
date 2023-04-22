@@ -8,10 +8,14 @@ function ajaxSetting() {
 }
 
 function popupConfirm(title, method) {
-    $('#popup-confirm-title').text(title)
-    $('#btnAgree').on('click', method)
+    console.log(method)
+    $('#popupCofirm').modal('show')
+    $('.modal-title').text(title)
+    $('#btnAgree').on('click', function (e){
+       method(e)
+    })
     $('#popupCofirm').on('hidden.bs.modal', () => {
-        $('#btnAgree').off('click', method)
+        $('#btnAgree').off('click')
         $('#btnRefuse').off('click')
     })
     $('#btnRefuse').on('click', () => {
@@ -86,7 +90,7 @@ function Validator(options) {
 
 $(document).ready(function () {
     ajaxSetting()
-    popupConfirm()
+    //popupConfirm()
     toastr.options = {
         "closeButton": true,
         "debug": true,

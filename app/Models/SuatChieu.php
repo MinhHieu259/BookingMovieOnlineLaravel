@@ -10,13 +10,18 @@ class SuatChieu extends Model
     use HasFactory;
 
     protected $table = 'SuatChieu';
+    protected $primaryKey = 'maSuatChieu';
+    protected $casts = [
+        'maSuatChieu' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maSuatChieu',
         'ngayChieu',
         'gioChieu',
         'maPhim',
         'maPhong',
-        'giaVe'
+        'deleted'
     ];
 
     public function Phim()

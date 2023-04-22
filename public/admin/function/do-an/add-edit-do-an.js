@@ -3,31 +3,31 @@ var gia = $('#gia')
 var maChiTietRap = $('#maChiTietRap')
 
 
-function SaveData(e) {
-    e.preventDefault()
-    var formData = new FormData();
-    formData.append('tenDoAn', tenDoAn.val());
-    formData.append('gia', gia.val());
-    formData.append('maChiTietRap', maChiTietRap.val());
-    $.ajax({
-        type: "POST",
-        url: "save-do-an",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            if (response.status == 200) {
-                $('#popupCofirm').modal('hide')
-                toastr["success"](response.message, 'Thành công');
-            } else if (response.status == 500) {
-                console.log(response.message)
-            }
-        },
-        error: function (error) {
-            toastr["success"](error, 'Lỗi');
-        }
-    });
-}
+// function SaveData(e) {
+//     e.preventDefault()
+//     var formData = new FormData();
+//     formData.append('tenDoAn', tenDoAn.val());
+//     formData.append('gia', gia.val());
+//     formData.append('maChiTietRap', maChiTietRap.val());
+//     $.ajax({
+//         type: "POST",
+//         url: "save-do-an",
+//         data: formData,
+//         processData: false,
+//         contentType: false,
+//         success: function (response) {
+//             if (response.status == 200) {
+//                 $('#popupCofirm').modal('hide')
+//                 toastr["success"](response.message, 'Thành công');
+//             } else if (response.status == 500) {
+//                 console.log(response.message)
+//             }
+//         },
+//         error: function (error) {
+//             toastr["success"](error, 'Lỗi');
+//         }
+//     });
+// }
 function validateDoAn() {
     $('#btnSaveDoAn').click(() => {
         var formData = new FormData();
@@ -46,10 +46,30 @@ function validateDoAn() {
             },
             success: function (response) {
                 if (response.status == 200) {
-                    $('#popupCofirm').modal('show')
                     popupConfirm(
                         'Xác nhận lưu thông tin đồ ăn ?',
-                        SaveData
+                        function(e){
+                            e.preventDefault()
+                            $.ajax({
+                                type: "POST",
+                                url: "save-do-an",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (response) {
+                                    if (response.status == 200) {
+                                        $('#popupCofirm').modal('hide')
+                                        toastr["success"](response.message, 'Thành công');
+                                    } else if (response.status == 500) {
+                                        console.log(response.message)
+                                    }
+                                },
+                                error: function (error) {
+                                    toastr["success"](error, 'Lỗi');
+                                }
+                            })
+                        }
+
                     )
                 }
             },
@@ -132,25 +152,6 @@ function ValidateUpdate(){
         });
     })
 }
-
-// function validateFrontFood()
-// {
-//     var ruleTenDoAn = {
-//         required: "Tên đồ ăn không được để trống",
-//     };
-//
-//     var ruleGiaTien = {
-//         required: "Giá không được để trống",
-//     };
-//
-//     $('#tenDoAn').blur(function (){
-//         validateInput('tenDoAn', ruleTenDoAn);
-//     })
-//     $('#gia').blur(function (){
-//         validateInput('gia', ruleGiaTien);
-//     })
-// }
-
 
 $(document).ready(function () {
     validateDoAn()

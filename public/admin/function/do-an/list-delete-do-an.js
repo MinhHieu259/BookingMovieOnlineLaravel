@@ -10,8 +10,8 @@ function initTableDoAn() {
             {
                 data: null,
                 render: function (data, type, row) {
-                    return ' <a href="cap-nhat-do-an/'+data.maDoAn+'" class="btn btn-warning btn-sm float-left">Cập nhật</a>' +
-                        '<button class="btn btn-danger btn-sm float-right btnDeleteDoAn" data-ma-do-an="'+data.maDoAn+'">Xóa</button>';
+                    return ' <a href="cap-nhat-do-an/' + data.maDoAn + '" class="btn btn-warning btn-sm float-left">Cập nhật</a>' +
+                        '<button class="btn btn-danger btn-sm float-right btnDeleteDoAn" data-ma-do-an="' + data.maDoAn + '">Xóa</button>';
                 }
             }
         ],
@@ -69,25 +69,52 @@ function functionDoAn() {
 
     $('#table-do-an').on('draw.dt', function () {
         $('.btnDeleteDoAn').on('click', function () {
-            $('#popupCofirmDeleteDoAn').modal('show')
+            // $('#popupCofirmDeleteDoAn').modal('show')
             maDoAnDelete = $(this).attr("data-ma-do-an");
-            $('#btnAgreeDeleteDoAn').attr('data-ma-do-an', maDoAnDelete)
+            $('#btnAgree').attr('data-ma-do-an', maDoAnDelete)
+            popupConfirm(
+                'Xác nhận xóa thông tin đồ ăn ?',
+                function (e) {
+                    e.preventDefault()
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/admin/delete-do-an/" + maDoAnDelete,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response.status == 200) {
+                                $('#popupCofirm').modal('hide')
+                                toastr["success"](response.message, 'Thành công');
+                                $('#table-do-an').DataTable().destroy();
+                                initTableDoAn();
+                                initDataTableDoAn();
+                                $('#popupCofirmDeleteDoAn').modal('hide')
+                            } else if (response.status == 500) {
+                                console.log(response.message)
+                            }
+                        },
+                        error: function (error) {
+                            toastr["success"](error, 'Lỗi');
+                        }
+                    })
+                }
+            )
         })
     })
-    $('#btnAgreeDeleteDoAn').on('click', (e) => {
-        e.preventDefault();
-        DeleteDoAn(maDoAnDelete)
-    })
+    // $('#btnAgreeDeleteDoAn').on('click', (e) => {
+    //     e.preventDefault();
+    //     DeleteDoAn(maDoAnDelete)
+    // })
 }
 
-function btnBackDeleteDoAn() {
-    $('#btnRefuseDeleteDoAn').on('click', () => {
-        $('#popupCofirmDeleteDoAn').modal('hide')
-    })
-}
+// function btnBackDeleteDoAn() {
+//     $('#btnRefuseDeleteDoAn').on('click', () => {
+//         $('#popupCofirmDeleteDoAn').modal('hide')
+//     })
+// }
 $(document).ready(function () {
     initTableDoAn()
     initDataTableDoAn()
     functionDoAn()
-    btnBackDeleteDoAn()
+    //btnBackDeleteDoAn()
 })
