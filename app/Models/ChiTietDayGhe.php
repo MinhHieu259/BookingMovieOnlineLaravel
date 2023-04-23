@@ -10,6 +10,11 @@ class ChiTietDayGhe extends Model
     use HasFactory;
 
     protected $table = 'ChiTietDayGhe';
+    protected $primaryKey = 'maChiTietDayGhe';
+    protected $casts = [
+        'maChiTietDayGhe' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maChiTietDayGhe',
         'maDayGhe',

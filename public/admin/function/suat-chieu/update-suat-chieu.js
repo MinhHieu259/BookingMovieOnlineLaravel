@@ -1,3 +1,22 @@
+function initPhongList() {
+    $.ajax({
+        type: "GET",
+        url: "/admin/get-list-room/" + $('#cumRap').val(),
+        contentType: 'application/json',
+        dataType: "json",
+        success: function (response) {
+            if (response.status == 200) {
+                $('#phongChieu').append('<option value="">---Chọn phòng ---</option>');
+                console.log(response.rooms)
+                $.each(response.rooms, function (index, room) {
+                    $('#phongChieu').append('<option value="' + room.maPhong + '">' + room.tenPhong + '</option>');
+                });
+                $('#phongChieu').val($('#maPhong').val())
+            }
+        },
+    })
+}
+
 function selectCumRap() {
     $('#cumRap').on('change', function () {
         $('#phongChieu').html('')
@@ -22,16 +41,14 @@ function selectCumRap() {
     })
 }
 
-function btnSaveSuatChieu() {
-    $('#btnSaveSuatChieu').click(function (){
+function btnUpdateSuatChieu() {
+    $('#btnSaveSuatChieu').click(function () {
         var formData = new FormData();
         formData.append('ngayChieu', $('#ngayChieu').val());
         formData.append('gioChieu', $('#gioChieu').val());
-        formData.append('phongChieu', $('#phongChieu').val());
-        formData.append('maPhim', $('#maPhim').val());
         $.ajax({
             type: "POST",
-            url: "/admin/validate-suat-chieu",
+            url: "/admin/validate-update-suat-chieu",
             data: formData,
             processData: false,
             contentType: false,
@@ -43,11 +60,11 @@ function btnSaveSuatChieu() {
                 if (response.status == 200) {
                     popupConfirm(
                         'Xác nhận lưu thông tin suất chiếu ?',
-                        function(e){
+                        function (e) {
                             e.preventDefault()
                             $.ajax({
                                 type: "POST",
-                                url: "/admin/insert-suat-chieu",
+                                url: "/admin/update-suat-chieu/" + window.location.href.split('/').pop(),
                                 data: formData,
                                 processData: false,
                                 contentType: false,
@@ -66,7 +83,6 @@ function btnSaveSuatChieu() {
                                 }
                             })
                         }
-
                     )
                 }
             },
@@ -85,6 +101,7 @@ function btnSaveSuatChieu() {
 }
 
 $(document).ready(function () {
+    initPhongList()
     selectCumRap()
-    btnSaveSuatChieu()
+    btnUpdateSuatChieu()
 })

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 @endpush
 @push('popup')
-{{--    @include('layouts.includes.admin.popup.phim.popup-delete-phim')--}}
+    {{--    @include('layouts.includes.admin.popup.phim.popup-delete-phim')--}}
 @endpush
 
 @section('content')
@@ -16,6 +16,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Danh sách lịch chiếu (Phim {{$phim->tenPhim}})</h1>
+                    <input id="maPhim" type="hidden" value="{{$phim->maPhim}}">
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,13 +32,15 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            <a href="{{route('admin.addLichChieu', $phim->maPhim)}}" class="btn btn-success btn-sm mb-3">Thêm mới lịch chiếu</a>
+            <a href="{{route('admin.addLichChieu', $phim->maPhim)}}" id="btnAddSuatChieu"
+               class="btn btn-success btn-sm mb-3">Thêm mới lịch chiếu</a>
             <table id="table-suat-chieu" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                     <th style="width: 10%">Mã suất chiếu</th>
                     <th>Ngày chiếu</th>
                     <th>Giờ chiếu</th>
+                    <th>Cụm rạp</th>
                     <th>Phòng</th>
                     <th style="width: 20%">Thao tác</th>
                 </tr>
@@ -53,7 +56,7 @@
 @endsection
 
 @push('js')
-{{--    <script src="{{asset('admin/function/phim/list-delete-phim.js')}}"></script>--}}
+    <script src="{{asset('admin/function/suat-chieu/danh-sach-suat-chieu.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
