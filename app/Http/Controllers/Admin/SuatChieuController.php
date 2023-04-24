@@ -100,13 +100,14 @@ class SuatChieuController extends Controller
                 $chairs = DayGhe::where('maPhong', $request->input('phongChieu'))->get();
                 $numDayGhe = count($chairs);
                 foreach ($chairs as $index => $chair) {
-                    $loaiGhe = ++$index == $numDayGhe ? 'Ghe Doi' : 'Ghe Don';
-                    $gia = ++$index == $numDayGhe ? '2' : '1';
+                    $loaiGhe = $index + 1 == $numDayGhe ? 'double' : '';
+                    $gia = $index + 1 == $numDayGhe ? '2' : '1';
                     for ($i = 0; $i < (int)$chair->soGheMoiDay; $i++) {
                         $indexGhe = $i + 1;
                         $chiTietDayGhe = new ChiTietDayGhe();
                         $chiTietDayGhe::create([
                             'maChiTietDayGhe' => '',
+                            'maDayGhe' => $chair->maDayGhe,
                             'tenGhe' => $chair->tenDayGhe . $indexGhe,
                             'loaiGhe' => $loaiGhe,
                             'gia' => $gia,
@@ -206,8 +207,40 @@ class SuatChieuController extends Controller
 
     }
 
-    public function detailChair()
+    public function detailChair($maPhong, $maSuatChieu)
     {
+        return view('components.admin.suat-chieu.chi-tiet-ghe');
+    }
 
+    public function getListChair($maSuatChieu)
+    {
+        $chairs = DB::table('ChiTietDayGhe')
+            ->leftJoin('SuatChieu', 'ChiTietDayGhe.maSuatChieu', '=', 'SuatChieu.maSuatChieu')
+            ->leftJoin('DayGhe', 'ChiTietDayGhe.maDayGhe', '=', 'DayGhe.maDayGhe')
+            ->select('ChiTietDayGhe.*', 'DayGhe.tenDayGhe')
+            ->where('ChiTietDayGhe.maSuatChieu', $maSuatChieu)
+            ->get();
+        // Nhóm các hàng theo tên của dãy ghế
+        $groups = $chairs->groupBy('tenDayGhe');
+        // Xây dựng lại mảng
+        $result = [];
+        foreach ($groups as $tenDayGhe => $chairs) {
+            $seats = [];
+            foreach ($chairs as $chair) {
+                $seats[] = [
+                    'name' => $chair->tenGhe,
+                    'type' => $chair->loaiGhe,
+                    'status' => $chair->trangThai == 2 ? 'occupied' : '',
+                ];
+            }
+            $result[] = [
+                'row' => $tenDayGhe,
+                'seats' => $seats,
+            ];
+        }
+        return response()->json([
+            'status' => 200,
+            'chairs' => $result
+        ]);
     }
 }

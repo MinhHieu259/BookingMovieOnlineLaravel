@@ -13,7 +13,7 @@ function initTableSuatChieu() {
                 render: function (data, type, row) {
                     return ' <a href="/admin/cap-nhat-suat-chieu/' + data.maSuatChieu + '" class="btn btn-warning btn-sm float-left">Cập nhật</a>' +
                         '<button class="btn btn-danger btn-sm float-left ml-3 btnDeleteSuatChieu" data-ma-suat-chieu="' + data.maSuatChieu + '">Xóa</button>'+
-                        '<a href="/admin/chi-tiet-ghe/' + data.maSuatChieu + '" class="btn btn-primary btn-sm float-left ml-3 btnViewChair" data-ma-suat-chieu="' + data.maSuatChieu + '">Xem Ghế</a>';
+                        '<a href="/admin/danh-sach-ghe/'+data.maPhong+'/'+ data.maSuatChieu + '" class="btn btn-primary btn-sm float-left ml-3 btnViewChair" data-ma-suat-chieu="' + data.maSuatChieu + '">Xem Ghế</a>';
                 }
             }
         ],

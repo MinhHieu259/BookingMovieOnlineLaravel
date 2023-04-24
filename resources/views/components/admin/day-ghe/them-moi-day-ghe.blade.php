@@ -66,10 +66,11 @@
                                             <tbody>
                                             @foreach($dayghes as $index => $dayghe)
                                             <tr>
+                                                <input type="hidden" value="{{$dayghe->maDayGhe}}" name="maDayGhe[]">
                                                 <td class="td-table-input text-right"><span class="mr-3">{{$index + 1}}</span></td>
                                                 <td class="td-table-input"><input class="form-control input-in-table" name="tenDayGhe[]" type="text" value="{{$dayghe->tenDayGhe}}"></td>
                                                 <td class="td-table-input"><input class="form-control input-in-table" style="text-align: right !important;" name="soGheMoiDay[]" type="text" value="{{$dayghe->soGheMoiDay}}"></td>
-                                                <td style="padding: 0px; text-align: center;"><button style="margin-top: 3%" class="btn btn-danger btn-sm btn-delete-dayghe">X</button></td>
+                                                <td style="padding: 0px; text-align: center;"><button style="margin-top: 3%" data-ma-day-ghe="{{$dayghe->maDayGhe}}" class="btn btn-danger btn-sm btn-delete-dayghe">X</button></td>
                                             </tr>
                                             @endforeach
                                             </tbody>
