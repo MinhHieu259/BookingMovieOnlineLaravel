@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}" />
+    @stack('css')
 
 </head>
 <body>
@@ -78,75 +79,8 @@
         })
     })
 </script>
-
-<!-- Modal login -->
-<div
-    class="modal left fade"
-    id="myModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <label for="#username">Tài khoản</label>
-                <input id="username" type="text" class="form-control" />
-                <a href="#" class="forgotPassword">Quên mật khẩu</a>
-                <label for="#password">Mật khẩu</label>
-                <input id="password" type="text" class="form-control" />
-                <button class="btn btn-login">Đăng nhập</button>
-                <p class="orLableLogin">Hoặc</p>
-                <button class="btn btn-primary btn-login-facebook">
-                    <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
-                </button>
-                <p class="no-have-account">
-                    Chưa có tài khoản? <a href="#">Đăng ký ngay</a>
-                </p>
-            </div>
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- modal -->
-
-<!--Modal province-->
-<div
-    class="modal right fade"
-    id="modelProvince"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myModalLabel"
->
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="container">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Tìm theo tỉnh thành phố">
-                    </div>
-                </div>
-                <div class="list-group">
-                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
-                        <br>
-                        <span class="number-rap">56 rạp</span>
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
-                        <br>
-                        <span class="number-rap">56 rạp</span>
-                    </button>
-                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
-                        <br>
-                        <span class="number-rap">56 rạp</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- modal-content -->
-    </div>
-</div>
-<!--Modal province-->
+@stack('js')
+@stack('popup')
 </body>
 </html>
 

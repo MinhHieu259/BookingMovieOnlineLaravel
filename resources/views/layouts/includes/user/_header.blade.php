@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo.png" width="60" alt="">
+        <a href="/"><img src="https://www.cgv.vn/skin/frontend/cgv/default/images/cgvlogo.png" width="60" alt=""></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 item-navbartop">
             <li class="nav-item {{request()->is('mua-ve') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('mua-ve')}}">Mua vé</a>
