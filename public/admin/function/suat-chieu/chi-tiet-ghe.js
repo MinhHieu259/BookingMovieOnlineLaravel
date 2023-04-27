@@ -41,7 +41,7 @@ function clickSeat(){
 }
 
 function hoverSeat() {
-    $('.seat').on('mouseover', function() {
+    $('#areaChair .seat').on('mouseover', function() {
         let seatName = $(this).data('name');
         $(this).append(`<div class="seat-name">${seatName}</div>`);
     }).on('mouseout', function() {

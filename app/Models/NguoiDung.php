@@ -10,6 +10,9 @@ class NguoiDung extends Model
     use HasFactory;
 
     protected $table = 'NguoiDung';
+    protected $primaryKey = 'maNguoiDung';
+    protected $casts = ['maNguoiDung' => 'string'];
+    public $timestamps = false;
     protected $fillable = [
         'maNguoiDung',
         'hoVaTen',
@@ -19,7 +22,8 @@ class NguoiDung extends Model
         'soDienThoai',
         'anhDaiDien',
         'email',
-        'tenTaiKhoan',
-        'matKhau'
+        'username',
+        'password',
+        'trangThai'
     ];
 }

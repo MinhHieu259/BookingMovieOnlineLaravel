@@ -23,46 +23,69 @@
                 <h1 class="display-4 text-center mb-3">
                     Đăng ký tài khoản
                 </h1>
+                @if(\Illuminate\Support\Facades\Session::has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('message')}}
+                    </div>
+                @endif
 
-                <form name="fos_user_registration_form" method="post" action="/register/"
+                @if(\Illuminate\Support\Facades\Session::has('messageError'))
+                    <div class="alert alert-danger" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('messageError')}}
+                    </div>
+                @endif
+                <form name="fos_user_registration_form" method="post" action="{{route('DoRegister')}}"
                       class="fos_user_registration_register">
-
+                    @csrf
                     <div class="row">
                         <div class="col-sm">
-                            <div class="form-group"><label for="fos_user_registration_form_email" class="required">Email:</label><input
-                                    type="email" id="fos_user_registration_form_email"
-                                    name="fos_user_registration_form[email]" required="required" class="form-control">
+                            <div class="form-group"><label for="email" class="required">Email:</label><input
+                                    id="email"
+                                    value="{{old('email')}}"
+                                    name="email" class="form-control @error('email') is-invalid @enderror">
+                                @error('email')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm">
-                            <div class="form-group"><label for="fos_user_registration_form_username" class="required">Tên
-                                    đăng nhập:</label><input type="text" id="fos_user_registration_form_username"
-                                                             name="fos_user_registration_form[username]"
-                                                             required="required" maxlength="32"
-                                                             pattern="[a-zA-z0-9\_.]+" class="form-control"></div>
+                            <div class="form-group"><label for="username" class="required">Tên
+                                    đăng nhập:</label><input type="text" id="username"
+                                                             name="username"
+                                                             value="{{old('username')}}"
+                                                             class="form-control  @error('username') is-invalid @enderror">
+                            </div>
+                            @error('username')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm">
-                            <div class="form-group"><label for="fos_user_registration_form_plainPassword_first"
+                            <div class="form-group"><label for="password"
                                                            class="required">Mật khẩu:</label><input type="password"
-                                                                                                    id="fos_user_registration_form_plainPassword_first"
-                                                                                                    name="fos_user_registration_form[plainPassword][first]"
-                                                                                                    required="required"
-                                                                                                    autocomplete="new-password"
-                                                                                                    class="form-control"
-                                                                                                    aria-autocomplete="list">
+                                                                                                    id="password"
+                                                                                                    value="{{old('password')}}"
+                                                                                                    name="password"
+                                                                                                    class="form-control @error('password') is-invalid @enderror"
+                                >
+                                @error('password')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm">
-                            <div class="form-group"><label for="fos_user_registration_form_plainPassword_second"
-                                                           class="required">Xác nhận mật khẩu:</label><input type="password"
-                                                                                                    id="fos_user_registration_form_plainPassword_second"
-                                                                                                    name="fos_user_registration_form[plainPassword][second]"
-                                                                                                    required="required"
-                                                                                                    autocomplete="new-password"
-                                                                                                    class="form-control">
+                            <div class="form-group"><label for="confirmPassword"
+                                                           class="required">Xác nhận mật khẩu:</label><input
+                                    type="password"
+                                    id="confirmPassword"
+                                    value="{{old('confirmPassword')}}"
+                                    name="confirmPassword"
+                                    class="form-control @error('confirmPassword') is-invalid @enderror">
+                                @error('confirmPassword')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>

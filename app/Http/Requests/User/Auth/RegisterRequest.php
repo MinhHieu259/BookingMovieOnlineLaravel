@@ -45,12 +45,13 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email không đueọc để trống',
+            'email.required' => 'Email không được để trống',
+            'email.email' => 'Định dạng email chưa đúng',
             'username.required' => 'Tên đăng nhập không được để trống',
             'password.required' => 'Mật khẩu không được để trống',
-            'password.min' => 'Nhập tối thiểu 8 ksy tự',
+            'password.min' => 'Nhập tối thiểu 8 ký tự',
             'confirmPassword.required' => 'Bạn chưa xác nhận mật khẩu',
-            'confirmPassword.same' => 'Mật khẩu lại không chính xác'
+            'confirmPassword.same' => 'Mật khẩu nhập lại không khớp'
         ];
     }
 }
