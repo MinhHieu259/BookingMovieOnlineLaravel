@@ -29,11 +29,21 @@
                         {{\Illuminate\Support\Facades\Session::get('message')}}
                     </div>
                 @endif
-                <form role="form" action="/login_check" method="post">
+
+                @if(\Illuminate\Support\Facades\Session::has('messageError'))
+                    <div class="alert alert-danger" role="alert">
+                        {{\Illuminate\Support\Facades\Session::get('messageError')}}
+                    </div>
+                @endif
+                <form role="form" action="{{route('DoLogin')}}" method="post">
+                    @csrf
                     <input type="hidden" name="_csrf_token" value="470ade68671ef85d3ce392.NcOBAKc1jYmaY9F0ARgTGe75n53bdpsI9CRcjy_53hY.f4escu5Q77j2VpkMLHRef6Sv2a23W8lQt10E-16QnHJWldBCkFDH08MghA">
                     <div class="form-group">
                         <label>Tài khoản</label>
-                        <input type="text" value="{{old('username')}}" name="username" value="" class="form-control" tabindex="1">
+                        <input type="text" value="{{old('username')}}" name="username" class="form-control  @error('username') is-invalid @enderror" tabindex="1">
+                        @error('username')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -52,9 +62,12 @@
 
                             </div>
                         </div> <!-- / .row -->
-                        <input type="password" value="{{old('password')}}" name="password" class="form-control" tabindex="2">
+                        <input type="password" value="{{old('password')}}" name="password" class="form-control  @error('password') is-invalid @enderror" tabindex="2">
+                        @error('password')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
-                    <input type="hidden" name="_remember_me" value="on">
+                    <input type="hidden" name="remember_me" value="on">
                     <div class="clearfix">
                         <button class="btn btn-lg btn-block btn-dark mb-3 btn-submit">
                             Đăng nhập

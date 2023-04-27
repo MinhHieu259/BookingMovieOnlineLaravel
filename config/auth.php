@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'nguoidung' => [
+            'driver' => 'session',
+            'provider' => 'nguoidung',
+        ],
     ],
 
     /*
@@ -69,10 +73,14 @@ return [
             'model' => App\Models\User::class,
         ],
 
-         'admins' => [
-             'driver' => 'eloquent',
-             'model' => App\Models\Admin::class,
-         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'nguoidung' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\NguoiDung::class,
+        ],
     ],
 
     /*
@@ -99,6 +107,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'nguoidung' => [
+            'provider' => 'nguoidung',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -6,6 +6,7 @@ use App\Http\Requests\User\Auth\RegisterRequest;
 use App\Models\NguoiDung;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -90,8 +91,81 @@ class AuthController extends Controller
                 'password.required' => 'Mật khẩu không được để trống',
                 'password.min' => 'Nhập tối thiểu 8 ký tự'
             ]);
-        } catch (Exception $e){
+            if ($validator->fails()) {
+                return redirect('/dang-nhap')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+            $dataLogin = [
+                'username' => $request->input('username'),
+                'password' => $request->input('password')
+            ];
 
+            if (Auth::guard('nguoidung')->attempt($dataLogin)) {
+                return redirect('/')->with('message', 'Đăng nhập thành công');
+            } else {
+                return redirect('/dang-nhap')->with('messageError', 'Tài khoản mật khẩu không chính xác')
+                    ->withInput();
+            }
+
+        } catch (Exception $e){
+            return redirect('/dang-nhap')
+                ->with('messageError', 'Lỗi rồi bạn thử lại nha')
+                ->withInput();
         }
+    }
+
+    public function DoLoginModal(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'username' => [
+                    'required'
+                ],
+                'password' => [
+                    'required',
+                    'min:8'
+                ]
+            ], [
+                'username.required' => 'Tên đăng nhập không được để trống',
+                'password.required' => 'Mật khẩu không được để trống',
+                'password.min' => 'Nhập tối thiểu 8 ký tự'
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 422,
+                    'messages' => $validator->errors()
+                ]);
+            }
+            $dataLogin = [
+                'username' => $request->input('username'),
+                'password' => $request->input('password')
+            ];
+
+            if (Auth::guard('nguoidung')->attempt($dataLogin)) {
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Đăng nhập thành công'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Tài khoản mật khẩu không chính xác'
+                ]);
+            }
+
+        } catch (Exception $e){
+            return response()->json([
+                'status' => 500,
+                'message' => 'Lỗi rồi bạn thử lại nha'
+            ]);
+        }
+    }
+
+    public function DoLogout(Request $request){
+        Auth::guard('nguoidung')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('message', 'Đăng xuất thành công');
     }
 }

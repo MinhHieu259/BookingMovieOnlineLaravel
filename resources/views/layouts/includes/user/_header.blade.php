@@ -92,23 +92,48 @@
             </button>
         </form>
         <div class="area-right-nav">
-            <a
-                href="#"
-                class="province-logo-nav"
-                data-toggle="modal"
-                data-target="#modelProvince"
-            >
-                <i class="fa-solid fa-map-location-dot"></i>
-            </a>
+          <div class="row">
+              <a
+                  href="#"
+                  class="province-logo-nav"
+                  data-toggle="modal"
+                  data-target="#modelProvince"
+              >
+                  <i class="fa-solid fa-map-location-dot"></i>
+              </a>
 
-            <a
-                href="#"
-                class="user-logo-nav"
-                data-toggle="modal"
-                data-target="#myModal"
-            >
-                <i class="fa-regular fa-user"></i>
-            </a>
+              @if(Auth::guard('nguoidung')->check())
+                  <div class="dropdown show">
+                      <!-- Toggle -->
+                      <a href="#" class="avatar avatar-sm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <img width="20" src="https://cdn.moveek.com/bundles/ornweb/img/no-avatar.png" alt="imageUser" class="avatar-img rounded-circle">
+                      </a>
+
+                      <!-- Menu -->
+                      <div class="dropdown-menu dropdown-menu-right" style="left: -145px !important;">
+                          <a href="/user/profile" class="dropdown-item">Quản lý tài khoản</a>
+                          <hr class="dropdown-divider">
+                          <a href="/user/diary" class="dropdown-item">Tủ phim</a>
+                          <a href="/nap-tien/" class="dropdown-item">Nạp tiền</a>
+                          <a href="/user/orders" class="dropdown-item">Lịch sử mua vé</a>
+                          <hr class="dropdown-divider">
+                          <a onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="dropdown-item">Đăng xuất</a>
+                          <form id="logout-form" action="{{route('DoLogout')}}" method="POST" class="d-none">
+                              @csrf
+                          </form>
+                      </div>
+                  </div>
+              @else
+                  <a
+                      href="#"
+                      class="user-logo-nav"
+                      data-toggle="modal"
+                      data-target="#popupLogin"
+                  >
+                      <i class="fa-regular fa-user"></i>
+                  </a>
+              @endif
+          </div>
         </div>
     </div>
 </nav>

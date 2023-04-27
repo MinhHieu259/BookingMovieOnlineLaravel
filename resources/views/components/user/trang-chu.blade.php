@@ -1,10 +1,29 @@
 @extends('layouts.user-layout')
 @section('title', 'Trang chủ')
+@push('css')
+    <!-- Thêm đường dẫn tới CSS của SweetAlert -->
+    <link href="{{asset('assets/css/sweetalert2.min.css')}}" rel="stylesheet">
+@endpush
+@push('js')
+    <!-- Thêm đường dẫn tới JavaScript của SweetAlert -->
+    <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('assets/js/function/auth/Auth.js')}}"></script>
+    @if(Session::has('message'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: '{{ Session::get('message') }}',
+            });
+        </script>
+    @endif
+
+@endpush
 @push('popup')
     <!-- Modal login -->
     <div
         class="modal left fade"
-        id="myModal"
+        id="popupLogin"
         tabindex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -13,11 +32,15 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <label for="#username">Tài khoản</label>
-                    <input id="username" type="text" class="form-control" />
+                    <input id="username" value="{{old('username')}}" name="username" type="text"
+                           class="form-control  @error('username') is-invalid @enderror"/>
+                    <span class="text-danger input-error" id="usernameError"></span>
                     <a href="#" class="forgotPassword">Quên mật khẩu</a>
                     <label for="#password">Mật khẩu</label>
-                    <input id="password" type="text" class="form-control" />
-                    <button class="btn btn-login">Đăng nhập</button>
+                    <input id="password" value="{{old('password')}}" name="password" type="password"
+                           class="form-control  @error('password') is-invalid @enderror"/>
+                    <span class="text-danger input-error" id="passwordError"></span>
+                    <button id="btnLoginPopup" type="button" class="btn btn-login">Đăng nhập</button>
                     <p class="orLableLogin">Hoặc</p>
                     <button class="btn btn-primary btn-login-facebook">
                         <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
@@ -81,13 +104,19 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/bdb25223a7aa414a9a9530cc9279ff73.jpg" alt="First slide">
+                        <img class="d-block w-100"
+                             src="https://media.lottecinemavn.com/Media/WebAdmin/bdb25223a7aa414a9a9530cc9279ff73.jpg"
+                             alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/e9270c4e3e4c46f99276313a6f55e1bd.jpg" alt="Second slide">
+                        <img class="d-block w-100"
+                             src="https://media.lottecinemavn.com/Media/WebAdmin/e9270c4e3e4c46f99276313a6f55e1bd.jpg"
+                             alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://media.lottecinemavn.com/Media/WebAdmin/37b6bc0472184a8899e2fb87f22932fc.jpg" alt="Third slide">
+                        <img class="d-block w-100"
+                             src="https://media.lottecinemavn.com/Media/WebAdmin/37b6bc0472184a8899e2fb87f22932fc.jpg"
+                             alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -257,12 +286,17 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img
+                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                            alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
+                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
+                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -271,12 +305,17 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img
+                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                            alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
+                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
+                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -285,12 +324,17 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img
+                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                            alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
+                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
+                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -299,12 +343,17 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img
+                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                            alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
+                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
+                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -313,12 +362,17 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img
+                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                            alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
+                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
+                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -333,11 +387,15 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img width="110" height="80" src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img width="110" height="80"
+                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                             alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span class="time-post-review">5 giờ trước</span></p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
 
                                     </div>
                                 </div>
@@ -347,11 +405,15 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img width="110" height="80" src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img width="110" height="80"
+                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                             alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span class="time-post-review">5 giờ trước</span></p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
 
                                     </div>
                                 </div>
@@ -361,11 +423,15 @@
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img width="110" height="80" src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg" alt="Anh">
+                                        <img width="110" height="80"
+                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                             alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span class="time-post-review">5 giờ trước</span></p>
+                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
+                                            diễn Tạ Nguyên Hiệp</a>
+                                        <p class="name-cate-review">anna787 - <span
+                                                class="time-post-review">5 giờ trước</span></p>
 
                                     </div>
                                 </div>
