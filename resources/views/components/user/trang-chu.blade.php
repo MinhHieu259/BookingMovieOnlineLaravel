@@ -41,6 +41,7 @@
                            class="form-control  @error('password') is-invalid @enderror"/>
                     <span class="text-danger input-error" id="passwordError"></span>
                     <button id="btnLoginPopup" type="button" class="btn btn-login">Đăng nhập</button>
+
                     <p class="orLableLogin">Hoặc</p>
                     <button class="btn btn-primary btn-login-facebook">
                         <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook

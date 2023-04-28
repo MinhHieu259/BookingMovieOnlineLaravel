@@ -16,7 +16,6 @@ function LoginInPopup() {
             success: function (response) {
                 if (response.status == 200) {
                     $('#popupLogin').modal('hide')
-
                     Swal.fire({
                         icon: 'success',
                         title: 'Thành công',

@@ -28,4 +28,12 @@ class NguoiDung extends Authenticatable
         'password',
         'trangThai'
     ];
+
+    public function getAvatar()
+    {
+        if ($this->anhDaiDien){
+            return asset('uploads/user/'.$this->anhDaiDien);
+        }
+        return asset('assets/images/user/no-avatar.png');
+    }
 }

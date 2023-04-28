@@ -1,0 +1,13 @@
+.badge-soft-success {
+    color: #00d97e;
+    background-color: #ccf7e5;
+}
+.header-title{
+    font-size: 1.625rem;
+}
+.avatar-user{
+    margin-top: -75px;
+}
+.username-balance{
+    margin-bottom: 20px;
+}

@@ -111,13 +111,13 @@
 
                       <!-- Menu -->
                       <div class="dropdown-menu dropdown-menu-right" style="left: -145px !important;">
-                          <a href="/user/profile/{{Auth::guard('nguoidung')->user()->username}}" class="dropdown-item">Quản lý tài khoản</a>
+                          <a href="{{route('UpdateUserView')}}" class="dropdown-item">Quản lý tài khoản</a>
                           <hr class="dropdown-divider">
                           <a href="/user/diary" class="dropdown-item">Tủ phim</a>
                           <a href="/nap-tien/" class="dropdown-item">Nạp tiền</a>
                           <a href="/user/orders" class="dropdown-item">Lịch sử mua vé</a>
                           <hr class="dropdown-divider">
-                          <a onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="dropdown-item">Đăng xuất</a>
+                          <a style="cursor: pointer" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="dropdown-item">Đăng xuất</a>
                           <form id="logout-form" action="{{route('DoLogout')}}" method="POST" class="d-none">
                               @csrf
                           </form>

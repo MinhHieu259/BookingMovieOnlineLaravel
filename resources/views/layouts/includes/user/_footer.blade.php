@@ -15,7 +15,7 @@
                     <a href="#"
                     ><img
                             class="round-circle"
-                            src="{{asset('assets/images/user/beta-cineplex-v2.jpg')}}"
+                            src="{{asset('assets/images/user/payoo.jpg')}}"
                             alt="logo"
                         /></a>
                 </div>
@@ -23,7 +23,7 @@
                     <a href="#"
                     ><img
                             class="round-circle"
-                            src="{{asset('assets/images/user/mega-gs-cinemas.png')}}"
+                            src="{{asset('assets/images/user/momo.png')}}"
                             alt="logo"
                         /></a>
                 </div>
@@ -31,7 +31,7 @@
                     <a href="#"
                     ><img
                             class="round-circle"
-                            src="{{asset('assets/images/user/cinestar.png')}}"
+                            src="{{asset('assets/images/user/foxpay-icon.png')}}"
                             alt="logo"
                         /></a>
                 </div>
@@ -39,39 +39,7 @@
                     <a href="#"
                     ><img
                             class="round-circle"
-                            src="{{asset('assets/images/user/dcine.png')}}"
-                            alt="logo"
-                        /></a>
-                </div>
-                <div class="avatar-partner">
-                    <a href="#"
-                    ><img
-                            class="round-circle"
-                            src="{{asset('assets/images/user/cinemax.png')}}"
-                            alt="logo"
-                        /></a>
-                </div>
-                <div class="avatar-partner">
-                    <a href="#"
-                    ><img
-                            class="round-circle"
-                            src="{{asset('assets/images/user/starlight.png')}}"
-                            alt="logo"
-                        /></a>
-                </div>
-                <div class="avatar-partner">
-                    <a href="#"
-                    ><img
-                            class="round-circle"
-                            src="{{asset('assets/images/user/rio.png')}}"
-                            alt="logo"
-                        /></a>
-                </div>
-                <div class="avatar-partner">
-                    <a href="#"
-                    ><img
-                            class="round-circle"
-                            src="{{asset('assets/images/user/dong-da-cinemas.png')}}"
+                            src="{{asset('assets/images/user/shopeepay-icon.png')}}"
                             alt="logo"
                         /></a>
                 </div>
