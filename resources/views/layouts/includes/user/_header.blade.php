@@ -106,12 +106,12 @@
                   <div class="dropdown show">
                       <!-- Toggle -->
                       <a href="#" class="avatar avatar-sm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <img width="20" src="https://cdn.moveek.com/bundles/ornweb/img/no-avatar.png" alt="imageUser" class="avatar-img rounded-circle">
+                          <img width="20" src="{{asset('assets/images/user/no-avatar.png')}}" alt="imageUser" class="avatar-img rounded-circle">
                       </a>
 
                       <!-- Menu -->
                       <div class="dropdown-menu dropdown-menu-right" style="left: -145px !important;">
-                          <a href="/user/profile" class="dropdown-item">Quản lý tài khoản</a>
+                          <a href="/user/profile/{{Auth::guard('nguoidung')->user()->username}}" class="dropdown-item">Quản lý tài khoản</a>
                           <hr class="dropdown-divider">
                           <a href="/user/diary" class="dropdown-item">Tủ phim</a>
                           <a href="/nap-tien/" class="dropdown-item">Nạp tiền</a>

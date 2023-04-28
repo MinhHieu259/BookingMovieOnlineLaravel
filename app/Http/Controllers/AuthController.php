@@ -145,7 +145,8 @@ class AuthController extends Controller
             if (Auth::guard('nguoidung')->attempt($dataLogin)) {
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Đăng nhập thành công'
+                    'message' => 'Đăng nhập thành công',
+                    'user' => Auth::guard('nguoidung')->user()
                 ]);
             } else {
                 return response()->json([

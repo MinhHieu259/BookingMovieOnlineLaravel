@@ -105,17 +105,17 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100"
-                             src="https://media.lottecinemavn.com/Media/WebAdmin/bdb25223a7aa414a9a9530cc9279ff73.jpg"
+                             src="{{asset('assets/images/user/slider1.jpg')}}"
                              alt="First slide">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100"
-                             src="https://media.lottecinemavn.com/Media/WebAdmin/e9270c4e3e4c46f99276313a6f55e1bd.jpg"
+                             src="{{asset('assets/images/user/slider2.jpg')}}"
                              alt="Second slide">
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100"
-                             src="https://media.lottecinemavn.com/Media/WebAdmin/37b6bc0472184a8899e2fb87f22932fc.jpg"
+                             src="{{asset('assets/images/user/slider3.jpg')}}"
                              alt="Third slide">
                     </div>
                 </div>
