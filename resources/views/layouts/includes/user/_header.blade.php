@@ -105,8 +105,8 @@
               @if(Auth::guard('nguoidung')->check())
                   <div class="dropdown show">
                       <!-- Toggle -->
-                      <a href="#" class="avatar avatar-sm" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <img width="20" src="{{asset('assets/images/user/no-avatar.png')}}" alt="imageUser" class="avatar-img rounded-circle">
+                      <a href="#" class="avatar avatar-sm avatar-nav" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <img width="20" src="{{Auth::guard('nguoidung')->user()->getAvatar()}}" alt="imageUser" class="avatar-img rounded-circle">
                       </a>
 
                       <!-- Menu -->

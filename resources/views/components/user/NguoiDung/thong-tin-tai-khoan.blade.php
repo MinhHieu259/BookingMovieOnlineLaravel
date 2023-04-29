@@ -2,6 +2,8 @@
 @section('title', 'Cập nhật tài khoản')
 @push('js')
     <script src="{{asset('assets/js/function/tai-khoan/cap-nhat-tai-khoan.js')}}"></script>
+    <!-- Thêm đường dẫn tới JavaScript của SweetAlert -->
+    <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
 @endpush
 @push('css')
     <link rel="stylesheet" href="{{asset('assets/css/tai-khoan.css')}}">
@@ -77,41 +79,43 @@
                         <form name="user" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group"><label for="user_username" class="required">Tên tài
-                                            khoản</label><input type="text" id="user_username" name="user[username]"
+                                    <div class="form-group"><label for="username" class="required">Tên tài
+                                            khoản</label><input type="text" id="username" name="username"
                                                                 disabled="disabled" required="required"
                                                                 class="form-control"
                                                                 value="{{Auth::guard('nguoidung')->user()->username}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group"><label for="user_email" class="required">Email</label><input
-                                            type="email" id="user_email" name="user[email]" disabled="disabled"
+                                    <div class="form-group"><label for="email" class="required">Email</label><input
+                                            type="email" id="email" name="email" disabled="disabled"
                                             required="required" class="form-control"
                                             value="{{Auth::guard('nguoidung')->user()->email}}"></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group"><label for="user_fullname">Họ và tên</label><input
-                                            type="text" id="user_fullname" name="user[fullname]"
+                                    <div class="form-group"><label for="hoVaTen">Họ và tên</label><input
+                                            type="text" id="hoVaTen" name="hoVaTen"
                                             value="{{Auth::guard('nguoidung')->user()->hoVaTen}}" class="form-control">
+                                        <span class="text-danger input-error" id="hoVaTenError"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group"><label for="user_phone">Số điện thoại</label><input
-                                            type="tel" id="user_phone" name="user[phone]"
+                                    <div class="form-group"><label for="soDienThoai">Số điện thoại</label><input
+                                            type="tel" id="soDienThoai" name="soDienThoai"
                                             value="{{Auth::guard('nguoidung')->user()->soDienThoai}}"
-                                            placeholder="Số điện thoại" class="form-control"></div>
+                                            placeholder="Số điện thoại" class="form-control">
+                                        <span class="text-danger input-error" id="soDienThoaiError"></span></div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="form-group"><label for="user_file">Ảnh đại diện</label>
-                                        <div class="custom-file"><input type="file" id="user_file" name="user[file]"
+                                    <div class="form-group"><label for="user_avatar">Ảnh đại diện</label>
+                                        <div class="custom-file"><input type="file" id="user_avatar" name="user_avatar"
                                                                         lang="vi"
                                                                         accept="image/gif, image/jpeg, image/png"
-                                                                        class="custom-file-input"><label for="user_file"
+                                                                        class="custom-file-input"><label for="user_avatar"
                                                                                                          class="custom-file-label"></label>
                                         </div>
                                     </div>
@@ -119,7 +123,7 @@
                             </div>
 
                             <div class="form-group mb-0">
-                                <button type="submit" id="user_save" class="btn btn-dark">Cập nhật</button>
+                                <button type="button" id="user_save" class="btn btn-dark">Cập nhật</button>
                             </div>
                         </form>
                     </div>

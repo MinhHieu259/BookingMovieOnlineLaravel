@@ -32,7 +32,7 @@ class NguoiDung extends Authenticatable
     public function getAvatar()
     {
         if ($this->anhDaiDien){
-            return asset('uploads/user/'.$this->anhDaiDien);
+            return asset($this->anhDaiDien);
         }
         return asset('assets/images/user/no-avatar.png');
     }

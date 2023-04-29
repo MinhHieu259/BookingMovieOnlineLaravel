@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}" />
+    <link href="{{asset('assets/css/sweetalert2.min.css')}}" rel="stylesheet">
     @stack('css')
 
 </head>
@@ -53,7 +54,7 @@
 ></script>
 <script src="{{asset('assets/js/slider.js')}}"></script>
 <script src="{{asset('assets/js/owl.carousel.js')}}"></script>
-
+<script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $(".owl-carousel").owlCarousel({

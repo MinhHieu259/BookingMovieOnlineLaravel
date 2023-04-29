@@ -25,4 +25,9 @@ class PhimController extends Controller
     {
         return view('components.user.Phim.thong-tin-phim');
     }
+
+    public function LichChieuView()
+    {
+        return view('components.user.Phim.lich-chieu');
+    }
 }

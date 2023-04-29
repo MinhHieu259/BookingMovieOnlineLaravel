@@ -24,12 +24,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname' => [
+            'hoVaTen' => [
                 'required'
             ],
-            'phone' => [
-                'required',
-                'min'
+            'soDienThoai' => [
+                'required'
             ]
         ];
     }
@@ -37,9 +36,8 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'fullname.required' => 'Họ và tên không được để trống',
-            'phone.required' => 'Số điện thoại không được để trống',
-            'phone.min' => 'Số điện thoại tối thiểu 11 ký tự'
+            'hoVaTen.required' => 'Họ và tên không được để trống',
+            'soDienThoai.required' => 'Số điện thoại không được để trống'
         ];
     }
 }

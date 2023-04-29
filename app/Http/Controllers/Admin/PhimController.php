@@ -13,6 +13,7 @@ use App\Models\DienVien;
 use App\Models\HinhAnhPhim;
 use App\Models\NhaSanXuat;
 use App\Models\Phim;
+use Cocur\Slugify\Slugify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -73,6 +74,7 @@ class PhimController extends Controller
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));
             $phim->maNhaSanXuat = json_encode(explode(',', $request->input('nhaSanXuat')));
+            $phim->slug = (new Slugify())->slugify($request->input('tenPhim'));
             $phim->save();
             //Get maPhim sau khi insert
             $newPhim = Phim::orderBy('maPhim', 'DESC')->get();
@@ -203,6 +205,7 @@ class PhimController extends Controller
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));
             $phim->maNhaSanXuat = json_encode(explode(',', $request->input('nhaSanXuat')));
+            $phim->slug = (new Slugify())->slugify($request->input('tenPhim'));
             $phim->save();
 
             $hinhAnh = HinhAnhPhim::where('maPhim', $maPhim)->first();
