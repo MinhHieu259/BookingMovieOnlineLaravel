@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\Phim;
+use App\Models\RAP;
+use App\Models\Tinh;
 use Illuminate\Http\Request;
+use App\Helpers\date;
 
 class PhimController extends Controller
 {
@@ -38,6 +41,10 @@ class PhimController extends Controller
             ->first();
         $actors = DienVien::whereIn('maDienVien', json_decode($film->maDienVien))->get();
         $directors = DaoDien::whereIn('maDaoDien', json_decode($film->maDaoDien))->get();
-        return view('components.user.LichChieu.chi-tiet-lich-chieu', compact('film', 'actors', 'directors'));
+        $provinces = Tinh::all();
+        $dates = date::getSixDayFromToday();
+
+        return view('components.user.LichChieu.chi-tiet-lich-chieu',
+            compact('film', 'actors', 'directors', 'provinces', 'dates'));
     }
 }

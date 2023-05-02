@@ -1,5 +1,19 @@
 @extends('layouts.user-layout')
 @section('title', 'Chi tiết lịch chiếu')
+@push('js')
+    <script src="{{asset('')}}"></script>
+    <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script>
+        $('.select2').select2()
+    </script>
+@endpush
+@push('css')
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+@endpush
 @section('content')
     <div class="bg-dark border-bottom text-white featured-movie">
         <div class="container pt-3 pb-3">
@@ -218,63 +232,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <select class="form-control btn-select-region select2-hidden-accessible"
+                                <select class="form-control btn-select-region select2"
                                         data-toggle="select" tabindex="-1" aria-hidden="true">
-                                    <option value="1">Tp. Hồ Chí Minh</option>
-                                    <option value="9">Hà Nội</option>
-                                    <option value="7">Đà Nẵng</option>
-                                    <option value="3" selected="">Đồng Nai</option>
-                                    <option value="4">Bình Dương</option>
-                                    <option value="15">Bà Rịa - Vũng Tàu</option>
-                                    <option value="12">Khánh Hòa</option>
-                                    <option value="6">Cần Thơ</option>
-                                    <option value="23">Lâm Đồng</option>
-                                    <option value="10">Hải Phòng</option>
-                                    <option value="8">Quảng Ninh</option>
-                                    <option value="11">Thừa Thiên - Huế</option>
-                                    <option value="33">Bắc Ninh</option>
-                                    <option value="24">Kiên Giang</option>
-                                    <option value="29">Hải Dương</option>
-                                    <option value="14">Bình Định</option>
-                                    <option value="5">Đắk Lắk</option>
-                                    <option value="21">Nghệ An</option>
-                                    <option value="49">Tiền Giang</option>
-                                    <option value="53">Bình Phước</option>
-                                    <option value="18">An Giang</option>
-                                    <option value="2">Bắc Giang</option>
-                                    <option value="30">Cà Mau</option>
-                                    <option value="36">Tây Ninh</option>
-                                    <option value="22">Thái Nguyên</option>
-                                    <option value="25">Thanh Hóa</option>
-                                    <option value="40">Sóc Trăng</option>
-                                    <option value="41">Quảng Bình</option>
-                                    <option value="47">Lạng Sơn</option>
-                                    <option value="42">Quảng Nam</option>
-                                    <option value="51">Quảng Ngãi</option>
-                                    <option value="52">Kon Tum</option>
-                                    <option value="13">Bình Thuận</option>
-                                    <option value="19">Bến Tre</option>
-                                    <option value="27">Trà Vinh</option>
-                                    <option value="28">Vĩnh Long</option>
-                                    <option value="16">Ninh Bình</option>
-                                    <option value="17">Phú Thọ</option>
-                                    <option value="35">Hậu Giang</option>
-                                    <option value="20">Thái Bình</option>
-                                    <option value="55">Đồng Tháp</option>
-                                    <option value="56">Hưng Yên</option>
-                                    <option value="31">Hà Tĩnh</option>
-                                    <option value="26">Yên Bái</option>
-                                    <option value="45">Long An</option>
-                                    <option value="57">Hòa Bình</option>
-                                    <option value="34">Tuyên Quang</option>
-                                    <option value="38">Nam Định</option>
-                                    <option value="46">Sơn La</option>
-                                    <option value="37">Phú Yên</option>
-                                    <option value="50">Quảng Trị</option>
-                                    <option value="48">Hà Nam</option>
-                                    <option value="43">Ninh Thuận</option>
-                                    <option value="44">Gia Lai</option>
-                                    <option value="54">Vĩnh Phúc</option>
+                                    @foreach($provinces as $province)
+                                    <option value="{{$province->maTinh}}">{{$province->tenTinh}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -282,54 +244,22 @@
                 </div>
 
                 <div class="btn-group btn-block mb-3" id="dates" style="margin-top:25px;">
-                    <a
-                        class="btn btn-light text-muted date active btn-date-choose-in-ticket"
-                        data-date="2023-03-09"
-                    >
-                        9/3
-                        <br /><span class="small text-nowrap">Th 5</span>
-                    </a>
-                    <a
-                        class="btn btn-light text-muted date btn-date-choose-in-ticket"
-                        data-date="2023-03-10"
-                    >
-                        10/3
-                        <br /><span class="small text-nowrap">Th 6</span>
-                    </a>
-                    <a
-                        class="btn btn-light text-muted date btn-date-choose-in-ticket"
-                        data-date="2023-03-11"
-                    >
-                        11/3
-                        <br /><span class="small text-nowrap">Th 7</span>
-                    </a>
-                    <a
-                        class="btn btn-light text-muted date btn-date-choose-in-ticket"
-                        data-date="2023-03-12"
-                    >
-                        12/3
-                        <br /><span class="small text-nowrap">CN</span>
-                    </a>
-                    <a
-                        class="btn btn-light text-muted date btn-date-choose-in-ticket"
-                        data-date="2023-03-13"
-                    >
-                        13/3
-                        <br /><span class="small text-nowrap">Th 2</span>
-                    </a>
-                    <a
-                        class="btn btn-light text-muted date btn-date-choose-in-ticket"
-                        data-date="2023-03-14"
-                    >
-                        14/3
-                        <br /><span class="small text-nowrap">Th 3</span>
-                    </a>
+                    @foreach($dates as $index => $date)
+                        <a
+                            class="btn {{$index == 0 ? 'active' : ''}} btn-light text-muted date btn-date-choose-in-ticket"
+                            data-date="{{$date[1]}}"
+                        >
+                            {{$date[0]}}
+                            <br /><span class="small text-nowrap"> {{$date[2]}}</span>
+                        </a>
+                    @endforeach
+
                 </div>
 
                 <div id="showtimes">
                     <div class="card" style="width: 100%">
                         <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item bg-light btn-select-cineplex sponsored-cineplex-tracking sponsored-cineplex sponsored-cineplex-18789" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample"><div class="row align-items-center">
+                            <a href="#" class="list-group-item bg-light btn-select-cineplex sponsored-cineplex-tracking sponsored-cineplex sponsored-cineplex-18789 collapsed" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample"><div class="row align-items-center">
                                     <div class="col-auto">
                                         <div class="avatar avatar-sm">
                                             <img width="50" src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/square/5fffb2fcaf3c1018282624.png" alt="Beta Cinemas" class="avatar-img rounded">
@@ -350,7 +280,7 @@
                                             <h4 class="text-body mb-0 name font-weight-normal">
                                                 Beta Đan Phượng
                                             </h4>
-                                            <div class="cinema mt-0 collapse show" id="showtime-cinema-126701" style="">
+                                            <div class="cinema mt-0 collapse" id="showtime-cinema-126701" style="">
                                                 <p class="small text-muted mb-3">
                                                     Tầng 2 Tòa nhà HHA, Khu Đô Thị XPHomes (Tân Tây
                                                     Đô), Xã Tân Lập, Huyện Đan Phượng, TP Hà Nội -
