@@ -17,7 +17,6 @@ Route::get('/', [PageController::class, 'index'])->name('trang-chu');
 
 //Route For Lich Chieu
 Route::get('/lich-chieu', [LichChieuController::class, 'LichChieu'])->name('lich-chieu');
-Route::get('/chi-tiet-lich-chieu', [LichChieuController::class, 'ChiTietLichChieu'])->name('chi-tiet-lich-chieu');
 
 //Route For Rap
 Route::get('/chi-tiet-rap', [RapController::class, 'ChiTietRap'])->name('chi-tiet-rap');

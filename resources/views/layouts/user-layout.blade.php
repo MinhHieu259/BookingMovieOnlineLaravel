@@ -83,6 +83,79 @@
 </script>
 <script src="{{asset('assets/js/common.js')}}"></script>
 @stack('js')
+<!-- Modal login -->
+<div
+    class="modal left fade"
+    id="popupLogin"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label for="#username">Tài khoản</label>
+                <input id="username" value="{{old('username')}}" name="username" type="text"
+                       class="form-control  @error('username') is-invalid @enderror"/>
+                <span class="text-danger input-error" id="usernameError"></span>
+                <a href="#" class="forgotPassword">Quên mật khẩu</a>
+                <label for="#password">Mật khẩu</label>
+                <input id="password" value="{{old('password')}}" name="password" type="password"
+                       class="form-control  @error('password') is-invalid @enderror"/>
+                <span class="text-danger input-error" id="passwordError"></span>
+                <button id="btnLoginPopup" type="button" class="btn btn-login">Đăng nhập</button>
+
+                <p class="orLableLogin">Hoặc</p>
+                <button class="btn btn-primary btn-login-facebook">
+                    <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
+                </button>
+                <p class="no-have-account">
+                    Chưa có tài khoản? <a href="{{route('RegisterPage')}}">Đăng ký ngay</a>
+                </p>
+            </div>
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- modal -->
+
+<!--Modal province-->
+<div
+    class="modal right fade"
+    id="modelProvince"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Tìm theo tỉnh thành phố">
+                    </div>
+                </div>
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
+                        <br>
+                        <span class="number-rap">56 rạp</span>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
+                        <br>
+                        <span class="number-rap">56 rạp</span>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action"><b>Tp. Hồ Chí Minh</b>
+                        <br>
+                        <span class="number-rap">56 rạp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- modal-content -->
+    </div>
+</div>
+<!--Modal province-->
 @stack('popup')
 </body>
 </html>

@@ -53,4 +53,5 @@ class Phim extends Model
         $results = DB::select('EXEC DeletePhim ?', [$maPhim]);
         return $results;
     }
+
 }

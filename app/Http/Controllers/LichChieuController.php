@@ -11,8 +11,4 @@ class LichChieuController extends Controller
         return view('components.user.LichChieu.lich-chieu');
     }
 
-    public function ChiTietLichChieu()
-    {
-        return view('components.user.LichChieu.chi-tiet-lich-chieu');
-    }
 }

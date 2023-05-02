@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DaoDien;
+use App\Models\DienVien;
+use App\Models\Phim;
 use Illuminate\Http\Request;
 
 class PhimController extends Controller
@@ -26,8 +29,15 @@ class PhimController extends Controller
         return view('components.user.Phim.thong-tin-phim');
     }
 
-    public function LichChieuView()
+    public function LichChieuView($slug)
     {
-        return view('components.user.Phim.lich-chieu');
+        $film = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->join('DanhMucPhim as DM', 'DM.maDanhMuc', '=', 'PHIM.maDanhMuc')
+            ->where('slug', $slug)
+            ->select('PHIM.*', 'HA.linkHinhAnh', 'DM.tenDanhMuc')
+            ->first();
+        $actors = DienVien::whereIn('maDienVien', json_decode($film->maDienVien))->get();
+        $directors = DaoDien::whereIn('maDaoDien', json_decode($film->maDaoDien))->get();
+        return view('components.user.LichChieu.chi-tiet-lich-chieu', compact('film', 'actors', 'directors'));
     }
 }
