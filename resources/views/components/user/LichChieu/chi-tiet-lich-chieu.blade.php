@@ -1,7 +1,7 @@
 @extends('layouts.user-layout')
 @section('title', 'Chi tiết lịch chiếu')
 @push('js')
-    <script src="{{asset('')}}"></script>
+    <script src="{{asset('assets/js/function/lich-chieu/chi-tiet-lich-chieu.js')}}"></script>
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
@@ -262,11 +262,11 @@
                             <a href="#" class="list-group-item bg-light btn-select-cineplex sponsored-cineplex-tracking sponsored-cineplex sponsored-cineplex-18789 collapsed" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample"><div class="row align-items-center">
                                     <div class="col-auto">
                                         <div class="avatar avatar-sm">
-                                            <img width="50" src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/square/5fffb2fcaf3c1018282624.png" alt="Beta Cinemas" class="avatar-img rounded">
+                                            <img width="50" src="{{asset($theater->anhDaiDien)}}" alt="{{$theater->tenRap}}" class="avatar-img rounded">
                                         </div>
                                     </div>
                                     <div class="col ml-n2">
-                                        <h4 class="text-body mb-1 name">Beta Cinemas</h4>
+                                        <h4 class="text-body mb-1 name">{{$theater->tenRap}}</h4>
                                         <p class="small text-muted mb-0">4 rạp</p>
                                     </div>
                                     <div class="col-auto">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietRap;
 use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\Phim;
@@ -43,8 +44,45 @@ class PhimController extends Controller
         $directors = DaoDien::whereIn('maDaoDien', json_decode($film->maDaoDien))->get();
         $provinces = Tinh::all();
         $dates = date::getSixDayFromToday();
+        $theater = RAP::get()[0];
 
         return view('components.user.LichChieu.chi-tiet-lich-chieu',
-            compact('film', 'actors', 'directors', 'provinces', 'dates'));
+            compact('film', 'actors', 'directors', 'provinces', 'dates', 'theater'));
+    }
+
+    public function GetShowTime($province_id, $date_show, $slug)
+    {
+        $results = ChiTietRap::join('Tinh', 'Tinh.maTinh', '=', 'ChiTietRap.maTinh')
+            ->join('PHONG', 'PHONG.maChiTietRap', '=', 'ChiTietRap.maChiTietRap')
+            ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
+            ->join('PHIM', 'SC.maPhim', '=', 'PHIM.maPhim')
+            ->select('ChiTietRap.*', 'Tinh.tenTinh', 'SC.gioChieu', 'PHONG.tenPhong')
+            ->where('ChiTietRap.maTinh', '35')
+            ->where('PHIM.slug', 'hoc-ky-sinh-tu')
+            ->where('SC.ngayChieu', '28/04/2023')
+            ->get();
+        $result2 = [];
+        foreach ($results as $result) {
+            $maCTRap = $result->maChiTietRap;
+            $suatChieu = [
+                'gioChieu' => $result->gioChieu,
+                'tenPhong' => $result->tenPhong
+            ];
+
+            if (!isset($result2[$maCTRap])) {
+                $result2[$maCTRap] = [
+                    'maCTRap' => $maCTRap,
+                    'tenRap' => $result->tenRap,
+                    'diaChi' => $result->diaChi,
+                    'suatChieu' => [$suatChieu]
+                ];
+            } else {
+                $result2[$maCTRap]['suatChieu'][] = $suatChieu;
+            }
+        }
+
+        return response()->json([
+            'results' => array_values($result2)
+        ]);
     }
 }
