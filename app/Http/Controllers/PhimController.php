@@ -52,14 +52,15 @@ class PhimController extends Controller
 
     public function GetShowTime($province_id, $date_show, $slug)
     {
+        $rap = RAP::all()[0];
         $results = ChiTietRap::join('Tinh', 'Tinh.maTinh', '=', 'ChiTietRap.maTinh')
             ->join('PHONG', 'PHONG.maChiTietRap', '=', 'ChiTietRap.maChiTietRap')
             ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
             ->join('PHIM', 'SC.maPhim', '=', 'PHIM.maPhim')
             ->select('ChiTietRap.*', 'Tinh.tenTinh', 'SC.gioChieu', 'PHONG.tenPhong')
-            ->where('ChiTietRap.maTinh', '35')
-            ->where('PHIM.slug', 'hoc-ky-sinh-tu')
-            ->where('SC.ngayChieu', '28/04/2023')
+            ->where('ChiTietRap.maTinh', $province_id)
+            ->where('PHIM.slug', $slug)
+            ->where('SC.ngayChieu', date("d/m/Y", strtotime($date_show)))
             ->get();
         $result2 = [];
         foreach ($results as $result) {
@@ -80,8 +81,8 @@ class PhimController extends Controller
                 $result2[$maCTRap]['suatChieu'][] = $suatChieu;
             }
         }
-
         return response()->json([
+            'rap' => $rap,
             'results' => array_values($result2)
         ]);
     }

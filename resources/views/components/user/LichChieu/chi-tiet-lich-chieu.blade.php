@@ -233,7 +233,9 @@
                         <div class="row">
                             <div class="col">
                                 <select class="form-control btn-select-region select2"
-                                        data-toggle="select" tabindex="-1" aria-hidden="true">
+                                        data-toggle="select" tabindex="-1" aria-hidden="true"
+                                        id="provinces"
+                                >
                                     @foreach($provinces as $province)
                                     <option value="{{$province->maTinh}}">{{$province->tenTinh}}</option>
                                     @endforeach
@@ -258,77 +260,9 @@
 
                 <div id="showtimes">
                     <div class="card" style="width: 100%">
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item bg-light btn-select-cineplex sponsored-cineplex-tracking sponsored-cineplex sponsored-cineplex-18789 collapsed" data-toggle="collapse" data-target="#collapseExample" aria-controls="collapseExample"><div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <div class="avatar avatar-sm">
-                                            <img width="50" src="{{asset($theater->anhDaiDien)}}" alt="{{$theater->tenRap}}" class="avatar-img rounded">
-                                        </div>
-                                    </div>
-                                    <div class="col ml-n2">
-                                        <h4 class="text-body mb-1 name">{{$theater->tenRap}}</h4>
-                                        <p class="small text-muted mb-0">4 rạp</p>
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="text-muted h3"><i class="fe fe-chevron-right"></i></span>
-                                    </div></div></a>
+                        <div class="list-group list-group-flush" id="area-suat-chieu">
 
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body" style="width: 100%">
-                                    <div class="list-group collapse show" id="showtime-cineplex-18789">
-                                        <div class="list-group-item btn-select-cinema ticketing-cinema-tracking ticketing-cinema ticketing-cinema-126701" data-cineplex="beta-cineplex" data-cinema="beta-cineplex-dan-phuong" data-cinema-id="126701" data-toggle="collapse" data-target="#showtime-cinema-126701" aria-expanded="true">
-                                            <h4 class="text-body mb-0 name font-weight-normal">
-                                                Beta Đan Phượng
-                                            </h4>
-                                            <div class="cinema mt-0 collapse" id="showtime-cinema-126701" style="">
-                                                <p class="small text-muted mb-3">
-                                                    Tầng 2 Tòa nhà HHA, Khu Đô Thị XPHomes (Tân Tây
-                                                    Đô), Xã Tân Lập, Huyện Đan Phượng, TP Hà Nội -
-                                                    <a href="/rap/beta-cineplex-dan-phuong/">Thông tin rạp</a>
-                                                    -
-                                                    <a href="https://maps.google.com/?q=Beta Đan Phượng" target="_blank">Bản đồ</a>
-                                                    -
-                                                    <a href="#" data-toggle="modal" data-target="#ticketModal" data-name="Beta Đan Phượng" data-ticket-image="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/full/5c219e8046e21026086857.jpg">Giá vé</a>
-                                                </p>
-                                                <div class="showtimes loaded">
-                                                    <div class="mb-1">
-                                                        <label class="small mb-2 font-weight-bold d-block text-dark">
-                                                            2D Phụ Đề Anh
-                                                        </label>
-                                                        <a href="/mua-ve/beta/126701/72849a9e-b03c-42bf-879e-b44287ea74f9" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146137" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_72849a9e-b03c-42bf-879e-b44287ea74f9">
-                                                            <span class="time">10:45</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/6ec6698a-90b9-4a9e-aa01-ed4e0dde8af3" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146138" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_6ec6698a-90b9-4a9e-aa01-ed4e0dde8af3">
-                                                            <span class="time">12:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/4d1558d0-4eb1-4a79-9de6-c02f0b1fa9e1" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277257519" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_4d1558d0-4eb1-4a79-9de6-c02f0b1fa9e1">
-                                                            <span class="time">13:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/8f1c138c-4d31-455e-aff7-bc42a046cd25" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146139" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_8f1c138c-4d31-455e-aff7-bc42a046cd25">
-                                                            <span class="time">14:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/f0401a10-1612-4ec3-a070-262135b240b6" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146140" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_f0401a10-1612-4ec3-a070-262135b240b6">
-                                                            <span class="time">16:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/4919977e-6586-47d4-b5e2-806b4db2aae6" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146141" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_4919977e-6586-47d4-b5e2-806b4db2aae6">
-                                                            <span class="time">18:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/9a0f606a-f5c9-49bb-8b8c-39065d763875" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146142" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_9a0f606a-f5c9-49bb-8b8c-39065d763875">
-                                                            <span class="time">20:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/a55c06b7-2c77-4589-a562-f52e03b85c02" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277257475" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_a55c06b7-2c77-4589-a562-f52e03b85c02">
-                                                            <span class="time">21:00</span>
-                                                        </a>
-                                                        <a href="/mua-ve/beta/126701/2f3a1d5a-0d37-4d89-90a7-bb27467748c2" data-cineplex="beta" data-cinema="beta-cineplex-dan-phuong" data-id="277146143" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing" data-reference="126701_2f3a1d5a-0d37-4d89-90a7-bb27467748c2">
-                                                            <span class="time">22:00</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

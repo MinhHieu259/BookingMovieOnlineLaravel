@@ -44,7 +44,7 @@ class date
 // Tạo mảng chứa các ngày
         $dates = [];
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            $formattedDate = $date->format('d/m/Y');
+            $formattedDate = $date->format('d-m-Y');
             $formattedDateShow = $date->format('d/m');
             $formattedDateVN = self::convertToVietNam(strftime('%A', $date->timestamp));
 
