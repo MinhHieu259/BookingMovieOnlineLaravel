@@ -201,6 +201,10 @@ a {
 .footer-user-page{
     background-color: #EDF2F9;
     margin-top: 20px;
+    position: static;
+    z-index: 1000;
+    bottom: 0;
+    width: 100%;
 }
 
 .review-new{

@@ -57,7 +57,7 @@ class PhimController extends Controller
             ->join('PHONG', 'PHONG.maChiTietRap', '=', 'ChiTietRap.maChiTietRap')
             ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
             ->join('PHIM', 'SC.maPhim', '=', 'PHIM.maPhim')
-            ->select('ChiTietRap.*', 'Tinh.tenTinh', 'SC.gioChieu', 'PHONG.tenPhong')
+            ->select('ChiTietRap.*', 'Tinh.tenTinh', 'SC.*', 'PHONG.tenPhong')
             ->where('ChiTietRap.maTinh', $province_id)
             ->where('PHIM.slug', $slug)
             ->where('SC.ngayChieu', date("d/m/Y", strtotime($date_show)))
@@ -67,7 +67,8 @@ class PhimController extends Controller
             $maCTRap = $result->maChiTietRap;
             $suatChieu = [
                 'gioChieu' => $result->gioChieu,
-                'tenPhong' => $result->tenPhong
+                'tenPhong' => $result->tenPhong,
+                'maSuatChieu' => $result->maSuatChieu
             ];
 
             if (!isset($result2[$maCTRap])) {
@@ -85,5 +86,10 @@ class PhimController extends Controller
             'rap' => $rap,
             'results' => array_values($result2)
         ]);
+    }
+
+    public function ChooseSeatView($maSuatChieu){
+        //dd(base64_decode($maSuatChieu));
+        return view('components.user.LichChieu.chon-ghe');
     }
 }

@@ -42,7 +42,7 @@ function renderShowTime(response){
         $(response.results).each(function (key, value) {
             console.log(value)
             $(value.suatChieu).each(function (key, value) {
-                htmlTime += ' <a href="/mua-ve/'+value.tenPhong+'" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
+                htmlTime += ' <a href="/chon-ghe/'+btoa(value.maSuatChieu)+'" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
                     '                                                            <span class="time">'+value.gioChieu+'</span>\n' +
                     '                                                        </a>'
             })
@@ -57,8 +57,7 @@ function renderShowTime(response){
                 '                                                    <a href="/rap/beta-cineplex-dan-phuong/">Thông tin rạp</a>\n' +
                 '                                                    -\n' +
                 '                                                    <a href="https://maps.google.com/?q=Beta Đan Phượng" target="_blank">Bản đồ</a>\n' +
-                '                                                    -\n' +
-                '                                                    <a href="#" data-toggle="modal" data-target="#ticketModal" data-name="Beta Đan Phượng" data-ticket-image="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/full/5c219e8046e21026086857.jpg">Giá vé</a>\n' +
+                '                                                    \n' +
                 '                                                </p>\n' +
                 '                                                <div class="showtimes loaded">\n' +
                 '                                                    <div class="mb-1">\n' +
