@@ -7,9 +7,11 @@ use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\Phim;
 use App\Models\RAP;
+use App\Models\SuatChieu;
 use App\Models\Tinh;
 use Illuminate\Http\Request;
 use App\Helpers\date;
+use Illuminate\Support\Facades\DB;
 
 class PhimController extends Controller
 {
@@ -88,8 +90,48 @@ class PhimController extends Controller
         ]);
     }
 
-    public function ChooseSeatView($maSuatChieu){
+    public function ChooseSeatView($maSuatChieu)
+    {
         //dd(base64_decode($maSuatChieu));
-        return view('components.user.LichChieu.chon-ghe');
+        $suatChieuInfor = SuatChieu::join('PHIM', 'PHIM.maPhim', '=', 'SuatChieu.maPhim')
+            ->join('PHONG', 'PHONG.maPhong', '=', 'SuatChieu.maPhong')
+            ->join('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
+            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim')
+            ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
+            ->first();
+        //dd($suatChieuInfor);
+        return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor'));
+    }
+
+    public function GetListSeat($maSuatChieu)
+    {
+        $chairs = DB::table('ChiTietDayGhe')
+            ->leftJoin('SuatChieu', 'ChiTietDayGhe.maSuatChieu', '=', 'SuatChieu.maSuatChieu')
+            ->leftJoin('DayGhe', 'ChiTietDayGhe.maDayGhe', '=', 'DayGhe.maDayGhe')
+            ->select('ChiTietDayGhe.*', 'DayGhe.tenDayGhe')
+            ->where('ChiTietDayGhe.maSuatChieu', base64_decode($maSuatChieu))
+            ->get();
+        // Nhóm các hàng theo tên của dãy ghế
+        $groups = $chairs->groupBy('tenDayGhe');
+        // Xây dựng lại mảng
+        $result = [];
+        foreach ($groups as $tenDayGhe => $chairs) {
+            $seats = [];
+            foreach ($chairs as $chair) {
+                $seats[] = [
+                    'name' => $chair->tenGhe,
+                    'type' => $chair->loaiGhe,
+                    'status' => $chair->trangThai == 2 ? 'occupied' : '',
+                ];
+            }
+            $result[] = [
+                'row' => $tenDayGhe,
+                'seats' => $seats,
+            ];
+        }
+        return response()->json([
+            'status' => 200,
+            'chairs' => $result
+        ]);
     }
 }

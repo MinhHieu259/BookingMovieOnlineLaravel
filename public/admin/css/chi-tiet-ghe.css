@@ -11,8 +11,8 @@
 
 .seat{
     background-color: #444451;
-    height: 37px;
-    width: 48px;
+    height: 30px;
+    width: 30px;
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -20,11 +20,17 @@
 
 .seat.double{
     background-color: #444451;
-    height: 37px;
-    width: 102px;
+    height: 27px;
+    width: 66px;
     margin: 3px;
     /*border-top-left-radius: 10px;*/
     /*border-top-right-radius: 10px;*/
+}
+
+.style-seat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .row{

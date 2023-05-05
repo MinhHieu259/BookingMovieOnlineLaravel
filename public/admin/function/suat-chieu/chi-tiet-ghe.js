@@ -9,7 +9,7 @@ function getListChairs(){
             console.log(response.chairs)
             if (response.status == 200) {
                 response.chairs.forEach(function (seat) {
-                    var rowHtml = '<div class="row">' +
+                    var rowHtml = '<div class="row style-seat">' +
                         '<span class="rowName">' + seat.row + '</span>';
 
                     seat.seats.forEach((item) => {

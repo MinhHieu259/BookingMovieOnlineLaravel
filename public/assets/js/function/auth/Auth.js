@@ -5,7 +5,7 @@ function LoginInPopup() {
         formData.append('password', $('#password').val());
         $.ajax({
             type: "POST",
-            url: "do-dang-nhap-modal",
+            url: "/do-dang-nhap-modal",
             data: formData,
             processData: false,
             contentType: false,
@@ -16,13 +16,14 @@ function LoginInPopup() {
             success: function (response) {
                 if (response.status == 200) {
                     $('#popupLogin').modal('hide')
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Thành công',
-                        text: response.message,
-                    }).then(function () {
-                        window.location.href = '/'
-                    });
+                    // Swal.fire({
+                    //     icon: 'success',
+                    //     title: 'Thành công',
+                    //     text: response.message,
+                    // }).then(function () {
+                    //     window.location.href = '/'
+                    // });
+                    location.reload();
                     // $('.area-right-nav').html('')
                     // $('.area-right-nav').append(' <div class="row">' +
                     //     ' <a\n' +

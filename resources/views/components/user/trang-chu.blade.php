@@ -4,7 +4,7 @@
 
 @endpush
 @push('js')
-    <script src="{{asset('assets/js/function/auth/Auth.js')}}"></script>
+
     @if(Session::has('message'))
         <script>
             Swal.fire({

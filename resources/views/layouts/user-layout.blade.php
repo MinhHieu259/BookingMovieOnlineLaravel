@@ -51,6 +51,7 @@
 <script src="{{asset('assets/js/slider.js')}}"></script>
 <script src="{{asset('assets/js/owl.carousel.js')}}"></script>
 <script src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('assets/js/function/auth/Auth.js')}}"></script>
 <script>
     $(document).ready(function () {
         $(".owl-carousel").owlCarousel({

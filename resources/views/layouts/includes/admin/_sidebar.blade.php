@@ -34,7 +34,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item {{request()->is('admin/them-moi-rap') ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{request()->is('admin/them-moi-rap') ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa-solid fa-masks-theater"></i>
                         <p>
                             Quản lý thông tin rạp
                             <i class="right fas fa-angle-left"></i>
@@ -51,7 +51,7 @@
                 </li>
                 <li class="nav-item {{request()->is('admin/them-moi-cum-rap') || request()->is('admin/danh-sach-cum-rap') || Route::currentRouteName() == 'admin.editcumrap' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{request()->is('admin/them-moi-cum-rap') || request()->is('admin/danh-sach-cum-rap') || Route::currentRouteName() == 'admin.editcumrap' ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa-solid fa-video"></i>
                         <p>
                             Quản lý cụm rạp
                             <i class="right fas fa-angle-left"></i>
@@ -74,7 +74,7 @@
                 </li>
                 <li class="nav-item {{Route::currentRouteName() == 'admin.adddoan' || Route::currentRouteName() == 'admin.listdoan' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.adddoan' || Route::currentRouteName() == 'admin.listdoan' ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa-solid fa-pizza-slice"></i>
                         <p>
                             Quản lý đồ ăn
                             <i class="right fas fa-angle-left"></i>
@@ -97,7 +97,7 @@
                 </li>
                 <li class="nav-item {{Route::currentRouteName() == 'admin.listphong' || Route::currentRouteName() == 'admin.listphongofcum' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.listphong' || Route::currentRouteName() == 'admin.listphongofcum' ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa-solid fa-house-signal"></i>
                         <p>
                             Quản lý phòng
                             <i class="right fas fa-angle-left"></i>
@@ -114,7 +114,7 @@
                 </li>
                 <li class="nav-item {{Route::currentRouteName() == 'admin.listdanhmuc' || Route::currentRouteName() == 'admin.adddanhmuc' || Route::currentRouteName() == 'admin.capnhatdanhmuc' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.listdanhmuc' || Route::currentRouteName() == 'admin.adddanhmuc' || Route::currentRouteName() == 'admin.capnhatdanhmuc' ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="fa-solid fa-landmark"></i>
                         <p>
                             Quản lý danh mục
                             <i class="right fas fa-angle-left"></i>
