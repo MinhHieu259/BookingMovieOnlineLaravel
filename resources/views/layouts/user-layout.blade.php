@@ -31,7 +31,7 @@
     <div class="main-content">
         @yield('content')
     </div>
-    @include('layouts.includes.user._footer')
+{{--    @include('layouts.includes.user._footer')--}}
 </div>
 <script
     src="https://code.jquery.com/jquery-3.6.3.min.js"

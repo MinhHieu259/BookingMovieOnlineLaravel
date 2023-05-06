@@ -7,9 +7,10 @@
     align-items: center;
     justify-content: center;
     height: auto;
+    padding-bottom: 20px;
 }
 
-.seat{
+.seat {
     background-color: #444451;
     height: 30px;
     width: 30px;
@@ -18,7 +19,20 @@
     border-top-right-radius: 10px;
 }
 
-.seat.double{
+.ticketing-step:hover {
+    background-color: aliceblue;
+    border-radius: 5%;
+    cursor: pointer;
+}
+.payment-gateway{
+    margin-bottom: 10px;
+}
+
+.active-red{
+    color: #ea4c4c !important;
+}
+
+.seat.double {
     background-color: #444451;
     height: 27px;
     width: 66px;
@@ -26,17 +40,18 @@
     /*border-top-left-radius: 10px;*/
     /*border-top-right-radius: 10px;*/
 }
-.style-seat{
+
+.style-seat {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.row{
+.row {
     display: flex;
 }
 
-.rowName{
+.rowName {
     width: 20px;
     margin-right: 10px;
     margin-top: 2px;
@@ -46,7 +61,7 @@
     line-height: 20px;
 }
 
-.movie-container{
+.movie-container {
     margin: 20px 0;
 }
 
@@ -63,7 +78,7 @@
 }
 
 .seat.selected {
-    background-color: #6feaf6  !important;
+    background-color: #6feaf6 !important;
 }
 
 .seat.occupied {
@@ -98,17 +113,17 @@
 } */
 
 /*Hover vào những ghế chưa được chọn*/
-.seat:not(.occupied):hover{
+.seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.showcase .seat:not(.occupied):hover{
+.showcase .seat:not(.occupied):hover {
     cursor: default;
     transform: scale(1);
 }
 
-.showcase{
+.showcase {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 5px 10px;
     border-radius: 5px;
@@ -118,14 +133,14 @@
     justify-content: space-between;
 }
 
-.showcase li{
+.showcase li {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
 }
 
-.showcase li small{
+.showcase li small {
     margin-left: 10px;
 }
 
@@ -143,11 +158,11 @@
 /*    margin-bottom: 30px;*/
 /*}*/
 
-p.text{
+p.text {
     margin: 5px 0;
 }
 
-p.text span{
+p.text span {
     color: #6feaf6;
 }
 
@@ -164,7 +179,8 @@ p.text span{
     display: block;
 
 }
-.ticketing-step{
+
+.ticketing-step {
     text-align: center;
     padding: 10px;
 }
