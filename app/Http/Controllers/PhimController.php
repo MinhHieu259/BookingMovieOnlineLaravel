@@ -96,7 +96,7 @@ class PhimController extends Controller
         $suatChieuInfor = SuatChieu::join('PHIM', 'PHIM.maPhim', '=', 'SuatChieu.maPhim')
             ->join('PHONG', 'PHONG.maPhong', '=', 'SuatChieu.maPhong')
             ->join('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
-            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim')
+            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe')
             ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
             ->first();
         //dd($suatChieuInfor);
@@ -122,6 +122,7 @@ class PhimController extends Controller
                     'name' => $chair->tenGhe,
                     'type' => $chair->loaiGhe,
                     'status' => $chair->trangThai == 2 ? 'occupied' : '',
+                    'price' => $chair->gia
                 ];
             }
             $result[] = [
@@ -129,6 +130,7 @@ class PhimController extends Controller
                 'seats' => $seats,
             ];
         }
+        //dd($result);
         return response()->json([
             'status' => 200,
             'chairs' => $result

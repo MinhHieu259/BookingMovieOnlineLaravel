@@ -30,6 +30,7 @@
     </ul>
 
     <div class="ticketing-steps bg-white border-bottom">
+        <input type="hidden" value="{{$suatChieuInfor->giaVe}}" id="giaVeHidden">
         <div class="container">
             <div class="row">
                 <div class="col ticketing-step" id="seatIcon">
@@ -42,7 +43,7 @@
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="col ticketing-step" id="foodIcon">
-                    <div class="" style="color: grey">
+                    <div style="color: grey">
                         <i class="fa-solid fa-bowl-food"></i>
                         <span>Bắp nước</span>
                     </div>
@@ -209,11 +210,11 @@
                                                     107,000 đ
                                                 </td>
                                                 <td class="ticketing-select text-right">
-                                                    <a href="#" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
+                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
                                                         -
                                                     </a>
-                                                    <input name="type_483" type="text" min="0" max="10" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
-                                                    <a href="#" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
+                                                    <input name="type_483" type="text" min="0" max="10" style="width: 35px" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
+                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
                                                         +
                                                     </a>
                                                 </td>
@@ -230,11 +231,11 @@
                                                     97,000 đ
                                                 </td>
                                                 <td class="ticketing-select text-right">
-                                                    <a href="#" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
+                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
                                                         -
                                                     </a>
-                                                    <input name="type_482" type="text" min="0" max="10" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
-                                                    <a href="#" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
+                                                    <input name="type_482" type="text" min="0" max="10" style="width: 35px" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
+                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
                                                         +
                                                     </a>
                                                 </td>
@@ -291,68 +292,27 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <input type="hidden" name="payment_gateway" value="momo">
-                                        <input type="hidden" name="payment_method" value="">
-
                                         <div class="payment-gateway pg-momo clearfix active" data-pg="momo" data-pm="">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png">
-                                                Ví MoMo
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-moveek pm-bank-transfer clearfix disabled" data-pg="moveek" data-pm="bank-transfer">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/moveek-icon.png">
-                                                Chuyển khoản / Internet Banking
-                                                <span class="pm-description">Khả dụng từ 09:00 đến 24:00</span>
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-shopeepay clearfix" data-pg="shopeepay" data-pm="">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/shopeepay-icon.png">
-                                                Ví ShopeePay
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-payoo pm-international-card clearfix" data-pg="payoo" data-pm="cc-payment">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/payoo-icon.png">
-                                                Thẻ Visa, Master, JCB
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-payoo pm-internal-card clearfix" data-pg="payoo" data-pm="bank-payment">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/payoo-icon.png">
-                                                Thẻ ATM (Thẻ nội địa)
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-payoo pm-store clearfix" data-pg="payoo" data-pm="pay-at-store">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/payoo-icon.png">
-                                                Tại cửa hàng tiện lợi
-                                            </div>
-                                        </div>
-                                        <div class="payment-gateway pg-foxpay clearfix" data-pg="foxpay" data-pm="">
-                                            <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/foxpay-icon.png">
-                                                Ví Foxpay
+                                            <div class="row">
+                                                <input type="radio" name="payType" value="momo" id="momo">
+                                                <label class="pg-info" for="momo">
+                                                    <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png">
+                                                    Ví MoMo
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="payment-gateway pg-moveek pm-moveek-credits clearfix moveek-credits-guide" data-pg="moveek" data-pm="moveek-credits">
                                             <i class="fe fe-check-circle pg-checked"></i>
-                                            <div class="pg-info">
-                                                <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/moveek-icon.png">
-                                                Moveek Credits
-                                                <span class="pm-description">
+                                           <div class="row">
+                                               <input type="radio" name="payType" value="credit" id="credit">
+                                               <label class="pg-info" for="credit">
+                                                   <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/moveek-icon.png">
+                                                   Moveek Credits
+                                                   <span class="pm-description">
                                                         Số dư Moveek Credits: <strong class="text-dark">0 đ</strong>
                                                     </span>
-                                            </div>
+                                               </label>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>

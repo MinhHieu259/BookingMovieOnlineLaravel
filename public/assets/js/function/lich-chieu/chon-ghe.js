@@ -12,7 +12,8 @@ function getListChairs() {
                         '<span class="rowName">' + seat.row + '</span>';
 
                     seat.seats.forEach((item) => {
-                        var seatHtml = `<div class="seat style-seat ${item.status} ${item.type && item.type}" data-name=${item.name}></div>`;
+                        var seatHtml = `<div class="seat style-seat ${item.status} ${item.type && item.type}" data-name=${item.name}
+                            data-price="${item.price}"></div>`;
                         rowHtml += seatHtml;
                     });
 
@@ -29,19 +30,21 @@ function getListChairs() {
 
 let listSeatSelected = [];
 let countSelectedSeats = 0;
+let totalBill = 0;
 
 function clickSeat() {
-    $('.seat').on('click', function () {
+    $('#areaChair .seat').on('click', function () {
         if ($(this).hasClass("occupied")) {
             return;
         }
 
         if ($(this).hasClass("selected")) {
-            // Deselect the seat
             $(this).removeClass('selected');
             countSelectedSeats--;
             $(this).text('')
-            removeSeat(listSeatSelected, $(this).data('name'));
+            let seatName = $(this).data('name');
+            let seatPrice = $(this).data('price');
+            removeSeat(listSeatSelected, seatName, seatPrice);
             checkQuantitySeat()
         } else {
             // Check if the maximum number of seats has been reached
@@ -57,8 +60,9 @@ function clickSeat() {
             $(this).addClass('selected');
             countSelectedSeats++;
             let seatName = $(this).data('name');
+            let seatPrice = $(this).data('price');
             $(this).text(seatName)
-            addOrRemove(listSeatSelected, $(this).data('name'));
+            addOrRemove(listSeatSelected, seatName, seatPrice);
             checkQuantitySeat()
         }
 
@@ -67,19 +71,25 @@ function clickSeat() {
     });
 }
 
-function addOrRemove(arr, item) {
+function addOrRemove(arr, item, price) {
     let index = arr.indexOf(item);
     if (index > -1) {
         arr.splice(index, 1);
+        totalBill -= price * $('#giaVeHidden').val()
+        $('.ticketing-total-amount').text(totalBill+' đ')
     } else {
         arr.push(item);
+        totalBill += price * $('#giaVeHidden').val()
+        $('.ticketing-total-amount').text(totalBill+' đ')
     }
 }
 
-function removeSeat(arr, item) {
+function removeSeat(arr, item, price) {
     let index = arr.indexOf(item);
     if (index > -1) {
         arr.splice(index, 1);
+        totalBill -= price * $('#giaVeHidden').val()
+        $('.ticketing-total-amount').text(totalBill+' đ')
     }
 }
 
@@ -122,37 +132,54 @@ function updateTime() {
     }
 }
 
-$('#foodIcon').click(function () {
-    $('#myTab button[data-target="#food"]').tab('show');
-})
-
-$('#seatIcon').click(function () {
-    $('#myTab button[data-target="#seat"]').tab('show');
-})
-
-$('#payIcon').click(function () {
-    $('#myTab button[data-target="#pay"]').tab('show');
-})
-
 function checkQuantitySeat() {
-    if (listSeatSelected.length <= 0){
+    if (listSeatSelected.length <= 0) {
         $('#btnContinue').prop('disabled', true)
         $('#foodIcon').off('click').addClass('disabled')
         $('#payIcon').off('click').addClass('disabled')
     } else {
         $('#btnContinue').prop('disabled', false)
-        $('#foodIcon').removeClass('disabled').click(function() {
+        $('#foodIcon').removeClass('disabled').click(function () {
             $('#myTab button[data-target="#food"]').tab('show')
+            $('.ticketing-step div').removeClass('active-red')
+            $('#foodIcon div').addClass('active-red')
         })
-        $('#payIcon').removeClass('disabled').click(function() {
+        $('#payIcon').removeClass('disabled').click(function () {
             $('#myTab button[data-target="#pay"]').tab('show')
+            $('.ticketing-step div').removeClass('active-red')
+            $('#payIcon div').addClass('active-red')
         })
     }
+    $('#seatIcon').click(function () {
+        $('#myTab button[data-target="#seat"]').tab('show')
+        $('.ticketing-step div').removeClass('active-red')
+        $('#seatIcon div').addClass('active-red')
+    })
 }
+
+function checkPageBtnContinue() {
+    $('#btnContinue').click(function (){
+        var position = $('.active-red span').text()
+        if (position == 'Chọn ghế'){
+            $('#myTab button[data-target="#food"]').tab('show');
+            $('.ticketing-step div').removeClass('active-red')
+            $('#foodIcon div').addClass('active-red')
+        } else if (position == 'Bắp nước'){
+            $('#myTab button[data-target="#pay"]').tab('show');
+            $('.ticketing-step div').removeClass('active-red')
+            $('#payIcon div').addClass('active-red')
+        } else {
+            // window.location.href = "/";
+            console.log($('input[name="payType"]:checked').val())
+        }
+    })
+}
+
 
 $(document).ready(function () {
     getListChairs()
     clickSeat()
     countdown()
     checkQuantitySeat()
+    checkPageBtnContinue()
 })

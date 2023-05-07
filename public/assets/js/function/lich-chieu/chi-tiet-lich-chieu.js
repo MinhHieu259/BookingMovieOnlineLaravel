@@ -18,7 +18,7 @@ function clickDate() {
 
     })
 
-    $('#provinces').on('change', function (){
+    $('#provinces').on('change', function () {
         let dateActive = $('#dates a.active').data('date')
         let provinceId = $('#provinces').val()
         let slug = window.location.href.split('/').pop()
@@ -35,15 +35,27 @@ function clickDate() {
     })
 }
 
-function renderShowTime(response){
+function calculateTime(showTime) {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const [hour, minute] = showTime.split(":");
+
+    if (currentHour < hour || (currentHour == hour && currentMinute < minute - 10)) {
+        return true;
+    }
+    return false;
+}
+
+function renderShowTime(response) {
     if (response.results.length > 0) {
         var html = ''
         var htmlTime = ''
         $(response.results).each(function (key, value) {
             console.log(value)
             $(value.suatChieu).each(function (key, value) {
-                htmlTime += ' <a href="/chon-ghe/'+btoa(value.maSuatChieu)+'" class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
-                    '                                                            <span class="time">'+value.gioChieu+'</span>\n' +
+                htmlTime += ' <a href="/chon-ghe/' + btoa(value.maSuatChieu)  + '" ' + (calculateTime(value.gioChieu) ? '' : 'style="pointer-events: none;opacity: 0.5;cursor: not-allowed;"') + ' class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
+                    '                                                            <span class="time">' + value.gioChieu + '</span>\n' +
                     '                                                        </a>'
             })
 
@@ -83,12 +95,12 @@ function renderShowTime(response){
             '                                        <span class="text-muted h3"><i class="fe fe-chevron-right"></i></span>\n' +
             '                                    </div></div></a>' +
             '<div class="collapse" id="collapseExample">\n' +
-            '                                <div class="card card-body" style="width: 100%">'+
+            '                                <div class="card card-body" style="width: 100%">' +
             ' <div class="list-group collapse show" id="showtime-cineplex-18789">' +
             html
             +
-            '</div>'+
-            '</div>'+
+            '</div>' +
+            '</div>' +
             '</div>'
         )
     } else {
