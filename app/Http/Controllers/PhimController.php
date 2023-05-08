@@ -101,12 +101,14 @@ class PhimController extends Controller
             ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe')
             ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
             ->first();
+
         $foods = DoAn::join('ChiTietRap as CTR', 'DoAn.maChiTietRap', '=', 'CTR.maChiTietRap')
             ->join('PHONG', 'PHONG.maChiTietRap', '=', 'CTR.maChiTietRap')
             ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
             ->select('DoAn.*')
             ->where('SC.maSuatChieu', base64_decode($maSuatChieu))
             ->get();
+
         $user = Auth::guard('nguoidung')->user();
         return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor', 'foods', 'user'));
     }

@@ -292,7 +292,14 @@ function checkPageBtnContinue() {
             $('#payIcon div').addClass('active-red')
         } else {
             // window.location.href = "/";
-            console.log($('input[name="payType"]:checked').val())
+            let typePay = $('input[name="payType"]:checked').val()
+            if (typePay == 'momo'){
+                window.location.href = '/momo?orderMoney=' + totalBill
+            } else if (typePay == 'credit') {
+
+            } else {
+                console.log('popup thong bao chua chon phuong thuc thanh toan')
+            }
         }
     })
 }

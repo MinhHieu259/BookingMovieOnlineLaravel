@@ -4,6 +4,7 @@ use App\Http\Controllers\LichChieuController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\RapController;
+use App\Http\Controllers\User\MoMoPaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', function (){
@@ -24,3 +25,4 @@ Route::get('/chi-tiet-rap', [RapController::class, 'ChiTietRap'])->name('chi-tie
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/momo', [MoMoPaymentController::class, 'MomoPayment'])->name('momo');

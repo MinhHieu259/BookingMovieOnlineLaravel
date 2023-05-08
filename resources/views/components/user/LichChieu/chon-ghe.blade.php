@@ -298,23 +298,6 @@
                                     </div>
                                 </div>
 
-                                <div class="card mt-5" style="width: 100%">
-                                    <div class="card-header">
-                                        <div class="card-header-title text-muted">
-                                            Thông tin cá nhân
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group"><label for="user_order_fullname">Họ và tên</label>
-                                            <input type="text" id="user_order_fullname" name="user_order_fullname" value="{{$user->hoVaTen}}" class="form-control"></div>
-                                        <div class="form-group"><label for="user_order_email" class="required">Email</label>
-                                            <input type="email" id="user_order_email" name="user_order_email" required="required" value="{{$user->email}}" class="form-control"></div>
-                                        <div class="form-group"><label for="user_order_phone" class="required">Số điện thoại</label>
-                                            <input type="tel" id="user_order_phone" name="user_order_phone" required="required" value="{{$user->soDienThoai}}" class="form-control"></div>
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
