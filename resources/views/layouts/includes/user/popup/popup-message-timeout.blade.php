@@ -1,4 +1,4 @@
-<div class="modal fade" id="popupMessageTimeOut" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="popupMessageTimeOut" data-backdrop="static" data-keyboard="false" style="top: -200px;">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">

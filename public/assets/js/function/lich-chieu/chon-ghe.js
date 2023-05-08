@@ -13,7 +13,7 @@ function getListChairs() {
 
                     seat.seats.forEach((item) => {
                         var seatHtml = `<div class="seat style-seat ${item.status} ${item.type && item.type}" data-name=${item.name}
-                            data-price="${item.price}"></div>`;
+                            data-price="${item.price}" data-type="${item.type}"></div>`;
                         rowHtml += seatHtml;
                     });
 
@@ -31,6 +31,117 @@ function getListChairs() {
 let listSeatSelected = [];
 let countSelectedSeats = 0;
 let totalBill = 0;
+let seatSimpleDouble = {
+    singleSeats: [],
+    doubleSeats: []
+};
+
+function renderSeatFromArray(arr) {
+    let seatListElem = $('.ticketing-seats');
+    if (arr.length > 0) {
+        let seatListStrings = arr.map(seat => seat.seatName).join(', ');
+        seatListElem.html('<span style="font-size: 15px">' + seatListStrings + '</span>');
+    } else {
+        seatListElem.empty();
+    }
+}
+
+function renderDataPayView(seatArray, arrayFood) {
+    // Khởi tạo object để lưu trữ số lượng ghế
+    let seatCounts = {
+        single: 0,
+        double: 0
+    };
+
+// Tính tổng số lượng ghế
+    seatArray.singleSeats.forEach(function (seat) {
+        seatCounts.single += 1;
+    });
+
+    seatArray.doubleSeats.forEach(function (seat) {
+        seatCounts.double += 1;
+    });
+
+// Tạo ra các phần tử của bảng
+    let tableRows = [];
+    let priceFilm = $('#giaVeHidden').val()
+    if (seatCounts.single > 0) {
+        tableRows.push(`
+        <tr>
+            <td>Ghế đơn</td>
+            <td class="text-center">${seatCounts.single}</td>
+            <td class="text-right">${priceFilm * seatCounts.single} đ</td>
+        </tr>
+    `);
+    }
+
+    if (seatCounts.double > 0) {
+        tableRows.push(`
+        <tr>
+            <td>Ghế đôi</td>
+            <td class="text-center">${seatCounts.double}</td>
+            <td class="text-right">${priceFilm * 2 * seatCounts.double} đ</td>
+        </tr>
+    `);
+    }
+
+    if (arrayFood.length > 0) {
+        let foodRows = '';
+        arrayFood.forEach(item => {
+            const foodPrice = item.gia * item.quantity;
+            foodRows += `
+            <tr>
+                <td>${item.tenDoAn}</td>
+                <td class="text-center">${item.quantity}</td>
+                <td class="text-right">${foodPrice} đ</td>
+            </tr>
+        `;
+        });
+        tableRows.push(foodRows);
+    }
+
+// Tạo ra phần tử tổng của bảng
+
+    tableRows.push(`
+    <tr>
+        <td colspan="2">Tổng</td>
+        <td class="text-right">${totalBill} đ</td>
+    </tr>
+`);
+
+// Render ra giao diện HTML
+    $("#body-table-pay").html(tableRows.join(""));
+}
+
+function addSeatSimpleDouble(arr, seatType, seatName, seatPrice) {
+    var newSeat = {
+        name: seatName,
+        price: seatPrice
+    };
+
+    // Thêm ghế vào đối tượng tương ứng
+    if (seatType === '') {
+        arr.singleSeats.push(newSeat);
+    } else if (seatType === 'double') {
+        arr.doubleSeats.push(newSeat);
+    }
+
+}
+
+function removeSeatDouble(arrs, seatName) {
+    arrs.singleSeats = arrs.singleSeats.filter(function (seat) {
+        return seat.name !== seatName;
+    })
+
+    arrs.doubleSeats = arrs.doubleSeats.filter(function (seat) {
+        return seat.name !== seatName;
+    })
+    let seatSimpleDouble = {
+        singleSeats: arrs.singleSeats,
+        doubleSeats: arrs.doubleSeats
+    };
+    return seatSimpleDouble;
+}
 
 function clickSeat() {
     $('#areaChair .seat').on('click', function () {
@@ -45,6 +156,7 @@ function clickSeat() {
             let seatName = $(this).data('name');
             let seatPrice = $(this).data('price');
             removeSeat(listSeatSelected, seatName, seatPrice);
+            seatSimpleDouble = removeSeatDouble(seatSimpleDouble, seatName);
             checkQuantitySeat()
         } else {
             // Check if the maximum number of seats has been reached
@@ -61,35 +173,45 @@ function clickSeat() {
             countSelectedSeats++;
             let seatName = $(this).data('name');
             let seatPrice = $(this).data('price');
+            let seatType = $(this).data('type');
             $(this).text(seatName)
-            addOrRemove(listSeatSelected, seatName, seatPrice);
+            addOrRemove(listSeatSelected, seatName, seatPrice, seatType);
+            addSeatSimpleDouble(seatSimpleDouble, seatType, seatName, seatPrice)
             checkQuantitySeat()
         }
 
-        console.log(listSeatSelected);
-        $('.ticketing-seats').html('<h1 style="font-size: 20px">' + listSeatSelected.join(', ') + '</h1>');
+        renderSeatFromArray(listSeatSelected)
+        renderDataPayView(seatSimpleDouble, arrayFood)
     });
 }
 
-function addOrRemove(arr, item, price) {
-    let index = arr.indexOf(item);
+function addOrRemove(arr, item, price, seatType) {
+    let index = arr.findIndex(function (seat) {
+        return seat.seatName === item;
+    });
     if (index > -1) {
         arr.splice(index, 1);
         totalBill -= price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill+' đ')
+        $('.ticketing-total-amount').text(totalBill + ' đ')
     } else {
-        arr.push(item);
+        arr.push({
+            seatName: item,
+            seatPrice: price,
+            seatType: seatType
+        });
         totalBill += price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill+' đ')
+        $('.ticketing-total-amount').text(totalBill + ' đ')
     }
 }
 
 function removeSeat(arr, item, price) {
-    let index = arr.indexOf(item);
+    let index = arr.findIndex(function (seat) {
+        return seat.seatName === item;
+    });
     if (index > -1) {
         arr.splice(index, 1);
         totalBill -= price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill+' đ')
+        $('.ticketing-total-amount').text(totalBill + ' đ')
     }
 }
 
@@ -158,13 +280,13 @@ function checkQuantitySeat() {
 }
 
 function checkPageBtnContinue() {
-    $('#btnContinue').click(function (){
+    $('#btnContinue').click(function () {
         var position = $('.active-red span').text()
-        if (position == 'Chọn ghế'){
+        if (position == 'Chọn ghế') {
             $('#myTab button[data-target="#food"]').tab('show');
             $('.ticketing-step div').removeClass('active-red')
             $('#foodIcon div').addClass('active-red')
-        } else if (position == 'Bắp nước'){
+        } else if (position == 'Bắp nước') {
             $('#myTab button[data-target="#pay"]').tab('show');
             $('.ticketing-step div').removeClass('active-red')
             $('#payIcon div').addClass('active-red')
@@ -175,6 +297,62 @@ function checkPageBtnContinue() {
     })
 }
 
+let arrayFood = []
+
+function ChooseFood() {
+    $('.btn-concession-quantity').click(function () {
+        var input = $('#food_' + $(this).data('food'));
+        var value = parseInt(input.val());
+        var price = $(this).data('price');
+
+        if ($(this).data('type') === 'plus') {
+            if (value >= 9)
+                return;
+            value = value + 1;
+            totalBill += price
+            // Kiểm tra xem phần tử có trong mảng hay chưa
+            const index = arrayFood.findIndex((item) => item.tenDoAn === input.data('ten'));
+
+            if (index !== -1) {
+                // Nếu đã có trong mảng, cập nhật quantity lên 1
+                arrayFood[index].quantity += 1;
+            } else {
+                // Nếu chưa có trong mảng, thêm vào mảng
+                arrayFood.push({
+                    tenDoAn: input.data('ten'),
+                    gia: price,
+                    quantity: 1
+                });
+            }
+
+            $('.ticketing-total-amount').text(totalBill + ' đ')
+        } else {
+            if (value > 0) {
+                value = value - 1;
+                totalBill -= price
+                // Kiểm tra xem phần tử có trong mảng hay chưa
+                const index = arrayFood.findIndex((item) => item.tenDoAn === input.data('ten'));
+                if (index !== -1) {
+                    // Nếu đã có trong mảng, cập nhật quantity - 1
+                    arrayFood[index].quantity -= 1;
+                } else {
+                    // Nếu chưa có trong mảng
+                    return;
+                }
+                $('.ticketing-total-amount').text(totalBill + ' đ')
+            } else {
+                return;
+            }
+
+        }
+
+        input.val(value);
+        arrayFood = arrayFood.filter(item => item.quantity !== 0);
+        console.log(arrayFood)
+        renderDataPayView(seatSimpleDouble, arrayFood)
+    })
+}
+
 
 $(document).ready(function () {
     getListChairs()
@@ -182,4 +360,5 @@ $(document).ready(function () {
     countdown()
     checkQuantitySeat()
     checkPageBtnContinue()
+    ChooseFood()
 })

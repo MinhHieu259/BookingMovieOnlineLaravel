@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\ChiTietRap;
 use App\Models\DaoDien;
 use App\Models\DienVien;
+use App\Models\DoAn;
 use App\Models\Phim;
 use App\Models\RAP;
 use App\Models\SuatChieu;
 use App\Models\Tinh;
 use Illuminate\Http\Request;
 use App\Helpers\date;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PhimController extends Controller
@@ -99,8 +101,14 @@ class PhimController extends Controller
             ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe')
             ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
             ->first();
-        //dd($suatChieuInfor);
-        return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor'));
+        $foods = DoAn::join('ChiTietRap as CTR', 'DoAn.maChiTietRap', '=', 'CTR.maChiTietRap')
+            ->join('PHONG', 'PHONG.maChiTietRap', '=', 'CTR.maChiTietRap')
+            ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
+            ->select('DoAn.*')
+            ->where('SC.maSuatChieu', base64_decode($maSuatChieu))
+            ->get();
+        $user = Auth::guard('nguoidung')->user();
+        return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor', 'foods', 'user'));
     }
 
     public function GetListSeat($maSuatChieu)

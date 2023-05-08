@@ -189,3 +189,6 @@ p.text span {
     margin-left: 10px;
     margin-top: 7px;
 }
+.btn-concession-quantity:focus{
+    border: aliceblue;
+}

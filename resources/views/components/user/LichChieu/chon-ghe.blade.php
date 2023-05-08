@@ -115,7 +115,7 @@
 
                                     <!-- Heading -->
                                     <span class="h2 mb-0 ticketing-total-amount" style="font-size: 15px">
-                                        0 đ
+                                        {{$user->soDu}} đ
                                     </span>
 
                                 </div>
@@ -198,48 +198,29 @@
                                             <tr>
                                                 <td class="bg-light text-muted" colspan="3">Combo</td>
                                             </tr>
-                                            <tr class="ticketing-concession-type" data-code="483" data-price="107000">
+                                            @foreach($foods as $index => $food)
+                                            <tr class="ticketing-concession-type" data-price="{{$food->gia}}">
                                                 <td class="concession-name">
-                                                    BIG SHARE Combo
-                                                    <span class="d-block text-muted">2 Ly nước lớn, 1 Bắp lớn</span>
+                                                    {{$food->tenDoAn}}
+{{--                                                    <span class="d-block text-muted">2 Ly nước lớn, 1 Bắp lớn</span>--}}
                                                     <span class="d-block d-sm-none text-muted">
-                                                        107,000 đ
+                                                        {{$food->gia}} đ
                                                     </span>
                                                 </td>
                                                 <td class="concession-price text-right">
-                                                    107,000 đ
+                                                    {{$food->gia}} đ
                                                 </td>
                                                 <td class="ticketing-select text-right">
-                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
+                                                    <a data-food="{{$food->maDoAn}}" data-price="{{$food->gia}}" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
                                                         -
                                                     </a>
-                                                    <input name="type_483" type="text" min="0" max="10" style="width: 35px" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
-                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
+                                                    <input data-ten="{{$food->tenDoAn}}" name="food_{{$food->maDoAn}}" id="food_{{$food->maDoAn}}" type="text" min="0" max="10" style="width: 35px" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
+                                                    <a data-food="{{$food->maDoAn}}" data-price="{{$food->gia}}" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
                                                         +
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr class="ticketing-concession-type" data-code="482" data-price="97000">
-                                                <td class="concession-name">
-                                                    SHARE Combo
-                                                    <span class="d-block text-muted">2 Ly nước vừa, 1 Bắp lớn</span>
-                                                    <span class="d-block d-sm-none text-muted">
-                                                        97,000 đ
-                                                    </span>
-                                                </td>
-                                                <td class="concession-price text-right">
-                                                    97,000 đ
-                                                </td>
-                                                <td class="ticketing-select text-right">
-                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
-                                                        -
-                                                    </a>
-                                                    <input name="type_482" type="text" min="0" max="10" style="width: 35px" class="form-control form-control-flush text-center d-inline" value="0" style="width: 30px;" readonly="">
-                                                    <a class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="plus">
-                                                        +
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -251,7 +232,7 @@
                             <div class="ticketing-content ticketing-checkout-page">
 
                                 <div class="card" style="width: 100%">
-                                    <div class="card-header bg-light">
+                                    <div class="card-header">
                                         <div class="card-header-title text-muted">
                                             Tóm tắt đơn hàng
                                         </div>
@@ -265,15 +246,15 @@
                                                 <th class="text-right">Thành tiền</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="body-table-pay">
                                             <tr>
-                                                <td>GHẾ TIÊU CHUẨN</td>
+                                                <td>Ghế đơn</td>
                                                 <td class="text-center">1</td>
                                                 <td class="text-right">80,000 đ</td>
                                             </tr>
                                             <tr>
-                                                <td>Phí tiện ích</td>
-                                                <td class="text-center"></td>
+                                                <td>Ghế đôi</td>
+                                                <td class="text-center">1</td>
                                                 <td class="text-right">4,000 đ</td>
                                             </tr>
                                             <tr>
@@ -286,7 +267,7 @@
                                 </div>
 
                                 <div class="card mt-5" style="width: 100%">
-                                    <div class="card-header bg-light">
+                                    <div class="card-header">
                                         <div class="card-header-title text-muted">
                                             Hình thức thanh toán
                                         </div>
@@ -296,7 +277,7 @@
                                             <div class="row">
                                                 <input type="radio" name="payType" value="momo" id="momo">
                                                 <label class="pg-info" for="momo">
-                                                    <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/momo-icon.png">
+                                                    <img width="28px" src="{{asset('assets/images/user/momo.png')}}">
                                                     Ví MoMo
                                                 </label>
                                             </div>
@@ -318,15 +299,18 @@
                                 </div>
 
                                 <div class="card mt-5" style="width: 100%">
-                                    <div class="card-header bg-light">
+                                    <div class="card-header">
                                         <div class="card-header-title text-muted">
                                             Thông tin cá nhân
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group"><label for="orn_ticketing_order_customer_fullname">Họ và tên</label><input type="text" id="orn_ticketing_order_customer_fullname" name="orn_ticketing_order_customer[fullname]" class="form-control"></div>
-                                        <div class="form-group"><label for="orn_ticketing_order_customer_email" class="required">Email</label><input type="email" id="orn_ticketing_order_customer_email" name="orn_ticketing_order_customer[email]" required="required" class="form-control"></div>
-                                        <div class="form-group"><label for="orn_ticketing_order_customer_phone" class="required">Số điện thoại</label><input type="tel" id="orn_ticketing_order_customer_phone" name="orn_ticketing_order_customer[phone]" required="required" class="form-control"></div>
+                                        <div class="form-group"><label for="user_order_fullname">Họ và tên</label>
+                                            <input type="text" id="user_order_fullname" name="user_order_fullname" value="{{$user->hoVaTen}}" class="form-control"></div>
+                                        <div class="form-group"><label for="user_order_email" class="required">Email</label>
+                                            <input type="email" id="user_order_email" name="user_order_email" required="required" value="{{$user->email}}" class="form-control"></div>
+                                        <div class="form-group"><label for="user_order_phone" class="required">Số điện thoại</label>
+                                            <input type="tel" id="user_order_phone" name="user_order_phone" required="required" value="{{$user->soDienThoai}}" class="form-control"></div>
                                     </div>
                                 </div>
 
