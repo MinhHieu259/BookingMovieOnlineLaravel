@@ -70,7 +70,7 @@ function renderDataPayView(seatArray, arrayFood) {
         <tr>
             <td>Ghế đơn</td>
             <td class="text-center">${seatCounts.single}</td>
-            <td class="text-right">${priceFilm * seatCounts.single} đ</td>
+            <td class="text-right">${formatCurrency(priceFilm * seatCounts.single)} đ</td>
         </tr>
     `);
     }
@@ -80,7 +80,7 @@ function renderDataPayView(seatArray, arrayFood) {
         <tr>
             <td>Ghế đôi</td>
             <td class="text-center">${seatCounts.double}</td>
-            <td class="text-right">${priceFilm * 2 * seatCounts.double} đ</td>
+            <td class="text-right">${formatCurrency(priceFilm * 2 * seatCounts.double)} đ</td>
         </tr>
     `);
     }
@@ -93,7 +93,7 @@ function renderDataPayView(seatArray, arrayFood) {
             <tr>
                 <td>${item.tenDoAn}</td>
                 <td class="text-center">${item.quantity}</td>
-                <td class="text-right">${foodPrice} đ</td>
+                <td class="text-right">${formatCurrency(foodPrice)} đ</td>
             </tr>
         `;
         });
@@ -105,7 +105,7 @@ function renderDataPayView(seatArray, arrayFood) {
     tableRows.push(`
     <tr>
         <td colspan="2">Tổng</td>
-        <td class="text-right">${totalBill} đ</td>
+        <td class="text-right">${formatCurrency(totalBill)} đ</td>
     </tr>
 `);
 
@@ -192,7 +192,7 @@ function addOrRemove(arr, item, price, seatType) {
     if (index > -1) {
         arr.splice(index, 1);
         totalBill -= price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill + ' đ')
+        $('.ticketing-total-amount').text(formatCurrency(totalBill) + ' đ')
     } else {
         arr.push({
             seatName: item,
@@ -200,7 +200,7 @@ function addOrRemove(arr, item, price, seatType) {
             seatType: seatType
         });
         totalBill += price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill + ' đ')
+        $('.ticketing-total-amount').text(formatCurrency(totalBill) + ' đ')
     }
 }
 
@@ -211,7 +211,7 @@ function removeSeat(arr, item, price) {
     if (index > -1) {
         arr.splice(index, 1);
         totalBill -= price * $('#giaVeHidden').val()
-        $('.ticketing-total-amount').text(totalBill + ' đ')
+        $('.ticketing-total-amount').text(formatCurrency(totalBill) + ' đ')
     }
 }
 
@@ -294,11 +294,13 @@ function checkPageBtnContinue() {
             // window.location.href = "/";
             let typePay = $('input[name="payType"]:checked').val()
             if (typePay == 'momo'){
-                window.location.href = '/momo?orderMoney=' + totalBill
+                window.location.href = '/thanh-toan-momo?orderMoney=' + totalBill+'&foods='+encodeURIComponent(JSON.stringify(arrayFood))+
+                    '&listSeats='+encodeURIComponent(JSON.stringify(listSeatSelected))+'&maPhim='+$('#maPhimHidden').val()+
+                    '&maPhong='+$('#maPhongHidden').val()+'&maSuatChieu='+atob(window.location.href.split('/').pop())
             } else if (typePay == 'credit') {
 
             } else {
-                console.log('popup thong bao chua chon phuong thuc thanh toan')
+                $('#popupMessageNoChoosePayment').modal('show')
             }
         }
     })
@@ -332,7 +334,7 @@ function ChooseFood() {
                 });
             }
 
-            $('.ticketing-total-amount').text(totalBill + ' đ')
+            $('.ticketing-total-amount').text(formatCurrency(totalBill) + ' đ')
         } else {
             if (value > 0) {
                 value = value - 1;
@@ -346,7 +348,7 @@ function ChooseFood() {
                     // Nếu chưa có trong mảng
                     return;
                 }
-                $('.ticketing-total-amount').text(totalBill + ' đ')
+                $('.ticketing-total-amount').text(formatCurrency(totalBill) + ' đ')
             } else {
                 return;
             }
@@ -357,9 +359,9 @@ function ChooseFood() {
         arrayFood = arrayFood.filter(item => item.quantity !== 0);
         console.log(arrayFood)
         renderDataPayView(seatSimpleDouble, arrayFood)
+        sessionStorage.setItem('arrayFood', JSON.stringify(arrayFood));
     })
 }
-
 
 $(document).ready(function () {
     getListChairs()

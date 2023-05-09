@@ -25,4 +25,3 @@ Route::get('/chi-tiet-rap', [RapController::class, 'ChiTietRap'])->name('chi-tie
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/momo', [MoMoPaymentController::class, 'MomoPayment'])->name('momo');

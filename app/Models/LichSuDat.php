@@ -10,11 +10,18 @@ class LichSuDat extends Model
     use HasFactory;
 
     protected $table = 'LichSuDat';
+    protected $primaryKey = 'maLichSu';
+    protected $casts = [
+        'maLichSu' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maLichSu',
         'thoiGianDat',
         'tienDat',
-        'maNguoiDung'
+        'maNguoiDung',
+        'trangThai',
+        'loaiThanhToan'
     ];
 
     public function NguoiDung()

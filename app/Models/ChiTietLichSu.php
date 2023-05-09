@@ -10,11 +10,17 @@ class ChiTietLichSu extends Model
     use HasFactory;
 
     protected $table = 'ChiTietLichSu';
+    protected $primaryKey = 'maChiTiet';
+    protected $casts = [
+        'maChiTiet' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
-        'maChiTietLichSu',
-        'maLichSu',
-        'meVe',
-        'trangThai'
+        'maChiTiet',
+        'tenDoAn',
+        'giaDoAn',
+        'soLuong',
+        'maLichSu'
     ];
 
     public function LichSuDat(){

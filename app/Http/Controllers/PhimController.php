@@ -98,7 +98,7 @@ class PhimController extends Controller
         $suatChieuInfor = SuatChieu::join('PHIM', 'PHIM.maPhim', '=', 'SuatChieu.maPhim')
             ->join('PHONG', 'PHONG.maPhong', '=', 'SuatChieu.maPhong')
             ->join('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
-            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe')
+            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe', 'PHIM.maPhim')
             ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
             ->first();
 

@@ -31,6 +31,8 @@
 
     <div class="ticketing-steps bg-white border-bottom">
         <input type="hidden" value="{{$suatChieuInfor->giaVe}}" id="giaVeHidden">
+        <input type="hidden" value="{{$suatChieuInfor->maPhim}}" id="maPhimHidden">
+        <input type="hidden" value="{{$suatChieuInfor->maPhong}}" id="maPhongHidden">
         <div class="container">
             <div class="row">
                 <div class="col ticketing-step" id="seatIcon">
@@ -310,4 +312,5 @@
 
 @push('popup')
     @include('layouts.includes.user.popup.popup-message-timeout')
+    @include('layouts.includes.user.popup.popup-no-choose-payment')
 @endpush

@@ -10,11 +10,18 @@ class Ve extends Model
     use HasFactory;
 
     protected $table = 'VE';
+    protected $primaryKey = 'maVe';
+    protected $casts = [
+        'maVe' => 'string'
+    ];
+    public $timestamps = false;
     protected $fillable = [
         'maVe',
         'giaVe',
+        'loaiVe',
         'maPhim',
-        'maPhong'
+        'maPhong',
+        'maLichSu'
     ];
 
     public function Phim()
