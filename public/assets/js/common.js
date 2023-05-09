@@ -36,6 +36,27 @@ function formatCurrency(number) {
     return formattedIntegerPart + '.' + decimalPart.padEnd(2, '0');
 }
 
+
+document.onreadystatechange = function () {
+    var state = document.readyState
+    if (state == 'interactive') {
+        document.getElementById('loading').style.display = 'block';
+    } else if (state == 'complete') {
+        setTimeout(function(){
+            document.getElementById('loading').style.display = 'none';
+        },400);
+    }
+}
+// window.onload = function() {
+//     document.getElementById('loading').style.display = 'none';
+// };
+$(document).ajaxStart(function() {
+    $("#loading").show();
+});
+
+$(document).ajaxStop(function() {
+    $("#loading").hide();
+});
 $(document).ready(function () {
     ajaxSetting()
     formatCurrency()

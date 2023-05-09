@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@yield('title')</title>
+    <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/user/mascot.png')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"/>
     <link href="{{asset('assets/css/sweetalert2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/spin.css')}}">
     @stack('css')
 
 </head>
@@ -28,6 +30,9 @@
 @include('layouts.includes.user._header')
 
 <div id="app">
+    <div id="loading" style="display:none;">
+        <div class="loader"></div>
+    </div>
     <div class="main-content">
         @yield('content')
     </div>
@@ -103,9 +108,9 @@
                 <button id="btnLoginPopup" type="button" class="btn btn-login">Đăng nhập</button>
 
                 <p class="orLableLogin">Hoặc</p>
-                <button class="btn btn-primary btn-login-facebook">
-                    <i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook
-                </button>
+                <a href="{{route('login.google')}}" class="btn btn-secondary btn-login-facebook">
+                    <i class="fa-brands fa-google"></i> Đăng nhập bằng Google
+                </a>
                 <p class="no-have-account">
                     Chưa có tài khoản? <a href="{{route('RegisterPage')}}">Đăng ký ngay</a>
                 </p>

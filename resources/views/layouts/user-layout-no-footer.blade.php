@@ -28,6 +28,7 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
         rel="stylesheet"
     />
+    <link rel="stylesheet" href="{{asset('assets/css/spin.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/slider.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}"/>
@@ -41,6 +42,9 @@
 @include('layouts.includes.user._header')
 
 <div id="app">
+    <div id="loading" style="display:none;">
+        <div class="loader"></div>
+    </div>
     <div class="main-content">
         @yield('content')
     </div>

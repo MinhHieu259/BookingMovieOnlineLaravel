@@ -56,6 +56,49 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="card bg-light mb-3" style="width: 100%">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img width="70" src="{{asset('assets/images/user/mascot.png')}}" alt="">
+                            </div>
+                            <div class="col-md-10">
+                                <h5>CGV Vĩnh Trung Plaza</h5>
+                                <h4>Nhà bà nữ</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Hình thức thanh toán: Momo</h5>
+                        <span>Thời gian:</span>
+                        <h5 style="color: deeppink">19:30</h5>
+                        <h5>02/02/2023</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 style="color: darkgrey">Số vé</h6>
+                                <h6>03</h6>
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-5">
+                                <h6 style="color: darkgrey">Số ghế</h6>
+                                <h6>A1, A2, A3</h6>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6 style="color: darkgrey">Rạp chiếu</h6>
+                        <h4>CGV Vĩnh Trung Plaza</h4>
+                        <h6>Địa chỉ</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 @endsection
 
 @push('popup')

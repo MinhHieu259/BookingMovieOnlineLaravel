@@ -98,9 +98,9 @@
                     <small class="text-muted">hoặc</small>
                 </div>
 
-                <a href="#" class="btn btn-lg btn-block btn-primary mb-3 btn-do-facebook-login"
+                <a href="{{route('login.google')}}" class="btn btn-lg btn-block btn-secondary mb-3 btn-do-facebook-login"
                    data-target-path="/register/">
-                    <i class="fe fe-facebook"></i> Đăng nhập bằng Facebook
+                    <i class="fa-brands fa-google"></i> Đăng nhập bằng Google
                 </a>
 
                 <!-- Link -->

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -108,7 +109,7 @@ class AuthController extends Controller
                     ->withInput();
             }
 
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return redirect('/dang-nhap')
                 ->with('messageError', 'Lỗi rồi bạn thử lại nha')
                 ->withInput();
@@ -155,7 +156,7 @@ class AuthController extends Controller
                 ]);
             }
 
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return response()->json([
                 'status' => 500,
                 'message' => 'Lỗi rồi bạn thử lại nha'
@@ -163,10 +164,55 @@ class AuthController extends Controller
         }
     }
 
-    public function DoLogout(Request $request){
+    public function DoLogout(Request $request)
+    {
         Auth::guard('nguoidung')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/')->with('message', 'Đăng xuất thành công');
+    }
+
+    public function redirectFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+        $this->_registerOrLoginUSer($user);
+        return redirect()->route('trang-chu');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    //Google Callback
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        $this->_registerOrLoginUSer($user);
+        return redirect()->route('trang-chu');
+    }
+
+    public function _registerOrLoginUSer($data)
+    {
+        $user = NguoiDung::where('email', '=', $data->email)->first();
+        if(!$user)
+        {
+            $user = new NguoiDung();
+            $user->maNguoiDung = '';
+            $user->hoVaTen = $data->name;
+            $user->email = $data->email;
+            $user->username = $data->email;
+            $user->password = Hash::make('12345678');
+            //$user->provider_id = $data->id;
+            $user->anhDaiDien = $data->avatar;
+            $user->save();
+        }
+        $newUser = NguoiDung::where('email', $data->email)->first();
+        Auth::guard('nguoidung')->login($newUser);
     }
 }

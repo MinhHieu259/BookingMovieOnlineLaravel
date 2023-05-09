@@ -78,8 +78,8 @@
                             <small class="text-muted">hoặc</small>
                         </div>
 
-                        <a href="#" class="btn btn-lg btn-block btn-primary mb-3 btn-do-facebook-login" data-target-path="/login">
-                            <i class="fe fe-facebook"></i> Đăng nhập bằng Facebook
+                        <a href="{{route('login.google')}}" class="btn btn-lg btn-block btn-secondary mb-3 btn-do-facebook-login" data-target-path="/login">
+                            <i class="fa-brands fa-google"></i> Đăng nhập bằng google
                         </a>
 
                         <!-- Link -->
