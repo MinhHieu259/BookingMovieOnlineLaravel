@@ -67,13 +67,13 @@
                                 <img width="70" src="{{asset('assets/images/user/mascot.png')}}" alt="">
                             </div>
                             <div class="col-md-10">
-                                <h5>CGV Vĩnh Trung Plaza</h5>
-                                <h4>Nhà bà nữ</h4>
+                                <h5>{{$dataDonHang->rap->tenRap}}</h5>
+                                <h4>{{$dataDonHang->tenPhim}}</h4>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Hình thức thanh toán: Momo</h5>
+                        <h5 class="card-title">Hình thức thanh toán: {{$dataDonHang->thongTinDonHang->loaiThanhToan}}</h5>
                         <span>Thời gian:</span>
                         <h5 style="color: deeppink">19:30</h5>
                         <h5>02/02/2023</h5>
@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-2">
                                 <h6 style="color: darkgrey">Số vé</h6>
-                                <h6>03</h6>
+                                <h6>{{$dataDonHang->thongTinDonHang->soVe}}</h6>
                             </div>
                             <div class="col-1"></div>
                             <div class="col-5">
@@ -91,8 +91,8 @@
                         </div>
                         <hr>
                         <h6 style="color: darkgrey">Rạp chiếu</h6>
-                        <h4>CGV Vĩnh Trung Plaza</h4>
-                        <h6>Địa chỉ</h6>
+                        <h4>{{$dataDonHang->rap->tenRap}}</h4>
+                        <h6>Địa chỉ: {{$dataDonHang->rap->diaChi}}</h6>
                     </div>
                 </div>
             </div>

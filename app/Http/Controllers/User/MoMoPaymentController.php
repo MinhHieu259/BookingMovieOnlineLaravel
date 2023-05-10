@@ -124,7 +124,7 @@ class MoMoPaymentController extends Controller
                     $ctLichSu->save();
                 }
             }
-            return redirect()->route('InformationTicket', ['maLichSu' => $lichSuAfter->maLichSu]);
+            return redirect()->route('InformationTicket', ['maLichSu' => base64_encode($lichSuAfter->maLichSu)]);
         } else {
             //return redirect()->back();
         }
