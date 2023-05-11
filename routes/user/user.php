@@ -5,3 +5,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/cap-nhat-tai-khoan', [UserController::class, 'UpdateUserView'])->name('UpdateUserView');
 Route::post('/cap-nhat-tai-khoan', [UserController::class, 'UpdateUser'])->name('UpdateUser');
+Route::get('/nap-tien', [UserController::class, 'NapTienView'])->name('NapTienView');
+Route::get('/nap-tien/{soTien}', [UserController::class, 'PhuongThucNap'])->name('PhuongThucNap');

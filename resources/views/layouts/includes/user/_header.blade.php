@@ -114,7 +114,7 @@
                           <a href="{{route('UpdateUserView')}}" class="dropdown-item">Quản lý tài khoản</a>
                           <hr class="dropdown-divider">
                           <a href="/user/diary" class="dropdown-item">Tủ phim</a>
-                          <a href="/nap-tien/" class="dropdown-item">Nạp tiền</a>
+                          <a href="{{route('NapTienView')}}" class="dropdown-item">Nạp tiền</a>
                           <a href="/user/orders" class="dropdown-item">Lịch sử mua vé</a>
                           <hr class="dropdown-divider">
                           <a style="cursor: pointer" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="dropdown-item">Đăng xuất</a>

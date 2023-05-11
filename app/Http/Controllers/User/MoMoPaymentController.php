@@ -130,4 +130,62 @@ class MoMoPaymentController extends Controller
             return redirect()->route('trang-chu');
         }
     }
+
+    public function InitMomoPayNapTien(Request $request)
+    {
+        $session = session();
+        $tienNap = $request->input('tienNap');
+        $session->put('tienNap', $tienNap);
+
+        $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+        $partnerCode = "MOMOBKUN20180529";
+        $accessKey = "klm05TvNBzhg7h7j";
+        $secretkey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
+        $orderId = time() . "";
+        $orderInfo = "Nạp ".$request->input('tienNap')." vào tài khoản CineBooker";
+        $amount = $request->input('tienNap');
+        $notifyurl = "http://localhost:8000/paymomo/ipn_momo.php"; // thong bao
+        $returnUrl = route('ReturnNapTienMomo'); // tra ve
+        $extraData = "merchantName=MoMo Partner";
+        $requestId = time() . "";
+        $requestType = "captureMoMoWallet";
+
+        $rawHash = "partnerCode=" . $partnerCode . "&accessKey=" . $accessKey . "&requestId=" . $requestId . "&amount=" . $amount . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&returnUrl=" . $returnUrl . "&notifyUrl=" . $notifyurl . "&extraData=" . $extraData;
+        $signature = hash_hmac("sha256", $rawHash, $secretkey);
+
+        $data = [
+            'partnerCode' => $partnerCode,
+            'accessKey' => $accessKey,
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'returnUrl' => $returnUrl,
+            'notifyUrl' => $notifyurl,
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature
+        ];
+        $response = Http::timeout(5)->withHeaders([
+            'Content-Type' => 'application/json',
+            'Content-Length' => strlen(json_encode($data)),
+        ])->post($endpoint, $data, ['helle' => 'dd']);
+        $result = json_decode($response, true);
+
+        return Redirect::away($result['payUrl']);
+    }
+
+    public function ReturnNapTienMomo(Request $request)
+    {
+        $session = session();
+        if ($request->input('errorCode') == 0) {
+            $user = Auth::guard('nguoidung')->user();
+            $soDuTruoc = $user->soDu;
+            $user->soDu = $session->get('tienNap') + $soDuTruoc;
+            $user->save();
+            return redirect()->route('NapTienView');
+        } else{
+
+        }
+    }
 }

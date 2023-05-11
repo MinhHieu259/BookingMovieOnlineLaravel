@@ -180,6 +180,7 @@ class AuthController extends Controller
     public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
+        dd($user);
         $this->_registerOrLoginUSer($user);
         return redirect()->route('trang-chu');
     }
