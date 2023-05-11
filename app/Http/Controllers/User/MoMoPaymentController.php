@@ -86,6 +86,7 @@ class MoMoPaymentController extends Controller
             $lichSuDat->tienDat = $session->get('orderMoney');
             $lichSuDat->maNguoiDung = Auth::guard('nguoidung')->user()->maNguoiDung;
             $lichSuDat->loaiThanhToan = 'momo';
+            $lichSuDat->maSuatChieu = $session->get('maSuatChieu');
             $lichSuDat->save();
 
             $lichSuAfter = LichSuDat::where('thoiGianDat', date("d/m/Y H:i:s", strtotime($request->input('responseTime'))))
@@ -126,7 +127,7 @@ class MoMoPaymentController extends Controller
             }
             return redirect()->route('InformationTicket', ['maLichSu' => base64_encode($lichSuAfter->maLichSu)]);
         } else {
-            //return redirect()->back();
+            return redirect()->route('trang-chu');
         }
     }
 }

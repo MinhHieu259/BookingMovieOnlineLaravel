@@ -75,8 +75,8 @@
                     <div class="card-body">
                         <h5 class="card-title">Hình thức thanh toán: {{$dataDonHang->thongTinDonHang->loaiThanhToan}}</h5>
                         <span>Thời gian:</span>
-                        <h5 style="color: deeppink">19:30</h5>
-                        <h5>02/02/2023</h5>
+                        <h5 style="color: deeppink">{{$dataDonHang->suatChieu[0]->gioChieu}}</h5>
+                        <h5>{{$dataDonHang->suatChieu[0]->ngayChieu}}</h5>
                         <hr>
                         <div class="row">
                             <div class="col-2">
@@ -86,7 +86,12 @@
                             <div class="col-1"></div>
                             <div class="col-5">
                                 <h6 style="color: darkgrey">Số ghế</h6>
-                                <h6>A1, A2, A3</h6>
+                                <h6>
+                                    @php
+                                        $gheDisplayString = implode(', ', $dataDonHang->thongTinDonHang->veInfor->gheDisplay)
+                                    @endphp
+                                    {{$gheDisplayString}}
+                                </h6>
                             </div>
                         </div>
                         <hr>

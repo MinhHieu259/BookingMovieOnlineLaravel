@@ -298,7 +298,25 @@ function checkPageBtnContinue() {
                     '&listSeats='+encodeURIComponent(JSON.stringify(listSeatSelected))+'&maPhim='+$('#maPhimHidden').val()+
                     '&maPhong='+$('#maPhongHidden').val()+'&maSuatChieu='+atob(window.location.href.split('/').pop())
             } else if (typePay == 'credit') {
+                var formData = new FormData();
+                formData.append('orderMoney', totalBill);
+                formData.append('maPhim', $('#maPhimHidden').val());
+                formData.append('maPhong', $('#maPhongHidden').val());
+                formData.append('foods', JSON.stringify(arrayFood));
+                formData.append('listSeats', JSON.stringify(listSeatSelected));
+                $.ajax({
+                    type: "POST",
+                    url: "/thanh-toan-credit/"+atob(window.location.href.split('/').pop()),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        window.location.href = '/thong-tin-ve/'+response.maLichSu
+                    },
+                    error: function (error) {
 
+                    }
+                });
             } else {
                 $('#popupMessageNoChoosePayment').modal('show')
             }

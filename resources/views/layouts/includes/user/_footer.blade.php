@@ -4,7 +4,7 @@
             <span class="logo-footer">Logo</span>
         </div>
         <div class="col-md-3 text-footer">
-            <span class="title-bold">CÔNG TY TNHH MOVIAA</span>
+            <span class="title-bold">CÔNG TY TNHH CINEBOOKER</span>
             <br />
             <span>Địa chỉ: Phong Điền, Thừa Thiên Huế</span>
         </div>

@@ -289,10 +289,11 @@
                                            <div class="row">
                                                <input type="radio" name="payType" value="credit" id="credit">
                                                <label class="pg-info" for="credit">
-                                                   <img width="28px" src="https://cdn.moveek.com/bundles/ornweb/img/moveek-icon.png">
-                                                   Moveek Credits
+                                                   <img width="28px" src="{{asset('assets/images/user/mascot.png')}}">
+                                                   CineBooker Credits
+                                                   <br>
                                                    <span class="pm-description">
-                                                        Số dư Moveek Credits: <strong class="text-dark">0 đ</strong>
+                                                        Số dư CineBooker Credits: <strong class="text-dark">0 đ</strong>
                                                     </span>
                                                </label>
                                            </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ChiTietRap;
 use App\Models\LichSuDat;
 use App\Models\Phim;
+use App\Models\SuatChieu;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -30,7 +31,9 @@ class TicketController extends Controller
             ];
 
             $veArray['ghe'][] = $ghe;
+            $veArray['gheDisplay'][] = $value->tenGhe;
         }
+
         $thongTinDonHang = [
             'thoiGianDat' => $lichSuDat[0]->thoiGianDat,
             'tienDat' => $lichSuDat[0]->tienDat,
@@ -38,15 +41,20 @@ class TicketController extends Controller
             'soVe' => count($lichSuDat),
             'veInfor' => $veArray
         ];
+        $suatChieu = SuatChieu::join('LichSuDat as LSD', 'LSD.maSuatChieu', '=', 'SuatChieu.maSuatChieu')
+        ->where('SuatChieu.maSuatChieu', $lichSuDat[0]->maSuatChieu)
+        ->get();
         $dataDonHang = response()->json([
             'tenPhim' => $phim->tenPhim,
             'rap' => [
                 'tenRap' => $chiTietRap->tenRap,
                 'diaChi' => $chiTietRap->diaChi
             ],
-            'thongTinDonHang' => $thongTinDonHang
+            'thongTinDonHang' => $thongTinDonHang,
+            'suatChieu' => $suatChieu
         ]);
         $jsonData = $dataDonHang->getData();
+        //return $jsonData;
         return view('components.user.LichChieu.dat-ve-thanh-cong', ['dataDonHang' => $jsonData]);
     }
 }
