@@ -169,6 +169,7 @@
     </div>
 </div>
 <!--Modal province-->
+@include('commons.popup.popup-message')
 @stack('popup')
 </body>
 </html>

@@ -36,6 +36,10 @@ function formatCurrency(number) {
     return formattedIntegerPart + '.' + decimalPart.padEnd(2, '0');
 }
 
+function showPopupMessage(id, message){
+    $('#'+id).modal('show')
+    $('#'+id+' #popup-message-title').text(message)
+}
 
 document.onreadystatechange = function () {
     var state = document.readyState
@@ -47,9 +51,7 @@ document.onreadystatechange = function () {
         },400);
     }
 }
-// window.onload = function() {
-//     document.getElementById('loading').style.display = 'none';
-// };
+
 $(document).ajaxStart(function() {
     $("#loading").show();
 });

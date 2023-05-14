@@ -80,10 +80,11 @@
                 <a class="nav-link" href="#">Cộng đồng</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0 form-search">
+        <form class="form-inline my-2 my-lg-0 form-search" type="get" action="{{route('SearchFunction')}}">
             <input
                 class="form-control mr-sm-2 input-search"
                 type="search"
+                name="q"
                 placeholder="Từ khóa tìm kiếm..."
                 aria-label="Search"
             />

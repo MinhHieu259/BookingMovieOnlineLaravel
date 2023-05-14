@@ -246,7 +246,7 @@ function updateTime() {
         $('.countdown-timer').html('00:00')
         $('.countdown-timer').css('color', 'red')
         $('#popupMessageTimeOut').modal('show')
-        $('#btnAgreeBack').click(function () {
+        $('#btnTimeOut').click(function () {
             window.location.href = "/";
         })
     } else {
@@ -293,10 +293,10 @@ function checkPageBtnContinue() {
         } else {
             // window.location.href = "/";
             let typePay = $('input[name="payType"]:checked').val()
-            if (typePay == 'momo'){
-                window.location.href = '/thanh-toan-momo?orderMoney=' + totalBill+'&foods='+encodeURIComponent(JSON.stringify(arrayFood))+
-                    '&listSeats='+encodeURIComponent(JSON.stringify(listSeatSelected))+'&maPhim='+$('#maPhimHidden').val()+
-                    '&maPhong='+$('#maPhongHidden').val()+'&maSuatChieu='+atob(window.location.href.split('/').pop())
+            if (typePay == 'momo') {
+                window.location.href = '/thanh-toan-momo?orderMoney=' + totalBill + '&foods=' + encodeURIComponent(JSON.stringify(arrayFood)) +
+                    '&listSeats=' + encodeURIComponent(JSON.stringify(listSeatSelected)) + '&maPhim=' + $('#maPhimHidden').val() +
+                    '&maPhong=' + $('#maPhongHidden').val() + '&maSuatChieu=' + atob(window.location.href.split('/').pop())
             } else if (typePay == 'credit') {
                 var formData = new FormData();
                 formData.append('orderMoney', totalBill);
@@ -306,12 +306,17 @@ function checkPageBtnContinue() {
                 formData.append('listSeats', JSON.stringify(listSeatSelected));
                 $.ajax({
                     type: "POST",
-                    url: "/thanh-toan-credit/"+atob(window.location.href.split('/').pop()),
+                    url: "/thanh-toan-credit/" + atob(window.location.href.split('/').pop()),
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        window.location.href = '/thong-tin-ve/'+response.maLichSu
+                        if (response.status == 200) {
+                            //window.location.href = '/thong-tin-ve/'+response.maLichSu
+                            window.location.href = '/gui-mail-ve/' + response.maLichSu
+                        } else {
+                            showPopupMessage('popupMessage', response.message)
+                        }
                     },
                     error: function (error) {
 

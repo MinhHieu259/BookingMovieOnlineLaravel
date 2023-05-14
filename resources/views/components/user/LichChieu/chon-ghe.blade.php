@@ -99,6 +99,9 @@
                                         - Ghế
                                         <span class="font-weight-bold ticketing-seats">...</span>
                                     </p>
+                                    <p class="text-truncate mb-0">
+                                        Số ghế trống <strong>{{$countSeatFree}} / {{$countSeat}}</strong>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +120,7 @@
 
                                     <!-- Heading -->
                                     <span class="h2 mb-0 ticketing-total-amount" style="font-size: 15px">
-                                        {{$user->soDu}} đ
+                                        0 đ
                                     </span>
 
                                 </div>
@@ -206,11 +209,11 @@
                                                     {{$food->tenDoAn}}
 {{--                                                    <span class="d-block text-muted">2 Ly nước lớn, 1 Bắp lớn</span>--}}
                                                     <span class="d-block d-sm-none text-muted">
-                                                        {{$food->gia}} đ
+                                                        {{number_format($food->gia)}} đ
                                                     </span>
                                                 </td>
                                                 <td class="concession-price text-right">
-                                                    {{$food->gia}} đ
+                                                    {{number_format($food->gia)}} đ
                                                 </td>
                                                 <td class="ticketing-select text-right">
                                                     <a data-food="{{$food->maDoAn}}" data-price="{{$food->gia}}" class="btn btn-sm btn-rounded-circle btn-white btn-concession-quantity" data-type="minus">
@@ -293,7 +296,7 @@
                                                    CineBooker Credits
                                                    <br>
                                                    <span class="pm-description">
-                                                        Số dư CineBooker Credits: <strong class="text-dark">0 đ</strong>
+                                                        Số dư CineBooker Credits: <strong class="text-dark">{{ number_format(Auth::guard('nguoidung')->user()->soDu) }} đ</strong>
                                                     </span>
                                                </label>
                                            </div>

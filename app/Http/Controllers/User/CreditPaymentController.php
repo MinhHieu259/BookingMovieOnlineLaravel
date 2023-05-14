@@ -16,6 +16,8 @@ class CreditPaymentController extends Controller
 {
     public function CreditPayment(Request $request, $maSuatChieu)
     {
+        $user = Auth::guard('nguoidung')->user();
+        if($user->soDu >= $request->input('orderMoney')){
             $timeBook = Carbon::now()->format('d/m/y H:i:s');
             $lichSuDat = new LichSuDat();
             $lichSuDat->maLichSu = '';
@@ -63,8 +65,19 @@ class CreditPaymentController extends Controller
                     $ctLichSu->save();
                 }
             }
+            $oldMoney = $user->soDu;
+            $user->soDu = $oldMoney - $request->input('orderMoney');
+            $user->save();
             return response()->json([
+                'status' => 200,
+                'message' => 'Đặt vé thành công',
                 'maLichSu' => base64_encode($lichSuAfter->maLichSu)
             ]);
+        } else {
+            return response()->json([
+                'status' => 422,
+                'message' => 'Số dư tài khoản không đủ, nạp thêm tiền để đặt vé',
+            ]);
+        }
     }
 }

@@ -159,20 +159,19 @@
                     </ul>
                 </li>
 
-                <li class="nav-header">EXAMPLES</li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
+                    <a href="{{route('admin.ManagerTicketView')}}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>
-                            Calendar
-                            <span class="badge badge-info right">2</span>
+                            Quản lý đặt vé
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-header">Đăng xuất</li>
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" id="logoutadmin">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         <p>
                             Đăng xuất
                         </p>

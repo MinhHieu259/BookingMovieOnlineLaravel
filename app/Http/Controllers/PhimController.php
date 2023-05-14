@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietDayGhe;
 use App\Models\ChiTietRap;
 use App\Models\DaoDien;
 use App\Models\DienVien;
@@ -102,6 +103,12 @@ class PhimController extends Controller
             ->where('SuatChieu.maSuatChieu', base64_decode($maSuatChieu))
             ->first();
 
+        $countSeat = count(ChiTietDayGhe::where('maSuatChieu', base64_decode($maSuatChieu))
+            ->get());
+        $countSeatFree = count(ChiTietDayGhe::where('maSuatChieu', base64_decode($maSuatChieu))
+            ->where('trangThai', '1')
+            ->get());
+
         $foods = DoAn::join('ChiTietRap as CTR', 'DoAn.maChiTietRap', '=', 'CTR.maChiTietRap')
             ->join('PHONG', 'PHONG.maChiTietRap', '=', 'CTR.maChiTietRap')
             ->join('SuatChieu as SC', 'SC.maPhong', '=', 'PHONG.maPhong')
@@ -110,7 +117,8 @@ class PhimController extends Controller
             ->get();
 
         $user = Auth::guard('nguoidung')->user();
-        return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor', 'foods', 'user'));
+        //return $chiTietDayGhe;
+        return view('components.user.LichChieu.chon-ghe', compact('suatChieuInfor', 'foods', 'user', 'countSeat', 'countSeatFree'));
     }
 
     public function GetListSeat($maSuatChieu)
@@ -145,5 +153,14 @@ class PhimController extends Controller
             'status' => 200,
             'chairs' => $result
         ]);
+    }
+
+    public function SearchFunction(Request $request)
+    {
+        $q = $request->input('q');
+        $filmResults = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->where('tenPhim', 'like', '%' . $q . '%')
+            ->get();
+        return view('components.user.Phim.kq-tim-kiem', compact('q', 'filmResults'));
     }
 }

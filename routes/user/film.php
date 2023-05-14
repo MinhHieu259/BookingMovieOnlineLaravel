@@ -14,4 +14,5 @@ Route::get('/thong-tin-phim', [PhimController::class, 'ThongTinPhim'])->name('th
 Route::get('/lich-chieu/{slug}', [PhimController::class, 'LichChieuView'])->name('LichChieuView');
 Route::get('/get-show-time/{province_id}/{date_show}/{slug}', [PhimController::class, 'GetShowTime'])->name('GetShowTime');
 Route::get('/get-list-ghe/{maSuatChieu}', [PhimController::class, 'GetListSeat'])->name('GetListSeat');
+Route::get('/tim-kiem', [PhimController::class, 'SearchFunction'])->name('SearchFunction');
 

@@ -7,7 +7,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" id="btnAgreeBack" class="btn btn-secondary">Đặt vé lại</button>
+                <button type="button" id="btnTimeOut" class="btn btn-secondary">Đặt vé lại</button>
             </div>
         </div>
     </div>

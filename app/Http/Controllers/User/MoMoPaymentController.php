@@ -68,7 +68,7 @@ class MoMoPaymentController extends Controller
         $response = Http::timeout(5)->withHeaders([
             'Content-Type' => 'application/json',
             'Content-Length' => strlen(json_encode($data)),
-        ])->post($endpoint, $data, ['helle' => 'dd']);
+        ])->post($endpoint, $data);
         $result = json_decode($response, true);
 
         return Redirect::away($result['payUrl']);
@@ -77,8 +77,6 @@ class MoMoPaymentController extends Controller
     public function PageReturnMomo(Request $request)
     {
         $session = session();
-        //dd($session->get('list_seats'));
-//        dd($session->get('foods_array'), $session->get('maPhim'), $session->get('maPhong'));
         if ($request->input('errorCode') == 0) {
             $lichSuDat = new LichSuDat();
             $lichSuDat->maLichSu = '';
@@ -125,7 +123,7 @@ class MoMoPaymentController extends Controller
                     $ctLichSu->save();
                 }
             }
-            return redirect()->route('InformationTicket', ['maLichSu' => base64_encode($lichSuAfter->maLichSu)]);
+            return redirect()->route('SendMailTicket', ['maLichSu' => base64_encode($lichSuAfter->maLichSu)]);
         } else {
             return redirect()->route('trang-chu');
         }
