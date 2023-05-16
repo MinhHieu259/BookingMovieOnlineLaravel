@@ -40,12 +40,21 @@ function initTableDonDat() {
             {data: "thoiGianDat"},
             {data: "tienDat"},
             {data: "username"},
-            {data: "trangThai"},
+            {
+                data: "trangThai",
+                render: function (data, type, row){
+                    if (data == 1) {
+                        return "Chưa chiếu";
+                    } else if (data == 2) {
+                        return "Đã chiếu";
+                    }
+                }
+            },
             {data: "loaiThanhToan"},
             {
                 data: null,
                 render: function (data, type, row) {
-                    return ' <a href="chi-tiet-dat-ve/' + data.maLichSu + '" class="btn btn-warning btn-sm float-left">Xem</a>';
+                    return ' <a href="/admin/chi-tiet-dat-ve/' + data.maLichSu + '" class="btn btn-warning btn-sm float-left">Xem</a>';
                 }
             }
         ],

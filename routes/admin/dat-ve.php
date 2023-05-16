@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::get('/danh-sach-dat-ve', [DatVeController::class, 'ManagerTicketView'])->name('admin.ManagerTicketView');
     Route::get('/tim-kiem-order', [DatVeController::class, 'SearchOrder'])->name('admin.SearchOrder');
+    Route::get('/chi-tiet-dat-ve/{maLichSu}', [DatVeController::class, 'OrderDetail'])->name('admin.OrderDetail');
 });
