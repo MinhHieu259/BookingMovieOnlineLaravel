@@ -66,6 +66,17 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="col-md-2 mt-3">
+                <label for="Phim">Phim</label>
+                <select id="Phim" class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                        tabindex="-1" aria-hidden="true" data-select2-id="Phim">
+                    <option value=""></option>
+                    @foreach($films as $film)
+                        <option value="{{$film->maPhim}}">{{$film->tenPhim}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <table id="table-dat-ve-admin" class="table table-bordered table-hover mt-5">

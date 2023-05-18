@@ -93,7 +93,7 @@ class MoMoPaymentController extends Controller
                 ->first();
 
             $phim = Phim::where('maPhim', $session->get('maPhim'))->first();
-            if (count($session->get('list_seats')) > 0){
+            if (count($session->get('list_seats')) > 0) {
                 foreach ($session->get('list_seats') as $seat) {
                     $ve = new Ve();
                     $ve->maVe = '';
@@ -106,14 +106,14 @@ class MoMoPaymentController extends Controller
                     $ve->save();
 
                     $chiTietDayGhe = ChiTietDayGhe::where('maSuatChieu', $session->get('maSuatChieu'))
-                    ->where('tenGhe', $seat['seatName'])->first();
+                        ->where('tenGhe', $seat['seatName'])->first();
                     $chiTietDayGhe->trangThai = '2';
                     $chiTietDayGhe->save();
                 }
             }
 
-            if (count($session->get('foods_array')) > 0){
-                foreach ($session->get('foods_array') as $food){
+            if (count($session->get('foods_array')) > 0) {
+                foreach ($session->get('foods_array') as $food) {
                     $ctLichSu = new ChiTietLichSu();
                     $ctLichSu->maChiTiet = '';
                     $ctLichSu->tenDoAn = $food['tenDoAn'];
@@ -140,7 +140,7 @@ class MoMoPaymentController extends Controller
         $accessKey = "klm05TvNBzhg7h7j";
         $secretkey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
         $orderId = time() . "";
-        $orderInfo = "Nạp ".$request->input('tienNap')." vào tài khoản CineBooker";
+        $orderInfo = "Nạp " . $request->input('tienNap') . " vào tài khoản CineBooker";
         $amount = $request->input('tienNap');
         $notifyurl = "http://localhost:8000/paymomo/ipn_momo.php"; // thong bao
         $returnUrl = route('ReturnNapTienMomo'); // tra ve
@@ -182,8 +182,9 @@ class MoMoPaymentController extends Controller
             $user->soDu = $session->get('tienNap') + $soDuTruoc;
             $user->save();
             return redirect()->route('NapTienView');
-        } else{
+        } else {
 
         }
     }
+
 }

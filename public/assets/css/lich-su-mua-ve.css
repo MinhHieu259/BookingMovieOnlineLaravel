@@ -1,0 +1,34 @@
+.badge-soft-success {
+    color: #00d97e;
+    background-color: #ccf7e5;
+}
+.header-title{
+    font-size: 1.625rem;
+}
+.avatar-user{
+    margin-top: -75px;
+}
+.username-balance{
+    margin-bottom: 20px;
+}
+.tab-header{
+    display: flex;
+}
+.tab-title{
+    width: 105px;
+    height: 25px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px !important;
+}
+.tab-title:hover{
+    cursor: pointer;
+    background-color: #ccf7e5;
+}
+.tab-title.active{
+    color: white;
+    background-color: #00d97e;
+}
+.list-group-item{
+    margin-bottom: 10px;
+}

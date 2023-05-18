@@ -2,7 +2,8 @@ function search(){
     var dataTableSearch = {
         'trangThai': $('#trangThai').val(),
         'ngayDat': $('#ngayDat').val(),
-        'cumRap': $('#cumRap').val()
+        'cumRap': $('#cumRap').val(),
+        'maPhim': $('#Phim').val()
     };
     $.ajax({
         type: "GET",
@@ -28,6 +29,10 @@ function SearchOrder() {
     })
 
     $('#cumRap').on('change', function (){
+        search()
+    })
+
+    $('#Phim').on('change', function (){
         search()
     })
 }

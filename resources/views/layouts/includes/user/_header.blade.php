@@ -76,9 +76,6 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cộng đồng</a>
-            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 form-search" type="get" action="{{route('SearchFunction')}}">
             <input
@@ -116,7 +113,7 @@
                           <hr class="dropdown-divider">
                           <a href="/user/diary" class="dropdown-item">Tủ phim</a>
                           <a href="{{route('NapTienView')}}" class="dropdown-item">Nạp tiền</a>
-                          <a href="/user/orders" class="dropdown-item">Lịch sử mua vé</a>
+                          <a href="{{route('HistoryOrderView')}}" class="dropdown-item">Lịch sử mua vé</a>
                           <hr class="dropdown-divider">
                           <a style="cursor: pointer" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" class="dropdown-item">Đăng xuất</a>
                           <form id="logout-form" action="{{route('DoLogout')}}" method="POST" class="d-none">

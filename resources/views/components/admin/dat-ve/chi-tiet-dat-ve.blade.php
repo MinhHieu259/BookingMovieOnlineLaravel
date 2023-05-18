@@ -90,7 +90,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="ghe">Danh sách ghế</label>
-                            <input type="text" class="form-control" id="ghe" readonly>
+                            <input type="text" value="{{$seatValues}}" class="form-control" id="ghe" readonly>
                         </div>
                     </div>
                 </div>
@@ -110,28 +110,30 @@
 
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Nước uống kèm theo</h3>
+                <h3 class="card-title">Đồ ăn kèm theo</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             <div class="card-body">
-
+                @forelse($chiTietLichSu as $doAn)
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="tenDoAn">Tên đồ ăn</label>
-                            <input type="text" class="form-control" id="tenDoAn" readonly>
+                            <input type="text" value="{{$doAn->tenDoAn}}" class="form-control" id="tenDoAn" readonly>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="soLuong">Số lượng</label>
-                            <input type="text" class="form-control" id="soLuong" readonly>
+                            <input type="text" value="{{$doAn->soLuong}}" class="form-control" id="soLuong" readonly>
                         </div>
                     </div>
                 </div>
-
+                @empty
+                    <h5>Không có đồ ăn trong đơn đặt này</h5>
+                @endforelse
             </div>
             <!-- /.card-body -->
         </div>

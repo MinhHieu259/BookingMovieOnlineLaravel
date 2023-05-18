@@ -24,7 +24,7 @@
                     <div class="col username-balance">
                         <h1 class="header-title">
                             {{Auth::guard('nguoidung')->user()->username}}
-                            <span class="badge badge-soft-success">{{Auth::guard('nguoidung')->user()->soDu}} đ</span>
+                            <span class="badge badge-soft-success">{{number_format(Auth::guard('nguoidung')->user()->soDu)}} đ</span>
                         </h1>
                     </div>
                 </div>
