@@ -95,6 +95,7 @@ class UserController extends Controller
             ->select('LichSuDat.*', 'ND.username', 'PHONG.tenPhong', 'CTR.tenRap', 'SC.gioChieu', 'SC.ngayChieu', 'PHIM.tenPhim')
             ->where('LichSuDat.trangThai', $statusWhere)
             ->where('LichSuDat.maNguoiDung', Auth::guard('nguoidung')->user()->maNguoiDung)
+            ->orderBy('maLichSu', 'DESC')
             ->get();
         return response()->json([
             'data' => $listOrders
