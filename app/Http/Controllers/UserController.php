@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\ChiTietDayGhe;
 use App\Models\ChiTietLichSu;
 use App\Models\LichSuDat;
 use App\Models\NguoiDung;
 use App\Models\RAP;
 use App\Models\Ve;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,7 +88,7 @@ class UserController extends Controller
 
     public function GetListOrder($status)
     {
-        $statusWhere = $status == 'yes' ? '2' : '1';
+        $statusWhere = $status == 'yes' ? '2' : ($status == 'no' ? '1' : '3');
         $listOrders = LichSuDat::join('SuatChieu as SC', 'SC.maSuatChieu', '=', 'LichSuDat.maSuatChieu')
             ->join('PHONG', 'PHONG.maPhong', '=', 'SC.maPhong')
             ->join('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
@@ -120,10 +122,41 @@ class UserController extends Controller
             ->select('tenGhe')
             ->get();
         $seats = [];
-        foreach ($tickets as $ticket){
+        foreach ($tickets as $ticket) {
             $seats[] = $ticket->tenGhe;
         }
         $seatValues = count($seats) > 0 ? implode(', ', $seats) : $seats[0];
         return view('components.user.NguoiDung.chi-tiet-mua-ve', compact('lichSu', 'chiTietLichSu', 'seatValues'));
+    }
+
+    public function CancelBookTicket($maLichSu)
+    {
+        try {
+            $lichSuDat = LichSuDat::where('maLichSu', $maLichSu)->first();
+            $lichSuDat->trangThai = '3';
+            $lichSuDat->save();
+
+            $nguoiDung = NguoiDung::where('maNguoiDung', $lichSuDat->maNguoiDung)->first();
+            $soDuTaiKhoan = (double)$nguoiDung->soDu;
+            $soDuHoanTra = 90/100 * (double)$lichSuDat->tienDat;
+            $nguoiDung->soDu = $soDuTaiKhoan + $soDuHoanTra;
+            $nguoiDung->save();
+
+            $veInBookTicket = Ve::where('maLichSu', $maLichSu)
+                ->select('VE.tenGhe')
+                ->get();
+            foreach ($veInBookTicket as $ghe){
+                $chiTietDayGhe = ChiTietDayGhe::where('maSuatChieu', $lichSuDat->maSuatChieu)
+                    ->where('tenGhe', $ghe->tenGhe)->first();
+                $chiTietDayGhe->trangThai = '1';
+                $chiTietDayGhe->save();
+            }
+            return response()->json([
+               'status' => 200,
+               'message' => 'Hủy đặt vé thành công'
+            ]);
+        } catch (\Exception $exception){
+            return $exception;
+        }
     }
 }

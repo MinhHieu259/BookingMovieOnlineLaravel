@@ -80,6 +80,10 @@
            <div class="tab-use tab-title" style="margin-left: 15px" data-status="no">
                <span>Chưa dùng</span>
            </div>
+           <div style="margin-left: 15px;">|</div>
+           <div class="tab-cancel tab-title" style="margin-left: 15px" data-status="cancel">
+               <span>Đã hủy</span>
+           </div>
        </div>
         <input type="hidden" id="rapInfor" value="{{$rap}}">
         <div class="tab-status-content mt-3">

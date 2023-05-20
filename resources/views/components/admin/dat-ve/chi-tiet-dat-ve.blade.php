@@ -51,7 +51,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="trangThai">Trạng thái</label>
-                                <input type="text" value="{{$lichSu->trangThai == '1' ? 'Chưa chiếu' : 'Đã chiếu'}}" class="form-control" id="trangThai" readonly>
+                                <input type="text" value="{{$lichSu->trangThai == '1' ? 'Chưa chiếu' : ($lichSu->trangThai == '2' ? 'Đã chiếu' : 'Đã hủy')}}" class="form-control" id="trangThai" readonly>
                             </div>
                         </div>
 

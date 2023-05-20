@@ -12,3 +12,4 @@ Route::get('/nap-tien/{soTien}', [UserController::class, 'PhuongThucNap'])->name
 Route::get('/lich-su-mua-ve', [UserController::class, 'HistoryOrderView'])->name('HistoryOrderView');
 Route::get('/danh-sach-order/{status}', [UserController::class, 'GetListOrder'])->name('GetListOrder');
 Route::get('/chi-tiet-mua-ve/{maLichSu}', [UserController::class, 'DetailOrder'])->name('DetailOrder');
+Route::post('/huy-mua-ve/{maLichSu}', [UserController::class, 'CancelBookTicket'])->name('CancelBookTicket');

@@ -11,7 +11,7 @@ function GetListOrder(dataStatus) {
                     var listOrder = $('.list-group')
                     listOrder.empty()
                     response.data.forEach(function (order){
-                        var tinhTrang = order.trangThai == '1' ? 'Chưa dùng' : 'Đã dùng'
+                        var tinhTrang = order.trangThai == '1' ? 'Chưa dùng' : (order.trangThai == '2' ? 'Đã dùng' : 'Đã hủy')
                         var itemOrder = '<a href="/chi-tiet-mua-ve/'+order.maLichSu+'" class="list-group-item list-group-item-action">\n' +
                             '                    <span class="row">\n' +
                             '                        <span class="col-md-2">\n' +
@@ -41,7 +41,37 @@ function GetListOrder(dataStatus) {
                     var listOrder = $('.list-group')
                     listOrder.empty()
                     response.data.forEach(function (order){
-                        var tinhTrang = order.trangThai == '1' ? 'Chưa dùng' : 'Đã dùng'
+                        var tinhTrang = order.trangThai == '1' ? 'Chưa dùng' : (order.trangThai == '2' ? 'Đã dùng' : 'Đã hủy')
+                        var itemOrder = '<a href="/chi-tiet-mua-ve/'+order.maLichSu+'" class="list-group-item list-group-item-action">\n' +
+                            '                    <span class="row">\n' +
+                            '                        <span class="col-md-2">\n' +
+                            '                            <img width="50" src="'+rapInfor.anhDaiDien+'" alt="Hello">\n' +
+                            '                        </span>\n' +
+                            '                        <span class="col-md-10">\n' +
+                            '                            <h4>'+order.tenPhim+'</h4>\n' +
+                            '                            <h5>'+order.ngayChieu+' - '+order.gioChieu+'</h5>\n' +
+                            '                            <h7 style="color: grey">'+tinhTrang+'</h7>\n' +
+                            '                        </span>\n' +
+                            '                    </span>\n' +
+                            '                </a>'
+
+                        listOrder.append(itemOrder);
+                    })
+                },
+            })
+            break
+        case 'cancel':
+            $.ajax({
+                type: "GET",
+                url: "/danh-sach-order/"+dataStatus,
+                contentType: 'application/json',
+                dataType: "json",
+                success: function (response) {
+                    var rapInfor = JSON.parse($('#rapInfor').val())
+                    var listOrder = $('.list-group')
+                    listOrder.empty()
+                    response.data.forEach(function (order){
+                        var tinhTrang = order.trangThai == '1' ? 'Chưa dùng' : (order.trangThai == '2' ? 'Đã dùng' : 'Đã hủy')
                         var itemOrder = '<a href="/chi-tiet-mua-ve/'+order.maLichSu+'" class="list-group-item list-group-item-action">\n' +
                             '                    <span class="row">\n' +
                             '                        <span class="col-md-2">\n' +

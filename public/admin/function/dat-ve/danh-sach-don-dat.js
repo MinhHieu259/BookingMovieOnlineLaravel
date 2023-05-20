@@ -52,6 +52,8 @@ function initTableDonDat() {
                         return "Chưa chiếu";
                     } else if (data == 2) {
                         return "Đã chiếu";
+                    } else {
+                        return "Đã hủy";
                     }
                 }
             },

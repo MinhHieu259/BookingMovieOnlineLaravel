@@ -42,6 +42,7 @@
                         tabindex="-1" aria-hidden="true" data-select2-id="trangThai">
                     <option value="1">Chưa chiếu</option>
                     <option value="2">Đã chiếu</option>
+                    <option value="3">Đã Hủy</option>
                 </select>
             </div>
 

@@ -15,9 +15,7 @@
     </div>
 
     <div class="container">
-        <h4 class="text-center text-primary">Chi tiết đặt vé</h4>
-
-        <div class="card card-default" style="width: 100%">
+        <div class="card card-default mt-3" style="width: 100%">
             <div class="card-header">
                 <h3 class="card-title">Thông tin về lịch sử</h3>
             </div>
@@ -42,7 +40,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="trangThai">Trạng thái</label>
-                            <input type="text" value="{{$lichSu->trangThai == '1' ? 'Chưa chiếu' : 'Đã chiếu'}}" class="form-control" id="trangThai" readonly>
+                            <input type="text" value="{{$lichSu->trangThai == '1' ? 'Chưa chiếu' : ($lichSu->trangThai == '2' ? 'Đã chiếu' : 'Đã hủy')}}" class="form-control" id="trangThai" readonly>
                         </div>
                     </div>
                 </div>
@@ -134,3 +132,6 @@
     </div>
 
 @endsection
+@push('popup')
+    @include('layouts.includes.user.popup.dat-ve.popup-confirm-cancel')
+@endpush
