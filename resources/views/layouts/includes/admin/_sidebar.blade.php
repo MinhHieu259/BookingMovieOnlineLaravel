@@ -168,6 +168,24 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{Route::currentRouteName() == 'admin.ThongKeDoanhThu' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.ThongKeDoanhThu' ? 'active' : ''}}">
+                        <i class="nav-icon fa-solid fa-film"></i>
+                        <p>
+                            Thống kê
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.ThongKeDoanhThu')}}" class="nav-link {{Route::currentRouteName() == 'admin.ThongKeDoanhThu' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thống kê doanh thu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-header">Đăng xuất</li>
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" id="logoutadmin">

@@ -129,6 +129,7 @@
             <!-- /.card-body -->
         </div>
         <button id="btnHuyDatVe" class="btn btn-sm btn-danger mb-3" {{$lichSu->trangThai == 1 ? '' : 'disabled'}} title="{{$lichSu->trangThai == 1 ? '' : 'Phim đã đến giờ chiếu, không thể hủy'}}">Hủy đặt vé</button>
+        <a href="{{route('ExportPdf', ['maLichSu' => $lichSu->maLichSu])}}" class="btn btn-sm btn-success mb-3 ml-1" id="btnPrintTicket">In vé</a>
     </div>
 
 @endsection

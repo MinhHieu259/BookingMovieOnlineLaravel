@@ -19,9 +19,11 @@ class CreditPaymentController extends Controller
         $user = Auth::guard('nguoidung')->user();
         if($user->soDu >= $request->input('orderMoney')){
             $timeBook = Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
+            $monthBook = Carbon::now()->isoFormat('MM/YYYY');
             $lichSuDat = new LichSuDat();
             $lichSuDat->maLichSu = '';
             $lichSuDat->thoiGianDat = $timeBook;
+            $lichSuDat->thangDat = $monthBook;
             $lichSuDat->tienDat = $request->input('orderMoney');
             $lichSuDat->maNguoiDung = Auth::guard('nguoidung')->user()->maNguoiDung;
             $lichSuDat->loaiThanhToan = 'credit';

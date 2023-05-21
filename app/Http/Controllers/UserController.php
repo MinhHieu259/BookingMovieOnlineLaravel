@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\ChiTietDayGhe;
 use App\Models\ChiTietLichSu;
+use App\Models\ChiTietRap;
 use App\Models\LichSuDat;
 use App\Models\NguoiDung;
+use App\Models\Phim;
 use App\Models\RAP;
+use App\Models\SuatChieu;
 use App\Models\Ve;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class UserController extends Controller
 {
@@ -138,25 +141,75 @@ class UserController extends Controller
 
             $nguoiDung = NguoiDung::where('maNguoiDung', $lichSuDat->maNguoiDung)->first();
             $soDuTaiKhoan = (double)$nguoiDung->soDu;
-            $soDuHoanTra = 90/100 * (double)$lichSuDat->tienDat;
+            $soDuHoanTra = 90 / 100 * (double)$lichSuDat->tienDat;
             $nguoiDung->soDu = $soDuTaiKhoan + $soDuHoanTra;
             $nguoiDung->save();
 
             $veInBookTicket = Ve::where('maLichSu', $maLichSu)
                 ->select('VE.tenGhe')
                 ->get();
-            foreach ($veInBookTicket as $ghe){
+            foreach ($veInBookTicket as $ghe) {
                 $chiTietDayGhe = ChiTietDayGhe::where('maSuatChieu', $lichSuDat->maSuatChieu)
                     ->where('tenGhe', $ghe->tenGhe)->first();
                 $chiTietDayGhe->trangThai = '1';
                 $chiTietDayGhe->save();
             }
             return response()->json([
-               'status' => 200,
-               'message' => 'Hủy đặt vé thành công'
+                'status' => 200,
+                'message' => 'Hủy đặt vé thành công'
             ]);
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception;
         }
+    }
+
+    public function ExportPdf($maLichSu)
+    {
+        $lichSuDat = LichSuDat::join('NguoiDung as ND', 'ND.maNguoiDung', '=', 'LichSuDat.maNguoiDung')
+            ->join('VE', 'VE.maLichSu', '=', 'LichSuDat.maLichSu')
+            ->join('PHONG', 'PHONG.maPhong', '=', 'VE.maPhong')
+            ->select('LichSuDat.*', 'VE.*', 'PHONG.tenPhong')
+            ->where('LichSuDat.maLichSu', $maLichSu)
+            ->get();
+        $phim = Phim::where('maPhim', $lichSuDat[0]->maPhim)->first();
+        $chiTietRap = ChiTietRap::join('PHONG', 'PHONG.maChiTietRap', '=', 'ChiTietRap.maChiTietRap')
+            ->where('PHONG.maPhong', $lichSuDat[0]->maPhong)
+            ->first();
+        $veArray = [];
+        foreach ($lichSuDat as $value) {
+            $ghe = [
+                'tenGhe' => $value->tenGhe,
+                'loaiGhe' => $value->loaiVe == 'double' ? 'Ghế đôi' : 'Ghê đơn'
+            ];
+
+            $veArray['ghe'][] = $ghe;
+            $veArray['gheDisplay'][] = $value->tenGhe;
+        }
+
+        $thongTinDonHang = [
+            'thoiGianDat' => $lichSuDat[0]->thoiGianDat,
+            'tienDat' => $lichSuDat[0]->tienDat,
+            'loaiThanhToan' => $lichSuDat[0]->loaiThanhToan,
+            'soVe' => count($lichSuDat),
+            'veInfor' => $veArray
+        ];
+        $suatChieu = SuatChieu::join('LichSuDat as LSD', 'LSD.maSuatChieu', '=', 'SuatChieu.maSuatChieu')
+            ->join('PHONG', 'PHONG.maPhong', '=', 'SuatChieu.maPhong')
+            ->where('SuatChieu.maSuatChieu', $lichSuDat[0]->maSuatChieu)
+            ->where('thoiGianDat', $lichSuDat[0]->thoiGianDat)
+            ->get();
+        $dataDonHang = response()->json([
+            'tenPhim' => $phim->tenPhim,
+            'rap' => [
+                'tenRap' => $chiTietRap->tenRap,
+                'diaChi' => $chiTietRap->diaChi
+            ],
+            'thongTinDonHang' => $thongTinDonHang,
+            'suatChieu' => $suatChieu
+        ]);
+        $jsonData = $dataDonHang->getData();
+        $pdf_ticket_view = PDF::loadView('components.user.PDF.template-ticket-pdf', ['dataDonHang' => $jsonData]);
+        return $pdf_ticket_view->download('test.pdf');
+        //return view('components.user.PDF.template-ticket-pdf', ['dataDonHang' => $jsonData]);
     }
 }

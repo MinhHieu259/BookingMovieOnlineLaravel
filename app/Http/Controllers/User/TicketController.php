@@ -10,6 +10,7 @@ use App\Models\SuatChieu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mail;
+use PDF;
 
 class TicketController extends Controller
 {
@@ -106,9 +107,11 @@ class TicketController extends Controller
             'suatChieu' => $suatChieu
         ]);
         $jsonData = $dataDonHang->getData();
-        Mail::send('components.user.Email.mail-info-ticket', ['dataDonHang' => $jsonData], function ($email){
+        $pdf_ticket_view = PDF::loadView('components.user.PDF.template-ticket-pdf', ['dataDonHang' => $jsonData]);
+        Mail::send('components.user.Email.mail-info-ticket', ['dataDonHang' => $jsonData], function ($email)use($pdf_ticket_view){
             $email->subject('Thông tin đặt vé tại CineBooker');
             $email->to(Auth::guard('nguoidung')->user()->email, Auth::guard('nguoidung')->user()->hoVaTen);
+            $email->attachData($pdf_ticket_view->output(), "ve.pdf");
         });
         return redirect()->route('InformationTicket', $maLichSu);
     }

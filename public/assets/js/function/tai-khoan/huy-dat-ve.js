@@ -14,6 +14,7 @@ function CancelBookTicket() {
             success: function (response) {
                 if (response.status == 200) {
                     $('#popupConfirmCancelTicket').modal('hide')
+                    window.location.href = "/lich-su-mua-ve"
                 }
             }
         });

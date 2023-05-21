@@ -81,6 +81,7 @@ class MoMoPaymentController extends Controller
             $lichSuDat = new LichSuDat();
             $lichSuDat->maLichSu = '';
             $lichSuDat->thoiGianDat = date("d/m/Y H:i:s", strtotime($request->input('responseTime')));
+            $lichSuDat->thangDat = date("m/Y", strtotime($request->input('responseTime')));
             $lichSuDat->tienDat = $session->get('orderMoney');
             $lichSuDat->maNguoiDung = Auth::guard('nguoidung')->user()->maNguoiDung;
             $lichSuDat->loaiThanhToan = 'momo';

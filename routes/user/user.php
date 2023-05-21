@@ -13,3 +13,5 @@ Route::get('/lich-su-mua-ve', [UserController::class, 'HistoryOrderView'])->name
 Route::get('/danh-sach-order/{status}', [UserController::class, 'GetListOrder'])->name('GetListOrder');
 Route::get('/chi-tiet-mua-ve/{maLichSu}', [UserController::class, 'DetailOrder'])->name('DetailOrder');
 Route::post('/huy-mua-ve/{maLichSu}', [UserController::class, 'CancelBookTicket'])->name('CancelBookTicket');
+
+Route::get('/export-pdf/{maLichSu}', [UserController::class, 'ExportPdf'])->name('ExportPdf');
