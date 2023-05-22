@@ -19,8 +19,8 @@ class AuthUserMiddleware
     {
         if(Auth::guard('nguoidung')->check()){
             return $next($request);
-        }else if(!Auth::guard('nguoidung')->check()){
-            return redirect('/dang-nhap')->with('message', 'Bạn chưa đăng nhập !!!');
+        }else {
+            return redirect('/dang-nhap')->with('messageError', 'Bạn chưa đăng nhập !!!');
         }
     }
 }
