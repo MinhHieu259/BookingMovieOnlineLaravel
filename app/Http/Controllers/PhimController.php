@@ -32,14 +32,60 @@ class PhimController extends Controller
 
     public function GetListDangChieu(Request $request)
     {
+        $maDanhMuc = $request->input('danhMuc');
+        $ngonNgu = $request->input('ngonNgu');
+        if ($maDanhMuc == ''){
+            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+                ->where('PHIM.deleted', '1')
+                ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
+                ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
+                    return $query->where('maDanhMuc', $maDanhMuc);
+                })
+                ->when($ngonNgu, function ($query) use ($ngonNgu) {
+                    return $query->where('ngonNgu', $ngonNgu);
+                })
+                ->get();
+        }
+
         return response()->json([
-            'data' => $request->all()
+            'films' => $films
         ]);
     }
 
     public function SapChieu()
     {
-        return view('components.user.Phim.sap-chieu');
+        $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->where('PHIM.deleted', '1')
+            ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->get();
+        $categorys = DanhMucPhim::all();
+        return view('components.user.Phim.sap-chieu', compact('films', 'categorys'));
+    }
+
+    public function GetListSapChieu(Request $request)
+    {
+        $maDanhMuc = $request->input('danhMuc');
+        $ngonNgu = $request->input('ngonNgu');
+        if ($maDanhMuc == '' || $ngonNgu == '' ){
+            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+                ->where('PHIM.deleted', '1')
+                ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+                ->get();
+        } else{
+            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+                ->where('PHIM.deleted', '1')
+                ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+                ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
+                    return $query->where('maDanhMuc', $maDanhMuc);
+                })
+                ->when($ngonNgu, function ($query) use ($ngonNgu, $maDanhMuc) {
+                    return $query->where('ngonNgu', $ngonNgu);
+                })
+                ->get();
+        }
+        return response()->json([
+            'films' => $films
+        ]);
     }
 
     public function MuaVe()

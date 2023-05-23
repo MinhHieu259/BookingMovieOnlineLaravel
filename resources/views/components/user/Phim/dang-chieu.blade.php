@@ -47,6 +47,7 @@
                                     <span style="cursor: pointer"
                                         class="dropdown-item btn-choose-genre"
                                         data-genre="{{$cate->tenDanhMuc}}"
+                                          data-cate="{{$cate->maDanhMuc}}"
                                     >{{$cate->tenDanhMuc}}</span
                                     >
                                 </li>
@@ -62,47 +63,42 @@
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
-                            >Ngôn ngữ</a
+                            >Tất cả</a
                             >
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a
+                                    <span
                                         class="dropdown-item btn-choose-language active"
-                                        href="#"
-                                        data-language="all"
-                                    >Tất cả</a
+                                        data-language="Tất cả"
+                                    >Tất cả</span
                                     >
                                 </li>
                                 <li>
-                                    <a
+                                    <span
                                         class="dropdown-item btn-choose-language"
-                                        href="#"
-                                        data-language="english"
-                                    >Tiếng Anh</a
+                                        data-language="Tiếng Anh"
+                                    >Tiếng Anh</span
                                     >
                                 </li>
                                 <li>
-                                    <a
+                                    <span
                                         class="dropdown-item btn-choose-language"
-                                        href="#"
-                                        data-language="vietnamese"
-                                    >Tiếng Việt</a
+                                        data-language="Tiếng Việt"
+                                    >Tiếng Việt</span
                                     >
                                 </li>
                                 <li>
-                                    <a
+                                    <span
                                         class="dropdown-item btn-choose-language"
-                                        href="#"
-                                        data-language="chinese"
-                                    >Tiếng Trung</a
+                                        data-language="Tiếng Trung"
+                                    >Tiếng Trung</span
                                     >
                                 </li>
                                 <li>
-                                    <a
+                                    <span
                                         class="dropdown-item btn-choose-language"
-                                        href="#"
-                                        data-language="korean"
-                                    >Tiếng Hàn</a
+                                        data-language="Tiếng Hàn"
+                                    >Tiếng Hàn</span
                                     >
                                 </li>
                             </ul>
@@ -111,20 +107,22 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <div class="row">
+                <div class="row" id="contentFilmDangChieu">
                     @foreach($films as $film)
                     <div class="col-md-2 card-wrap-dang-chieu">
-                        <div class="card card-carousel card-dang-chieu">
-                            <img
-                                src="{{asset($film->linkHinhAnh)}}"
-                                alt="anh"
-                                class="card-img-top"
-                            />
-                            <div class="card-body">
-                                <h6 style="margin-top: -15px;font-size: 13px">{{$film->tenPhim}}</h6>
-                                <p class="date-show" style="margin-top: -7px;font-size: 10px">{{$film->ngayKhoiChieu}}</p>
+                        <a href="{{route('LichChieuView', ['slug' => $film->slug])}}">
+                            <div class="card card-carousel card-dang-chieu">
+                                <img
+                                    src="{{asset($film->linkHinhAnh)}}"
+                                    alt="anh"
+                                    class="card-img-top"
+                                />
+                                <div class="card-body">
+                                    <h6 style="margin-top: -15px;font-size: 13px">{{$film->tenPhim}}</h6>
+                                    <p class="date-show" style="margin-top: -7px;font-size: 10px">{{$film->ngayKhoiChieu}}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     @endforeach
                 </div>
