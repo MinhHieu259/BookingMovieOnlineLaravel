@@ -8,10 +8,16 @@ function ClickSelection() {
         } else {
             $('.genre-dropdown a').data('cate', $(this).data('cate'))
         }
+        if ($('.language-dropdown a').text() == 'Tất cả'){
+            $('.language-dropdown a').data('language', '')
+        } else {
+            $('.language-dropdown a').data('language', $(this).data('language'))
+        }
         var dataSearch = {
             'danhMuc': $('.genre-dropdown .dropdown-toggle').data('cate'),
-            'ngonNgu': $('.language-dropdown .dropdown-toggle').text()
+            'ngonNgu': $('.language-dropdown .dropdown-toggle').data('language')
         };
+        console.log(dataSearch)
         $.ajax({
             type: "GET",
             url: "/get-list-sap-chieu",
@@ -50,10 +56,16 @@ function ClickSelection() {
         } else {
             $('.language-dropdown a').data('language', $(this).data('language'))
         }
+        if ($('.language-dropdown a').text() == 'Tất cả'){
+            $('.language-dropdown a').data('language', '')
+        } else {
+            $('.language-dropdown a').data('language', $(this).data('language'))
+        }
         var dataSearchLG = {
             'danhMuc': $('.genre-dropdown .dropdown-toggle').data(' cate'),
-            'ngonNgu': $('.language-dropdown .dropdown-toggle').text()
+            'ngonNgu': $('.language-dropdown .dropdown-toggle').data(' language')
         };
+        console.log(dataSearchLG)
         $.ajax({
             type: "GET",
             url: "/get-list-sap-chieu",

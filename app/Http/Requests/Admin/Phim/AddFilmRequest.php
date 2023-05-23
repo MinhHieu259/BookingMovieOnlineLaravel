@@ -58,7 +58,7 @@ class AddFilmRequest extends FormRequest
             'gioiHanTuoi' => [
                 'required'
             ],
-            'ngonNgu' => [
+            'maNgonNgu' => [
                 'required'
             ]
         ];
@@ -80,7 +80,7 @@ class AddFilmRequest extends FormRequest
             'daoDien.required' => 'Thông tin đạo diễn không được để trống',
             'thoiLuong.required' => 'Thời lượng phim không được để trống',
             'gioiHanTuoi.required' => 'Giới hạn tuổi không được để trống',
-            'ngonNgu.required' => 'Ngôn ngữ không được để trống',
+            'maNgonNgu.required' => 'Ngôn ngữ không được để trống',
         ];
     }
 }

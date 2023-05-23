@@ -96,10 +96,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="ngonNgu">Ngôn ngữ <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="ngonNgu"
-                                                   placeholder="Nhập ngôn ngữ" autocomplete="off">
-                                            <span class="text-danger input-error" id="ngonNguError"></span>
+                                            <label>Ngôn ngữ <span class="text-danger">*</span></label>
+                                            <select id="maNgonNgu" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" data-select2-id="maNgonNgu">
+                                                @foreach($ngonngus as $index => $ngonngu)
+                                                    <option value="{{$ngonngu->maNgonNgu}}">{{$ngonngu->tenNgonNgu}}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="text-danger input-error" id="maNgonNguError"></span>
                                         </div>
                                     </div>
                                 </div>

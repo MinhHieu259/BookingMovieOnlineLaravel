@@ -11,6 +11,7 @@ use App\Models\DanhMucPhim;
 use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\HinhAnhPhim;
+use App\Models\NgonNgu;
 use App\Models\NhaSanXuat;
 use App\Models\Phim;
 use Cocur\Slugify\Slugify;
@@ -26,7 +27,8 @@ class PhimController extends Controller
         $nhasxs = NhaSanXuat::where('deleted', '<>', '2')->get();
         $daodiens = DaoDien::where('deleted', '<>', '2')->get();
         $danhmucs = DanhMucPhim::where('deleted', '<>', '2')->get();
-        return view('components.admin.phim.add-phim', compact('dienviens', 'nhasxs', 'daodiens', 'danhmucs'));
+        $ngonngus = NgonNgu::all();
+        return view('components.admin.phim.add-phim', compact('dienviens', 'nhasxs', 'daodiens', 'danhmucs', 'ngonngus'));
     }
 
     public function ListFilm()
@@ -73,7 +75,7 @@ class PhimController extends Controller
             $phim->giaVe = $request->input('giaVe');
             $phim->thoiLuong = $request->input('thoiLuong');
             $phim->gioiHanTuoi = $request->input('gioiHanTuoi');
-            $phim->ngonNgu = $request->input('ngonNgu');
+            $phim->maNgonNgu = $request->input('maNgonNgu');
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));
             $phim->maNhaSanXuat = json_encode(explode(',', $request->input('nhaSanXuat')));
@@ -148,13 +150,15 @@ class PhimController extends Controller
         $danhmucs = DanhMucPhim::where('deleted', '<>', '2')->get();
         $phim = Phim::find($maPhim);
         $imageOfFilm = HinhAnhPhim::where('maPhim', $maPhim)->pluck('linkHinhAnh')->toArray();
+        $ngonngus = NgonNgu::all();
         return view('components.admin.phim.edit-phim', compact(
             'dienviens',
             'nhasxs',
             'daodiens',
             'danhmucs',
             'phim',
-            'imageOfFilm'
+            'imageOfFilm',
+            'ngonngus'
         ));
     }
 
@@ -169,7 +173,7 @@ class PhimController extends Controller
             $phim->maDanhMuc = $request->input('danhMuc');
             $phim->thoiLuong = $request->input('thoiLuong');
             $phim->gioiHanTuoi = $request->input('gioiHanTuoi');
-            $phim->ngonNgu = $request->input('ngonNgu');
+            $phim->maNgonNgu = $request->input('maNgonNgu');
             $phim->giaVe = $request->input('giaVe');
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));

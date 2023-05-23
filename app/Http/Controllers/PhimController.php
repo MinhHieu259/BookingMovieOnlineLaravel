@@ -8,6 +8,7 @@ use App\Models\DanhMucPhim;
 use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\DoAn;
+use App\Models\NgonNgu;
 use App\Models\Phim;
 use App\Models\RAP;
 use App\Models\SuatChieu;
@@ -27,14 +28,14 @@ class PhimController extends Controller
             ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
             ->get();
         $categorys = DanhMucPhim::all();
-        return view('components.user.Phim.dang-chieu', compact('films', 'categorys'));
+        $ngonNgus = NgonNgu::all();
+        return view('components.user.Phim.dang-chieu', compact('films', 'categorys', 'ngonNgus'));
     }
 
     public function GetListDangChieu(Request $request)
     {
         $maDanhMuc = $request->input('danhMuc');
         $ngonNgu = $request->input('ngonNgu');
-        if ($maDanhMuc == ''){
             $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
                 ->where('PHIM.deleted', '1')
                 ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
@@ -42,11 +43,9 @@ class PhimController extends Controller
                     return $query->where('maDanhMuc', $maDanhMuc);
                 })
                 ->when($ngonNgu, function ($query) use ($ngonNgu) {
-                    return $query->where('ngonNgu', $ngonNgu);
+                    return $query->where('maNgonNgu', $ngonNgu);
                 })
                 ->get();
-        }
-
         return response()->json([
             'films' => $films
         ]);
@@ -66,23 +65,16 @@ class PhimController extends Controller
     {
         $maDanhMuc = $request->input('danhMuc');
         $ngonNgu = $request->input('ngonNgu');
-        if ($maDanhMuc == '' || $ngonNgu == '' ){
-            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
-                ->where('PHIM.deleted', '1')
-                ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
-                ->get();
-        } else{
-            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
-                ->where('PHIM.deleted', '1')
-                ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
-                ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
-                    return $query->where('maDanhMuc', $maDanhMuc);
-                })
-                ->when($ngonNgu, function ($query) use ($ngonNgu, $maDanhMuc) {
-                    return $query->where('ngonNgu', $ngonNgu);
-                })
-                ->get();
-        }
+        $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->where('PHIM.deleted', '1')
+            ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
+                return $query->where('maDanhMuc', $maDanhMuc);
+            })
+            ->when($ngonNgu, function ($query) use ($ngonNgu) {
+                return $query->where('maNgonNgu', $ngonNgu);
+            })
+            ->get();
         return response()->json([
             'films' => $films
         ]);

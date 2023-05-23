@@ -5,7 +5,7 @@ var Trailer = $('#Trailer')
 var moTa = $('#moTa')
 var thoiLuong = $('#thoiLuong')
 var gioiHanTuoi = $('#gioiHanTuoi')
-var ngonNgu = $('#ngonNgu')
+var ngonNgu = $('#maNgonNgu')
 var ngayKhoiChieu = $('#ngayKhoiChieu')
 var danhMucPhim = $('#danhMuc')
 var giaVe = $('#giaVe')
@@ -82,7 +82,7 @@ function insertFilm(e)
     formData.append('daoDien', daoDien.val());
     formData.append('thoiLuong', thoiLuong.val());
     formData.append('gioiHanTuoi', gioiHanTuoi.val());
-    formData.append('ngonNgu', ngonNgu.val());
+    formData.append('maNgonNgu', ngonNgu.val());
     for (var i = 0; i < images.length; i++) {
         formData.append('hinhAnh[]', images[i]);
     }
@@ -122,7 +122,7 @@ function validatePhim() {
         formData.append('daoDien', daoDien.val());
         formData.append('thoiLuong', thoiLuong.val());
         formData.append('gioiHanTuoi', gioiHanTuoi.val());
-        formData.append('ngonNgu', ngonNgu.val());
+        formData.append('maNgonNgu', ngonNgu.val());
         $.ajax({
             type: "POST",
             url: "/admin/validate-phim",
@@ -211,7 +211,7 @@ function updateFilm(e)
     formData.append('hinhAnh', inputImageFilm[0].files[0]);
     formData.append('thoiLuong', $('#thoiLuongEdit').val());
     formData.append('gioiHanTuoi', $('#gioiHanTuoiEdit').val());
-    formData.append('ngonNgu', $('#ngonNguEdit').val());
+    formData.append('maNgonNgu', $('#maNgonNguEdit').val());
     $.ajax({
         type: "POST",
         url: "/admin/update-phim/"+window.location.href.split('/').pop(),
@@ -247,7 +247,7 @@ function validateUpdatePhim() {
         formData.append('daoDien', $('#daoDienEdit').val());
         formData.append('thoiLuong', $('#thoiLuongEdit').val());
         formData.append('gioiHanTuoi', $('#gioiHanTuoiEdit').val());
-        formData.append('ngonNgu', $('#ngonNguEdit').val());
+        formData.append('maNgonNgu', $('#maNgonNguEdit').val());
         $.ajax({
             type: "POST",
             url: "/admin/validate-phim",
