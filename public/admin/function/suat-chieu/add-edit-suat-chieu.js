@@ -52,6 +52,7 @@ function btnSaveSuatChieu() {
                                 processData: false,
                                 contentType: false,
                                 success: function (response) {
+                                    console.log(response)
                                     if (response.status == 200) {
                                         $('#popupCofirm').modal('hide')
                                         toastr["success"](response.message, 'Thành công');

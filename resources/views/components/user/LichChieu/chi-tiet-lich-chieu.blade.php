@@ -114,7 +114,7 @@
                                         >Thời lượng</span
                                         > </strong
                                     ><br/>
-                                    <span>135 phút</span>
+                                    <span>{{$film->thoiLuong}} phút</span>
                                 </div>
 
                                 <div class="col text-center text-sm-left">
@@ -124,7 +124,7 @@
                                         >Giới hạn tuổi</span
                                         > </strong
                                     ><br/>
-                                    <span>NC16</span>
+                                    <span>{{$film->gioiHanTuoi}}</span>
                                 </div>
                             </div>
                         </div>

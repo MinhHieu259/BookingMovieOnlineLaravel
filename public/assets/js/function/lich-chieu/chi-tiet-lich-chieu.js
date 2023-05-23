@@ -35,17 +35,49 @@ function clickDate() {
     })
 }
 
-function calculateTime(showTime) {
+function calculateTime(showTime, dateShow) {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
-    const [hour, minute] = showTime.split(":");
+    const currentDay = now.getDate();
+    const currentMonth = now.getMonth() + 1;
+    const currentYear = now.getFullYear();
 
-    if (currentHour < hour || (currentHour == hour && currentMinute < minute - 10)) {
+    const [hour, minute] = showTime.split(":");
+    const showHour = parseInt(hour, 10);
+    const showMinute = parseInt(minute, 10);
+
+    const [showDay, showMonth, showYear] = dateShow.split("/");
+    const showDayInt = parseInt(showDay, 10);
+    const showMonthInt = parseInt(showMonth, 10);
+    const showYearInt = parseInt(showYear, 10);
+
+    if (currentYear < showYearInt) {
+        // Ngày hiện tại nhỏ hơn năm trong suất chiếu
         return true;
+    } else if (currentYear === showYearInt) {
+        // Ngày hiện tại bằng năm trong suất chiếu
+        if (currentMonth < showMonthInt) {
+            // Ngày hiện tại nhỏ hơn tháng trong suất chiếu
+            return true;
+        } else if (currentMonth === showMonthInt) {
+            // Ngày hiện tại bằng tháng trong suất chiếu
+            if (currentDay < showDayInt) {
+                // Ngày hiện tại nhỏ hơn ngày trong suất chiếu
+                return true;
+            } else if (currentDay === showDayInt) {
+                // Ngày hiện tại bằng ngày trong suất chiếu
+                if (currentHour < showHour || (currentHour === showHour && currentMinute < showMinute - 10)) {
+                    // Giờ hiện tại nhỏ hơn giờ trong suất chiếu hoặc chênh lệch thời gian nhỏ hơn 10 phút
+                    return true;
+                }
+            }
+        }
     }
+
     return false;
 }
+
 
 function renderShowTime(response) {
     if (response.results.length > 0) {
@@ -54,7 +86,7 @@ function renderShowTime(response) {
         $(response.results).each(function (key, value) {
             console.log(value)
             $(value.suatChieu).each(function (key, value) {
-                htmlTime += ' <a href="/chon-ghe/' + btoa(value.maSuatChieu)  + '" ' + (calculateTime(value.gioChieu) ? '' : 'style="pointer-events: none;opacity: 0.5;cursor: not-allowed;"') + ' class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
+                htmlTime += ' <a href="/chon-ghe/' + btoa(value.maSuatChieu)  + '" ' + (calculateTime(value.gioChieu, value.ngayChieu) ? '' : 'style="pointer-events: none;opacity: 0.5;cursor: not-allowed;"') + ' class="btn btn-sm btn-showtime btn-outline-dark is-ticketing">\n' +
                     '                                                            <span class="time">' + value.gioChieu + '</span>\n' +
                     '                                                        </a>'
             })

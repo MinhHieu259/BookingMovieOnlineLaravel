@@ -74,6 +74,38 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="thoiLuongEdit">Thời lượng <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="thoiLuongEdit"
+                                                   placeholder="Nhập thời lượng phim" autocomplete="off" value="{{$phim->thoiLuong}}">
+                                            <span class="text-danger input-error" id="thoiLuongEditError"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gioiHanTuoiEdit">Giới hạn tuổi <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="gioiHanTuoiEdit"
+                                                   placeholder="Nhập giới hạn tuổi" autocomplete="off" value="{{$phim->gioiHanTuoi}}">
+                                            <span class="text-danger input-error" id="gioiHanTuoiEditError"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ngonNguEdit">Ngôn ngữ <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="ngonNguEdit"
+                                                   placeholder="Nhập ngôn ngữ" autocomplete="off" value="{{$phim->ngonNgu}}">
+                                            <span class="text-danger input-error" id="ngonNguEditError"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="moTaEdit">Mô tả <span class="text-danger">*</span></label>

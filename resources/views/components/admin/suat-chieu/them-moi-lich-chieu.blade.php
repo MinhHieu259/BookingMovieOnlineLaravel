@@ -1,7 +1,7 @@
 @extends('layouts.admin-layout')
 @section('title', 'Thêm mới lịch chiếu phim')
 @push('js')
-        <script src="{{asset('admin/function/suat-chieu/add-edit-suat-chieu.js')}}"></script>
+    <script src="{{asset('admin/function/suat-chieu/add-edit-suat-chieu.js')}}"></script>
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
@@ -103,7 +103,8 @@
                                                     data-select2-id="cumRap">
                                                 <option value="">---Chọn cụm rạp ---</option>
                                                 @foreach($cumRaps as $index => $cumRap)
-                                                <option value="{{$cumRap->maChiTietRap}}">{{$cumRap->tenRap}}</option>
+                                                    <option
+                                                        value="{{$cumRap->maChiTietRap}}">{{$cumRap->tenRap}}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger input-error" id="cumRapError"></span>
@@ -128,7 +129,8 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary" id="btnSaveSuatChieu">Lưu thông tin</button>
+                                <button type="button" class="btn btn-primary" id="btnSaveSuatChieu">Lưu thông tin
+                                </button>
                             </div>
                         </form>
                     </div>

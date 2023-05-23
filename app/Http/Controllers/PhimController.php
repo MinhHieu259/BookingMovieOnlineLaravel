@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChiTietDayGhe;
 use App\Models\ChiTietRap;
+use App\Models\DanhMucPhim;
 use App\Models\DaoDien;
 use App\Models\DienVien;
 use App\Models\DoAn;
@@ -11,6 +12,7 @@ use App\Models\Phim;
 use App\Models\RAP;
 use App\Models\SuatChieu;
 use App\Models\Tinh;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Helpers\date;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,19 @@ class PhimController extends Controller
 {
     public function DangChieu()
     {
-        return view('components.user.Phim.dang-chieu');
+        $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->where('PHIM.deleted', '1')
+            ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->get();
+        $categorys = DanhMucPhim::all();
+        return view('components.user.Phim.dang-chieu', compact('films', 'categorys'));
+    }
+
+    public function GetListDangChieu(Request $request)
+    {
+        return response()->json([
+            'data' => $request->all()
+        ]);
     }
 
     public function SapChieu()
@@ -72,6 +86,7 @@ class PhimController extends Controller
             $maCTRap = $result->maChiTietRap;
             $suatChieu = [
                 'gioChieu' => $result->gioChieu,
+                'ngayChieu' => $result->ngayChieu,
                 'tenPhong' => $result->tenPhong,
                 'maSuatChieu' => $result->maSuatChieu
             ];

@@ -74,6 +74,37 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="thoiLuong">Thời lượng <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="thoiLuong"
+                                                   placeholder="Nhập thời lượng phim" autocomplete="off">
+                                            <span class="text-danger input-error" id="thoiLuongError"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gioiHanTuoi">Giới hạn tuổi <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="gioiHanTuoi"
+                                                   placeholder="Nhập giới hạn tuổi" autocomplete="off">
+                                            <span class="text-danger input-error" id="gioiHanTuoiError"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ngonNgu">Ngôn ngữ <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="ngonNgu"
+                                                   placeholder="Nhập ngôn ngữ" autocomplete="off">
+                                            <span class="text-danger input-error" id="ngonNguError"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="moTa">Mô tả <span class="text-danger">*</span></label>

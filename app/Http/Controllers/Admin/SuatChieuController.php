@@ -11,6 +11,7 @@ use App\Models\DayGhe;
 use App\Models\Phim;
 use App\Models\Phong;
 use App\Models\SuatChieu;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -84,44 +85,54 @@ class SuatChieuController extends Controller
                     'message' => 'Suất chiếu đã tồn tại'
                 ]);
             } else {
-                $suatChieu::create([
-                    'maSuatChieu' => '',
-                    'ngayChieu' => $request->input('ngayChieu'),
-                    'gioChieu' => $request->input('gioChieu'),
-                    'maPhim' => $request->input('maPhim'),
-                    'maPhong' => $request->input('phongChieu')
-                ]);
-                DB::commit();
-                //get maSuatChieu sau khi insert
-                $newSuatChieu = SuatChieu::where('maPhim', $request->input('maPhim'))->orderBy('maSuatChieu', 'DESC')->get();
-                $maSuatChieu = $newSuatChieu[0]->maSuatChieu;
-                //Thêm data vào dãy ghế
-                // Lấy thông tin các dãy ghế của phòng
-                $chairs = DayGhe::where('maPhong', $request->input('phongChieu'))->get();
-                $numDayGhe = count($chairs);
-                foreach ($chairs as $index => $chair) {
-                    $loaiGhe = $index + 1 == $numDayGhe ? 'double' : '';
-                    $gia = $index + 1 == $numDayGhe ? '2' : '1';
-                    for ($i = 0; $i < (int)$chair->soGheMoiDay; $i++) {
-                        $indexGhe = $i + 1;
-                        $chiTietDayGhe = new ChiTietDayGhe();
-                        $chiTietDayGhe::create([
-                            'maChiTietDayGhe' => '',
-                            'maDayGhe' => $chair->maDayGhe,
-                            'tenGhe' => $chair->tenDayGhe . $indexGhe,
-                            'loaiGhe' => $loaiGhe,
-                            'gia' => $gia,
-                            'trangThai' => 1,
-                            'maSuatChieu' => $maSuatChieu
-                        ]);
-                        DB::commit();
+                $phim = Phim::where('maPhim', $request->input('maPhim'))->first();
+                $ngayKhoiChieuFormat = Carbon::createFromFormat('d/m/Y', $phim->ngayKhoiChieu);
+                $ngayChieuFormat = Carbon::createFromFormat('d/m/Y', $request->input('ngayChieu'));
+                if ($ngayChieuFormat->gte($ngayKhoiChieuFormat)){
+                    $suatChieu::create([
+                        'maSuatChieu' => '',
+                        'ngayChieu' => $request->input('ngayChieu'),
+                        'gioChieu' => $request->input('gioChieu'),
+                        'maPhim' => $request->input('maPhim'),
+                        'maPhong' => $request->input('phongChieu')
+                    ]);
+                    DB::commit();
+                    //get maSuatChieu sau khi insert
+                    $newSuatChieu = SuatChieu::where('maPhim', $request->input('maPhim'))->orderBy('maSuatChieu', 'DESC')->get();
+                    $maSuatChieu = $newSuatChieu[0]->maSuatChieu;
+                    //Thêm data vào dãy ghế
+                    // Lấy thông tin các dãy ghế của phòng
+                    $chairs = DayGhe::where('maPhong', $request->input('phongChieu'))->get();
+                    $numDayGhe = count($chairs);
+                    foreach ($chairs as $index => $chair) {
+                        $loaiGhe = $index + 1 == $numDayGhe ? 'double' : '';
+                        $gia = $index + 1 == $numDayGhe ? '2' : '1';
+                        for ($i = 0; $i < (int)$chair->soGheMoiDay; $i++) {
+                            $indexGhe = $i + 1;
+                            $chiTietDayGhe = new ChiTietDayGhe();
+                            $chiTietDayGhe::create([
+                                'maChiTietDayGhe' => '',
+                                'maDayGhe' => $chair->maDayGhe,
+                                'tenGhe' => $chair->tenDayGhe . $indexGhe,
+                                'loaiGhe' => $loaiGhe,
+                                'gia' => $gia,
+                                'trangThai' => 1,
+                                'maSuatChieu' => $maSuatChieu
+                            ]);
+                            DB::commit();
+                        }
                     }
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Thêm mới suất chiếu thành công',
+                        'chairs' => $chairs
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 500,
+                        'message' => 'Ngày chiếu phim phải lớn hơn hoặc bằng ngày khởi chiếu'
+                    ]);
                 }
-                return response()->json([
-                    'status' => 200,
-                    'message' => 'Thêm mới suất chiếu thành công',
-                    'chairs' => $chairs
-                ]);
             }
         } catch (\Exception $e) {
             DB::rollback();

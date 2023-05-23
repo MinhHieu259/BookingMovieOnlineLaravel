@@ -71,6 +71,9 @@ class PhimController extends Controller
             $phim->linkTrailer = $request->input('Trailer');
             $phim->maDanhMuc = $request->input('danhMuc');
             $phim->giaVe = $request->input('giaVe');
+            $phim->thoiLuong = $request->input('thoiLuong');
+            $phim->gioiHanTuoi = $request->input('gioiHanTuoi');
+            $phim->ngonNgu = $request->input('ngonNgu');
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));
             $phim->maNhaSanXuat = json_encode(explode(',', $request->input('nhaSanXuat')));
@@ -79,40 +82,6 @@ class PhimController extends Controller
             //Get maPhim sau khi insert
             $newPhim = Phim::orderBy('maPhim', 'DESC')->get();
             $maPhim = $newPhim[0]->maPhim;
-
-            //Insert data dienvien
-//            $arrayDienVien = explode(",", $request->input('dienVien'));
-//            if (count($arrayDienVien) > 0) {
-//                foreach ($arrayDienVien as $index => $dienvien) {
-//                    $dienVien = new ChiTietDienVien();
-//                    $dienVien->maChiTiet = '';
-//                    $dienVien->maPhim = $maPhim;
-//                    $dienVien->maDienVien = $dienvien;
-//                    $dienVien->save();
-//                }
-//            }
-//
-//            $arrayNSX = explode(",", $request->input('nhaSanXuat'));
-//            if (count($arrayNSX) > 0) {
-//                foreach ($arrayNSX as $index => $nsx) {
-//                    $nhaSX = new ChiTietNSX();
-//                    $nhaSX->maChiTiet = '';
-//                    $nhaSX->maPhim = $maPhim;
-//                    $nhaSX->maNhaSanXuat = $nsx;
-//                    $nhaSX->save();
-//                }
-//            }
-//
-//            $arrayDaoDien = explode(",", $request->input('daoDien'));
-//            if (count($arrayDaoDien) > 0) {
-//                foreach ($arrayDaoDien as $index => $daodien) {
-//                    $daoDien = new ChiTietDaoDien();
-//                    $daoDien->maChiTiet = '';
-//                    $daoDien->maPhim = $maPhim;
-//                    $daoDien->maDaoDien = $daodien;
-//                    $daoDien->save();
-//                }
-//            }
 
             if ($request->hasFile('hinhAnh')) {
                 if (count($request->file('hinhAnh')) > 0) {
@@ -178,9 +147,6 @@ class PhimController extends Controller
         $daodiens = DaoDien::where('deleted', '<>', '2')->get();
         $danhmucs = DanhMucPhim::where('deleted', '<>', '2')->get();
         $phim = Phim::find($maPhim);
-//        $dienVienOfFilm = ChiTietDienVien::where('maPhim', $maPhim)->pluck('maDienVien')->toArray();
-//        $nhaSxOfFilm = ChiTietNSX::where('maPhim', $maPhim)->pluck('maNhaSanXuat')->toArray();
-//        $daoDienOfFilm = ChiTietDaoDien::where('maPhim', $maPhim)->pluck('maDaoDien')->toArray();
         $imageOfFilm = HinhAnhPhim::where('maPhim', $maPhim)->pluck('linkHinhAnh')->toArray();
         return view('components.admin.phim.edit-phim', compact(
             'dienviens',
@@ -201,6 +167,9 @@ class PhimController extends Controller
             $phim->moTaPhim = $request->input('moTa');
             $phim->linkTrailer = $request->input('Trailer');
             $phim->maDanhMuc = $request->input('danhMuc');
+            $phim->thoiLuong = $request->input('thoiLuong');
+            $phim->gioiHanTuoi = $request->input('gioiHanTuoi');
+            $phim->ngonNgu = $request->input('ngonNgu');
             $phim->giaVe = $request->input('giaVe');
             $phim->maDienVien = json_encode(explode(',', $request->input('dienVien')));
             $phim->maDaoDien = json_encode(explode(',', $request->input('daoDien')));

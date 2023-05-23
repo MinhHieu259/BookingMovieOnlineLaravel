@@ -3,6 +3,9 @@ var images = [];
 var tenPhim = $('#tenPhim')
 var Trailer = $('#Trailer')
 var moTa = $('#moTa')
+var thoiLuong = $('#thoiLuong')
+var gioiHanTuoi = $('#gioiHanTuoi')
+var ngonNgu = $('#ngonNgu')
 var ngayKhoiChieu = $('#ngayKhoiChieu')
 var danhMucPhim = $('#danhMuc')
 var giaVe = $('#giaVe')
@@ -77,6 +80,9 @@ function insertFilm(e)
     formData.append('dienVien', dienVien.val());
     formData.append('nhaSanXuat', nhaSanXuat.val());
     formData.append('daoDien', daoDien.val());
+    formData.append('thoiLuong', thoiLuong.val());
+    formData.append('gioiHanTuoi', gioiHanTuoi.val());
+    formData.append('ngonNgu', ngonNgu.val());
     for (var i = 0; i < images.length; i++) {
         formData.append('hinhAnh[]', images[i]);
     }
@@ -114,6 +120,9 @@ function validatePhim() {
         formData.append('dienVien', dienVien.val());
         formData.append('nhaSanXuat', nhaSanXuat.val());
         formData.append('daoDien', daoDien.val());
+        formData.append('thoiLuong', thoiLuong.val());
+        formData.append('gioiHanTuoi', gioiHanTuoi.val());
+        formData.append('ngonNgu', ngonNgu.val());
         $.ajax({
             type: "POST",
             url: "/admin/validate-phim",
@@ -200,6 +209,9 @@ function updateFilm(e)
     formData.append('nhaSanXuat', $('#nhaSanXuatEdit').val());
     formData.append('daoDien', $('#daoDienEdit').val());
     formData.append('hinhAnh', inputImageFilm[0].files[0]);
+    formData.append('thoiLuong', $('#thoiLuongEdit').val());
+    formData.append('gioiHanTuoi', $('#gioiHanTuoiEdit').val());
+    formData.append('ngonNgu', $('#ngonNguEdit').val());
     $.ajax({
         type: "POST",
         url: "/admin/update-phim/"+window.location.href.split('/').pop(),
@@ -233,6 +245,9 @@ function validateUpdatePhim() {
         formData.append('dienVien', $('#dienVienEdit').val());
         formData.append('nhaSanXuat', $('#nhaSanXuatEdit').val());
         formData.append('daoDien', $('#daoDienEdit').val());
+        formData.append('thoiLuong', $('#thoiLuongEdit').val());
+        formData.append('gioiHanTuoi', $('#gioiHanTuoiEdit').val());
+        formData.append('ngonNgu', $('#ngonNguEdit').val());
         $.ajax({
             type: "POST",
             url: "/admin/validate-phim",
