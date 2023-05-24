@@ -58,7 +58,8 @@ class PhimController extends Controller
             ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
             ->get();
         $categorys = DanhMucPhim::all();
-        return view('components.user.Phim.sap-chieu', compact('films', 'categorys'));
+        $ngonNgus = NgonNgu::all();
+        return view('components.user.Phim.sap-chieu', compact('films', 'categorys', 'ngonNgus'));
     }
 
     public function GetListSapChieu(Request $request)

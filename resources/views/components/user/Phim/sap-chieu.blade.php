@@ -73,34 +73,15 @@
                                     >Tất cả</span
                                     >
                                 </li>
-                                <li>
+                                @foreach($ngonNgus as $ngonNgu)
+                                    <li>
                                     <span
                                         class="dropdown-item btn-choose-language"
-                                        data-language="Tiếng Anh"
-                                    >Tiếng Anh</span
+                                        data-language="{{$ngonNgu->maNgonNgu}}"
+                                    >{{$ngonNgu->tenNgonNgu}}</span
                                     >
-                                </li>
-                                <li>
-                                    <span
-                                        class="dropdown-item btn-choose-language"
-                                        data-language="Tiếng Việt"
-                                    >Tiếng Việt</span
-                                    >
-                                </li>
-                                <li>
-                                    <span
-                                        class="dropdown-item btn-choose-language"
-                                        data-language="Tiếng Trung"
-                                    >Tiếng Trung</span
-                                    >
-                                </li>
-                                <li>
-                                    <span
-                                        class="dropdown-item btn-choose-language"
-                                        data-language="Tiếng Hàn"
-                                    >Tiếng Hàn</span
-                                    >
-                                </li>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

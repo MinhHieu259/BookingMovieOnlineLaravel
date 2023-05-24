@@ -28,7 +28,8 @@ function ClickSelection() {
                 console.log(response)
                 $('#contentFilmSapChieu').empty()
                 response.films.forEach(function (film){
-                    var filmElement = ` <div class="col-md-2 card-wrap-dang-chieu">
+                    var filmElement = `<a href="/lich-chieu/${film.slug}">
+<div class="col-md-2 card-wrap-dang-chieu">
                         <div class="card card-carousel card-dang-chieu">
                             <img
                                 src="${film.linkHinhAnh}"
@@ -40,7 +41,8 @@ function ClickSelection() {
                                 <p class="date-show" style="margin-top: -7px;font-size: 10px">${film.ngayKhoiChieu}</p>
                             </div>
                         </div>
-                    </div>`
+                    </div>
+</a>`
                     $('#contentFilmSapChieu').append(filmElement)
                 })
             },
@@ -50,33 +52,34 @@ function ClickSelection() {
     $('.btn-choose-language').click(function (){
         $('.btn-choose-language').removeClass('active')
         $(this).addClass('active')
-        $('.language-dropdown .dropdown-toggle').text($(this).data('language'))
-        if ($('.language-dropdown a').text() == 'Tất cả'){
-            $('.language-dropdown a').data('language', '')
+        $('.language-dropdown .dropdown-toggle').text($(this).text())
+        if ($('.language-dropdown .dropdown-toggle').text() == 'Tất cả'){
+            $('.language-dropdown .dropdown-toggle').data('language', '')
         } else {
-            $('.language-dropdown a').data('language', $(this).data('language'))
+            $('.language-dropdown .dropdown-toggle').data('language', $(this).data('language'))
         }
-        if ($('.language-dropdown a').text() == 'Tất cả'){
-            $('.language-dropdown a').data('language', '')
+        if ($('.language-dropdown .dropdown-toggle').text() == 'Tất cả'){
+            $('.language-dropdown .dropdown-toggle').data('language', '')
         } else {
-            $('.language-dropdown a').data('language', $(this).data('language'))
+            $('.language-dropdown .dropdown-toggle').data('language', $(this).data('language'))
         }
-        var dataSearchLG = {
-            'danhMuc': $('.genre-dropdown .dropdown-toggle').data(' cate'),
-            'ngonNgu': $('.language-dropdown .dropdown-toggle').data(' language')
+        var dataSearch = {
+            'danhMuc': $('.genre-dropdown .dropdown-toggle').data('cate'),
+            'ngonNgu': $('.language-dropdown .dropdown-toggle').data('language')
         };
-        console.log(dataSearchLG)
+        console.log(dataSearch)
         $.ajax({
             type: "GET",
             url: "/get-list-sap-chieu",
-            data: dataSearchLG,
+            data: dataSearch,
             contentType: 'application/json',
             dataType: "json",
             success: function (response) {
                 console.log(response)
                 $('#contentFilmSapChieu').empty()
                 response.films.forEach(function (film){
-                    var filmElement = ` <div class="col-md-2 card-wrap-dang-chieu">
+                    var filmElement = `<a href="/lich-chieu/${film.slug}">
+<div class="col-md-2 card-wrap-dang-chieu">
                         <div class="card card-carousel card-dang-chieu">
                             <img
                                 src="${film.linkHinhAnh}"
@@ -88,7 +91,8 @@ function ClickSelection() {
                                 <p class="date-show" style="margin-top: -7px;font-size: 10px">${film.ngayKhoiChieu}</p>
                             </div>
                         </div>
-                    </div>`
+                    </div>
+</a>`
                     $('#contentFilmSapChieu').append(filmElement)
                 })
             },
