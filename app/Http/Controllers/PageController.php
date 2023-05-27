@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Phim;
+use App\Models\PostModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,8 @@ class PageController extends Controller
         ->join('HinhAnhPhim as HA', 'PHIM.maPhim', '=', 'HA.maPhim')
         ->select('PHIM.*', 'HA.linkHinhAnh')
         ->get();
-        return view('components.user.trang-chu', compact('films'));
+        $post = PostModel::where('deleted', '1')->get();
+        return view('components.user.trang-chu', compact('films', 'post'));
     }
 
     public function AccessDenied()

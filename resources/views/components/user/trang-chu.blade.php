@@ -89,165 +89,29 @@
     <div class="area-review">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card review-new">
                         <div class="card-header card-header-review">Mới cập nhật</div>
                         <div class="card-body">
+                            @foreach ($post as $item)  
                             <div class="review-new">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img
-                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
+                                        width="350"
+                                            src="{{asset($item->hinhAnh)}}"
                                             alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
-                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
+                                        <a class="name-review" href="chi-tiet-bai-viet/{{$item->maBaiViet}}">{{$item->tieuDe}}</a>
+                                        <p class="name-cate-review">{{$item->maNguoiDang}} - <span
+                                                class="time-post-review">{{$item->thoiGianDang}}</span></p>
+                                        <p class="desc-review">{{$item->moTa}}</p>
                                     </div>
                                 </div>
                                 <hr>
                             </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img
-                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                            alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
-                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img
-                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                            alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
-                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img
-                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                            alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
-                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img
-                                            src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                            alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">Tin điện ảnh - anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-                                        <p class="desc-review">Biệt Đội Rất Ổn hé lộ loạt bối cảnh trong phim: từ resort
-                                            hạng sang đến biệt thự, nhà cổ và cả miền Tây sông nước đủ cả!</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card review-right">
-                        <div class="card-header card-header-review">Review</div>
-                        <div class="card-body">
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img width="110" height="80"
-                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                             alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img width="110" height="80"
-                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                             alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="review-new">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img width="110" height="80"
-                                             src="https://hcm01.vstorage.vngcloud.vn/v1/AUTH_0e0c1e7edc044168a7f510dc6edd223b/media-prd/cache/small/64059fc1253ad195852573.jpeg"
-                                             alt="Anh">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <a class="name-review" href="#">Biệt Đội Rất Ổn và một miền tây khác lạ từ đạo
-                                            diễn Tạ Nguyên Hiệp</a>
-                                        <p class="name-cate-review">anna787 - <span
-                                                class="time-post-review">5 giờ trước</span></p>
-
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>

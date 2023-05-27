@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Cocur\Slugify\Slugify;
 
 class ChiTietRap extends Model
 {
@@ -60,8 +61,9 @@ class ChiTietRap extends Model
             (string)$request->input('motaRap'),
             (string)$request->input('tinh'),
             (string)$rap->maRap,
+            (string) (new Slugify())->slugify($request->input('tenRap'))
         ];
-        $results = DB::select('EXEC SaveCumRap ?, ?, ?, ?, ?, ?, ? ', $data);
+        $results = DB::select('EXEC SaveCumRap ?, ?, ?, ?, ?, ?, ?, ? ', $data);
         return $results;
     }
 
@@ -73,9 +75,10 @@ class ChiTietRap extends Model
             (string)$request->input('diaChi'),
             (string)$request->input('map'),
             (string)$request->input('motaRap'),
-            (string)$request->input('tinh')
+            (string)$request->input('tinh'),
+            (string) (new Slugify())->slugify($request->input('tenRap'))
         ];
-        $results = DB::select('EXEC UpdateCumRap ?, ?, ?, ?, ?, ? ', $data);
+        $results = DB::select('EXEC UpdateCumRap ?, ?, ?, ?, ?, ?, ? ', $data);
         return $results;
     }
 

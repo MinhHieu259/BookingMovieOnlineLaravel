@@ -186,6 +186,32 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{Route::currentRouteName() == 'admin.bai-viet.index' || Route::currentRouteName() == 'admin.bai-viet.add' || Route::currentRouteName() == 'admin.bai-viet.edit' ? 'menu-is-opening menu-open' : ''}}">
+                    <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.bai-viet.index' || Route::currentRouteName() == 'admin.bai-viet.add' || Route::currentRouteName() == 'admin.bai-viet.edit' ? 'active' : ''}}">
+                        <i class="nav-icon fa-solid fa-film"></i>
+                        <p>
+                            Quản lý bài viết
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('admin.bai-viet.index')}}" class="nav-link {{Route::currentRouteName() == 'admin.bai-viet.index' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách bài viết</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('admin.bai-viet.add')}}" class="nav-link {{Route::currentRouteName() == 'admin.bai-viet.add' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm mới bài viết</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="nav-header">Đăng xuất</li>
                 <li class="nav-item">
                     <a href="javascript:void(0)" class="nav-link" id="logoutadmin">

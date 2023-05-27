@@ -158,6 +158,8 @@
     </div>
 </div>
 <!--Modal province-->
+<!--Modal Rap -->
+@include('layouts.includes.user.popup.rap.popup-rap')
 @include('commons.popup.popup-message')
 @stack('popup')
 </body>

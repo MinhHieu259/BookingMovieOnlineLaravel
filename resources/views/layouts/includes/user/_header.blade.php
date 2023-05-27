@@ -13,11 +13,8 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a href="/"><img src="{{asset('assets/images/user/mascot.png')}}" width="50" alt=""></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 item-navbartop">
-            <li class="nav-item {{request()->is('mua-ve') ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('mua-ve')}}">Mua vé</a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="./lich-chieu.html">Lịch chiếu</a>
+                <a class="nav-link" href="{{route('lich-chieu')}}">Lịch chiếu</a>
             </li>
             <li class="nav-item dropdown">
                 <a
@@ -32,49 +29,17 @@
                     Phim
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="{{route('dang-chieu')}}">Đang chiếu</a>
+                    <a class="dropdown-item" href="{{route('sap-chieu')}}">Sắp chiếu</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" style="cursor: pointer">
                 <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    href="{{route('TimKiemRap')}}"
+                    class="nav-link"
                 >
                     Rạp
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                >
-                    Tin tức
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 form-search" type="get" action="{{route('SearchFunction')}}">

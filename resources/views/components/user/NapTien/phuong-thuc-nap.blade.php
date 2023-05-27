@@ -48,38 +48,6 @@
                                     </label>
                                 </div>
                             </div>
-                            <br>
-                            <div class="payment-gateway pg-moveek pm-bank-transfer clearfix" data-pg="moveek" data-pm="bank-transfer">
-                                <div class="row">
-                                    <input type="radio" name="typeNapTien" value="banking" id="credit">
-                                    <label class="pg-info ml-2" for="credit">
-                                        <img width="28px" src="{{asset('assets/images/user/mascot.png')}}">
-                                        Chuyển khoản ngân hàng (Khả dụng từ 9:00 - 23:00)
-                                        <br>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-4 mb-4" style="width: 100%">
-                        <div class="card-header">
-                            <div class="card-header-title">
-                                Thông tin cá nhân
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group"><label for="deposit_fullname" class="required">Họ và tên</label><input value="{{$user->hoVaTen}}" type="text" id="deposit_fullname" name="deposit_fullname" required="required" class="form-control"></div>
-                            <div class="form-group"><label for="deposit_email" class="required">Email</label><input type="email" value="{{$user->email}}" id="deposit_email" name="deposit_email" required="required" class="form-control"></div>
-                            <div class="form-group"><label for="deposit_phone" class="required">Số điện thoại</label><input type="tel" id="deposit_phone" value="{{$user->soDienThoai}}" name="deposit_phone" required="required" class="form-control"></div>
-
-                        </div>
-                    </div>
-
-                    <div class="card d-lg-none">
-                        <div class="card-body">
-                            Vé đã mua không thể đổi hoặc hoàn tiền.<br>Mã vé sẽ được gửi <strong>01</strong> lần qua số điện thoại và email đã nhập. Vui lòng kiểm tra lại thông tin trước khi tiếp tục.
                         </div>
                     </div>
 

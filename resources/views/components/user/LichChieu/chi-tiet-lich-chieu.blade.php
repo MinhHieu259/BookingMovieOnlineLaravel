@@ -193,28 +193,12 @@
                             Lịch chiếu
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href="/review/ant-man-and-the-wasp-quantumania/"
-                            class="nav-link text-center"
-                        >
-                            Đánh giá
-                        </a>
-                    </li>
                     <li class="nav-item d-none d-sm-block">
                         <a
                             href="/tin-tuc/ant-man-and-the-wasp-quantumania/1ed03939-b71d-69b6-8ed3-02d6e652ea62"
                             class="nav-link text-center"
                         >
                             Tin tức
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            href="/mua-ve/ant-man-and-the-wasp-quantumania/"
-                            class="nav-link text-center"
-                        >
-                            Mua vé
                         </a>
                     </li>
                 </ul>
