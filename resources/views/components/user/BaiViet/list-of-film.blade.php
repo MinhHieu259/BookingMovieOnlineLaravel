@@ -1,5 +1,5 @@
 @extends('layouts.user-layout')
-@section('title', 'Thông tin phim')
+@section('title', 'Tin tức phim')
 @section('content')
     <div class="bg-dark border-bottom text-white featured-movie">
         <div class="container pt-3 pb-3">
@@ -116,7 +116,7 @@
         <div class="container">
             <ul class="nav nav-tabs border-bottom-0">
                 <li class="nav-item">
-                    <a href="{{route('thong-tin-phim', ['slug' => $film->slug])}}" class="nav-link text-center active">
+                    <a href="{{route('thong-tin-phim', ['slug' => $film->slug])}}" class="nav-link text-center">
                         Thông tin phim
                     </a>
                 </li>
@@ -128,7 +128,7 @@
 
                 <li class="nav-item d-none d-sm-block">
                     <a href="/tin-tuc/ant-man-and-the-wasp-quantumania/1ed03939-b71d-69b6-8ed3-02d6e652ea62"
-                        class="nav-link text-center">
+                        class="nav-link text-center active">
                         Tin tức
                     </a>
                 </li>
@@ -142,26 +142,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="js-video youtube widescreen mb-4">
-                    {!! htmlspecialchars_decode($film->linkTrailer) !!}
-                </div>
-
-                <div class="card card-sm" style="width: 100%; margin-bottom: 30px;">
-                    <div class="card-body">
-                        <h2 class="mb-0">Lịch chiếu</h2>
-                        <p class="text-muted">
-                            Xem lịch chiếu cho phim
-                            <strong>Siêu Lừa Gặp Siêu Lầy</strong>.
-                        </p>
-
-                        <div class="row">
-                            <div class="col-6 col-sm-4">
-                                <a href="{{route('LichChieuView', ['slug' => $film->slug])}}" class="btn btn-dark btn-block btn-do-select-region">Xem lịch chiếu</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                        
                 <div class="mb-4">
                     <div class="card card-sm card-article mb-3" style="width: 100%;">
                         <div class="card-header bg-light">
@@ -205,10 +186,7 @@
                         
                         </div>
                     </div>
-                    <a href="{{route('TinTucByFilm', ['slug' => $film->slug])}}"
-                        class="btn btn-light btn-block">
-                        Xem thêm tin tức về <strong>{{$film->tenPhim}}</strong>
-                    </a>
+                
                 </div>
 
             </div>

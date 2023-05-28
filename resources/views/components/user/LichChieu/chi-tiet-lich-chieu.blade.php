@@ -179,7 +179,7 @@
                 <ul class="nav nav-tabs border-bottom-0">
                     <li class="nav-item">
                         <a
-                            href="/phim/ant-man-and-the-wasp-quantumania/"
+                            href="{{route('thong-tin-phim', ['slug' => $film->slug])}}"
                             class="nav-link text-center"
                         >
                             Thông tin phim
@@ -187,7 +187,7 @@
                     </li>
                     <li class="nav-item">
                         <a
-                            href="/lich-chieu/ant-man-and-the-wasp-quantumania/"
+                            href="{{route('LichChieuView', ['slug' => $film->slug])}}"
                             class="nav-link text-center active"
                         >
                             Lịch chiếu
@@ -195,7 +195,7 @@
                     </li>
                     <li class="nav-item d-none d-sm-block">
                         <a
-                            href="/tin-tuc/ant-man-and-the-wasp-quantumania/1ed03939-b71d-69b6-8ed3-02d6e652ea62"
+                            href="{{route('TinTucByFilm', ['slug' => $film->slug])}}"
                             class="nav-link text-center"
                         >
                             Tin tức

@@ -15,6 +15,40 @@ use Illuminate\Support\Facades\Redirect;
 
 class MoMoPaymentController extends Controller
 {
+    public function CheckFreeSeat($request, $maSuatChieu)
+    {
+        $checkArray = [];
+        if (count(json_decode($request->input('listSeats'))) > 0) {
+            foreach (json_decode($request->input('listSeats')) as $seat) {
+   
+                $check = ChiTietDayGhe::where('tenGhe', $seat->seatName)
+                ->where('maSuatChieu', $maSuatChieu)
+                ->where('trangThai', '2')
+                ->first();
+                if($check){
+                    $checkArray[] = $check->tenGhe;
+                }
+            }
+        }
+        return $checkArray;
+    }
+
+    public function CheckSeatFunction(Request $request, $maSuatChieu)
+    {
+        $checkArray = $this->CheckFreeSeat($request, $maSuatChieu);
+        if (count($checkArray) > 0) {
+            return response()->json([
+                'status' => 400,
+                'message' => 'Có người đã nhanh tay, đã đặt ghế '.implode(', ', $checkArray).' trước. Bạn tải lại trang để đặt vé lại nha!!!',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Chuyển hướng đến momo payment'
+            ]);
+        }
+    }
+
     public function MomoPayment(Request $request)
     {
         $session = session();

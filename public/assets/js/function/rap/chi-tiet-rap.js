@@ -89,16 +89,13 @@ function renderListFilm(response) {
                         </h4>
 
                         <p class="card-text small text-muted mb-0">
-                            ${value.gioiHanTuoi} · ${value.thoiLuong}' ·
-                            <a href="/${value.linkTrailer}" data-toggle="modal" data-target="#videoModal"
-                                data-video-id="17897" data-video-url="UQi44Yoef98"
-                                data-remote="false">Trailer</a>
+                            ${value.gioiHanTuoi} · ${value.thoiLuong}'
                         </p>
 
                         <div class="mt-2">
                             <div class="mb-1">
                                 <label class="small mb-2 font-weight-bold d-block text-dark">
-                                    2D Phụ Đề Anh
+                                    ${value.tenNgonNgu}
                                 </label>
                                 ${htmlTime}
                             </div>

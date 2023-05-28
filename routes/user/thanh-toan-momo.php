@@ -8,3 +8,4 @@ Route::get('/return-thanh-toan-momo', [MoMoPaymentController::class, 'PageReturn
 
 Route::get('/init-nap-tien-momo', [MoMoPaymentController::class, 'InitMomoPayNapTien'])->name('InitMomoPayNapTien');
 Route::get('/return-nap-tien-momo', [MoMoPaymentController::class, 'ReturnNapTienMomo'])->name('ReturnNapTienMomo');
+Route::post('/check-seat-momo/{maSuatChieu}', [MoMoPaymentController::class, 'CheckSeatFunction'])->name('CheckSeatFunction');

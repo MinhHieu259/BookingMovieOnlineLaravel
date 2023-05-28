@@ -14,7 +14,7 @@
         <a href="/"><img src="{{asset('assets/images/user/mascot.png')}}" width="50" alt=""></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 item-navbartop">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('lich-chieu')}}">Lịch chiếu</a>
+                <a class="nav-link" href="{{route('trang-chu')}}">Trang chủ</a>
             </li>
             <li class="nav-item dropdown">
                 <a

@@ -53,22 +53,15 @@ function calculateTime(showTime, dateShow) {
     const showYearInt = parseInt(showYear, 10);
 
     if (currentYear < showYearInt) {
-        // Ngày hiện tại nhỏ hơn năm trong suất chiếu
         return true;
     } else if (currentYear === showYearInt) {
-        // Ngày hiện tại bằng năm trong suất chiếu
         if (currentMonth < showMonthInt) {
-            // Ngày hiện tại nhỏ hơn tháng trong suất chiếu
             return true;
         } else if (currentMonth === showMonthInt) {
-            // Ngày hiện tại bằng tháng trong suất chiếu
             if (currentDay < showDayInt) {
-                // Ngày hiện tại nhỏ hơn ngày trong suất chiếu
                 return true;
             } else if (currentDay === showDayInt) {
-                // Ngày hiện tại bằng ngày trong suất chiếu
                 if (currentHour < showHour || (currentHour === showHour && currentMinute < showMinute - 10)) {
-                    // Giờ hiện tại nhỏ hơn giờ trong suất chiếu hoặc chênh lệch thời gian nhỏ hơn 10 phút
                     return true;
                 }
             }

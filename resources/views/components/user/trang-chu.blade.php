@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card review-new">
-                        <div class="card-header card-header-review">Mới cập nhật</div>
+                        <div class="card-header card-header-review">Bài viết</div>
                         <div class="card-body">
                             @foreach ($post as $item)  
                             <div class="review-new">
@@ -103,8 +103,8 @@
                                             alt="Anh">
                                     </div>
                                     <div class="col-md-8">
-                                        <a class="name-review" href="chi-tiet-bai-viet/{{$item->maBaiViet}}">{{$item->tieuDe}}</a>
-                                        <p class="name-cate-review">{{$item->maNguoiDang}} - <span
+                                        <a class="name-review" href="{{route('DetailPost', ['slug' => $item->slug])}}">{{$item->tieuDe}}</a>
+                                        <p class="name-cate-review">{{$item->username}} - <span
                                                 class="time-post-review">{{$item->thoiGianDang}}</span></p>
                                         <p class="desc-review">{{$item->moTa}}</p>
                                     </div>

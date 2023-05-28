@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\BaiViet\UpdatePostRequest;
 use App\Models\Phim;
 use App\Models\PostModel;
 use Carbon\Carbon;
+use Cocur\Slugify\Slugify;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -101,6 +102,7 @@ class BaiVietController extends Controller
             $post->maPhim = $request->input('maPhim');
             $post->thoiGianDang = Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
             $post->maNguoiDang = Auth::guard('admins')->user()->maAdmin;
+            $post->slug = (new Slugify())->slugify($request->input('tieuDe'));
             $post->save();
             DB::commit();
             return response()->json([
@@ -162,8 +164,9 @@ class BaiVietController extends Controller
                 $post->hinhAnh = 'uploads/bai-viet/' . $filename;
             }
             $post->noiDung = $request->input('noiDungBaiViet');
-            $post->thoiGianDang = Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
+            $post->thoiGianCapNhat = Carbon::now()->isoFormat('DD/MM/YYYY HH:mm:ss');
             $post->maNguoiDang = Auth::guard('admins')->user()->maAdmin;
+            $post->slug = (new Slugify())->slugify($request->input('tieuDe'));
             $post->save();
             DB::commit();
             return response()->json([

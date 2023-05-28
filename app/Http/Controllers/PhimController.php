@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\date;
 use App\Models\ChiTietDayGhe;
 use App\Models\ChiTietRap;
 use App\Models\DanhMucPhim;
@@ -10,12 +11,12 @@ use App\Models\DienVien;
 use App\Models\DoAn;
 use App\Models\NgonNgu;
 use App\Models\Phim;
+use App\Models\PostModel;
 use App\Models\RAP;
 use App\Models\SuatChieu;
 use App\Models\Tinh;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Helpers\date;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -36,18 +37,18 @@ class PhimController extends Controller
     {
         $maDanhMuc = $request->input('danhMuc');
         $ngonNgu = $request->input('ngonNgu');
-            $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
-                ->where('PHIM.deleted', '1')
-                ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
-                ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
-                    return $query->where('maDanhMuc', $maDanhMuc);
-                })
-                ->when($ngonNgu, function ($query) use ($ngonNgu) {
-                    return $query->where('maNgonNgu', $ngonNgu);
-                })
-                ->get();
+        $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->where('PHIM.deleted', '1')
+            ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
+                return $query->where('maDanhMuc', $maDanhMuc);
+            })
+            ->when($ngonNgu, function ($query) use ($ngonNgu) {
+                return $query->where('maNgonNgu', $ngonNgu);
+            })
+            ->get();
         return response()->json([
-            'films' => $films
+            'films' => $films,
         ]);
     }
 
@@ -77,7 +78,7 @@ class PhimController extends Controller
             })
             ->get();
         return response()->json([
-            'films' => $films
+            'films' => $films,
         ]);
     }
 
@@ -86,9 +87,20 @@ class PhimController extends Controller
         return view('components.user.Phim.mua-ve');
     }
 
-    public function ThongTinPhim()
+    public function ThongTinPhim($slug)
     {
-        return view('components.user.Phim.thong-tin-phim');
+        $film = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
+            ->join('DanhMucPhim as DM', 'DM.maDanhMuc', '=', 'PHIM.maDanhMuc')
+            ->where('slug', $slug)
+            ->select('PHIM.*', 'HA.linkHinhAnh', 'DM.tenDanhMuc')
+            ->first();
+        $actors = DienVien::whereIn('maDienVien', json_decode($film->maDienVien))->get();
+        $directors = DaoDien::whereIn('maDaoDien', json_decode($film->maDaoDien))->get();
+        $postRelate = PostModel::where('maPhim', $film->maPhim)
+            ->leftJoin('Admin', 'Admin.maAdmin', '=', 'BaiViet.maNguoiDang')
+            ->where('deleted', '1')
+            ->get();
+        return view('components.user.Phim.thong-tin-phim', compact('film', 'actors', 'directors', 'postRelate'));
     }
 
     public function LichChieuView($slug)
@@ -127,7 +139,7 @@ class PhimController extends Controller
                 'gioChieu' => $result->gioChieu,
                 'ngayChieu' => $result->ngayChieu,
                 'tenPhong' => $result->tenPhong,
-                'maSuatChieu' => $result->maSuatChieu
+                'maSuatChieu' => $result->maSuatChieu,
             ];
 
             if (!isset($result2[$maCTRap])) {
@@ -135,7 +147,7 @@ class PhimController extends Controller
                     'maCTRap' => $maCTRap,
                     'tenRap' => $result->tenRap,
                     'diaChi' => $result->diaChi,
-                    'suatChieu' => [$suatChieu]
+                    'suatChieu' => [$suatChieu],
                 ];
             } else {
                 $result2[$maCTRap]['suatChieu'][] = $suatChieu;
@@ -143,7 +155,7 @@ class PhimController extends Controller
         }
         return response()->json([
             'rap' => $rap,
-            'results' => array_values($result2)
+            'results' => array_values($result2),
         ]);
     }
 
@@ -158,10 +170,10 @@ class PhimController extends Controller
             ->first();
 
         $countSeat = count(ChiTietDayGhe::where('maSuatChieu', base64_decode($maSuatChieu))
-            ->get());
+                ->get());
         $countSeatFree = count(ChiTietDayGhe::where('maSuatChieu', base64_decode($maSuatChieu))
-            ->where('trangThai', '1')
-            ->get());
+                ->where('trangThai', '1')
+                ->get());
 
         $foods = DoAn::join('ChiTietRap as CTR', 'DoAn.maChiTietRap', '=', 'CTR.maChiTietRap')
             ->join('PHONG', 'PHONG.maChiTietRap', '=', 'CTR.maChiTietRap')
@@ -194,7 +206,7 @@ class PhimController extends Controller
                     'name' => $chair->tenGhe,
                     'type' => $chair->loaiGhe,
                     'status' => $chair->trangThai == 2 ? 'occupied' : '',
-                    'price' => $chair->gia
+                    'price' => $chair->gia,
                 ];
             }
             $result[] = [
@@ -205,7 +217,7 @@ class PhimController extends Controller
         //dd($result);
         return response()->json([
             'status' => 200,
-            'chairs' => $result
+            'chairs' => $result,
         ]);
     }
 

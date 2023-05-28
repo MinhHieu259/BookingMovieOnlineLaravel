@@ -59,6 +59,7 @@ class RapController extends Controller
             ->leftJoin('PHONG', 'PHONG.maPhong', '=', 'SC.maPhong')
             ->leftJoin('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
             ->leftJoin('HinhAnhPhim as HA', 'HA.maPhim', 'PHIM.maPhim')
+            ->leftJoin('NgonNgu', 'NgonNgu.maNgonNgu', '=', 'PHIM.maNgonNgu')
             ->where('SC.ngayChieu', $dateActive)
             ->where('CTR.maChiTietRap', $maRap)
             ->get();
@@ -83,6 +84,7 @@ class RapController extends Controller
                         'linkTrailer' => $result->linkTrailer,
                         'gioiHanTuoi' => $result->gioiHanTuoi,
                         'thoiLuong' => $result->thoiLuong,
+                        'tenNgonNgu' => $result->tenNgonNgu,
                         'suatChieu' => [$suatChieu]
                     ];
                 } else {

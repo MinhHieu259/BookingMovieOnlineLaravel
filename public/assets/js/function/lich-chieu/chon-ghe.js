@@ -294,9 +294,31 @@ function checkPageBtnContinue() {
             // window.location.href = "/";
             let typePay = $('input[name="payType"]:checked').val()
             if (typePay == 'momo') {
-                window.location.href = '/thanh-toan-momo?orderMoney=' + totalBill + '&foods=' + encodeURIComponent(JSON.stringify(arrayFood)) +
-                    '&listSeats=' + encodeURIComponent(JSON.stringify(listSeatSelected)) + '&maPhim=' + $('#maPhimHidden').val() +
-                    '&maPhong=' + $('#maPhongHidden').val() + '&maSuatChieu=' + atob(window.location.href.split('/').pop())
+                var formData = new FormData();
+                formData.append('orderMoney', totalBill);
+                formData.append('maPhim', $('#maPhimHidden').val());
+                formData.append('maPhong', $('#maPhongHidden').val());
+                formData.append('foods', JSON.stringify(arrayFood));
+                formData.append('listSeats', JSON.stringify(listSeatSelected));
+                $.ajax({
+                    type: "POST",
+                    url: "/check-seat-momo/" + atob(window.location.href.split('/').pop()),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.status == 200) {
+                            window.location.href = '/thanh-toan-momo?orderMoney=' + totalBill + '&foods=' + encodeURIComponent(JSON.stringify(arrayFood)) +
+                            '&listSeats=' + encodeURIComponent(JSON.stringify(listSeatSelected)) + '&maPhim=' + $('#maPhimHidden').val() +
+                            '&maPhong=' + $('#maPhongHidden').val() + '&maSuatChieu=' + atob(window.location.href.split('/').pop())
+                        } else {
+                            showPopupMessage('popupMessage', response.message)
+                        }
+                    },
+                    error: function (error) {
+
+                    }
+                });
             } else if (typePay == 'credit') {
                 var formData = new FormData();
                 formData.append('orderMoney', totalBill);

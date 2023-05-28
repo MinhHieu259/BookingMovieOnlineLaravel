@@ -15,7 +15,10 @@ class PageController extends Controller
         ->join('HinhAnhPhim as HA', 'PHIM.maPhim', '=', 'HA.maPhim')
         ->select('PHIM.*', 'HA.linkHinhAnh')
         ->get();
-        $post = PostModel::where('deleted', '1')->get();
+        $post = PostModel::leftJoin('Admin', 'Admin.maAdmin', '=', 'BaiViet.maNguoiDang')
+        ->where('deleted', '1')
+        ->orderBy('maBaiViet', 'DESC')
+        ->get();
         return view('components.user.trang-chu', compact('films', 'post'));
     }
 
