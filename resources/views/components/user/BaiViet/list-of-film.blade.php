@@ -21,31 +21,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-7">
-                            <div class="btn-block text-sm-left text-center mb-3">
-                                <a href="#" class="btn btn-light btn-sm btn-do-movie-like" data-id="16293"
-                                    data-token="b5fe9dd8b610c730f7bbbbdf76c8a4b.3qTO8ORJ9vAak7AIPcG3rMHzyQLvHubLj4vl4GLWjaY.iszjvdMOvrQi_PlsX-zwxJSq8WyEa7Kk5-3Qmhfj6N6d6oqlsSCfnn7M2w">
-                                    <i class="icon-heart"></i>
-                                    Thích
-                                </a>
-
-                                <a href="/movie/rate/16293" class="btn btn-white btn-sm btn-do-movie-rate"
-                                    data-toggle="modal" data-target="#ratingModal" rel="tooltip" title="Soạn đánh giá"
-                                    data-backdrop="static" data-keyboard="false">
-                                    <i class="icon-star"></i>
-                                    Đánh giá
-                                </a>
-
-                                <a href="/video/17897/" class="btn btn-outline-light btn-sm" data-toggle="modal"
-                                    data-target="#videoModal" data-video-id="17897" data-video-url="UQi44Yoef98"
-                                    data-remote="false">
-                                    Trailer
-                                </a>
-
-                                <a href="/mua-ve/{{ $film->slug }}" class="btn btn-danger btn-sm">
-                                    Mua vé
-                                </a>
-                            </div>
-
+                          
                             <p class="mb-3 text-justify">
                                 {{ $film->moTaPhim }}
                             </p>

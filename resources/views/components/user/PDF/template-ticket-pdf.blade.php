@@ -6,7 +6,7 @@
     <style>
         body {
             background-color: #9d9898;
-            font-family: Arial, sans-serif;
+            font-family: "Arial", "sans-serif";
             display: flex;
             justify-content: center;
         }
@@ -27,6 +27,10 @@
             height: 100px;
             border-radius: 10px;
         }
+        @font-face {
+            font-family: 'Arial';
+        }
+
 
     </style>
 </head>

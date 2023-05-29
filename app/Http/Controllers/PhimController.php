@@ -227,6 +227,20 @@ class PhimController extends Controller
         $filmResults = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
             ->where('tenPhim', 'like', '%' . $q . '%')
             ->get();
-        return view('components.user.Phim.kq-tim-kiem', compact('q', 'filmResults'));
+        $postResults = PostModel::leftjoin('PHIM', 'PHIM.maPhim', '=', 'BaiViet.maPhim')
+            ->leftJoin('DanhMucPhim as DM', 'DM.maDanhMuc', 'PHIM.maDanhMuc')
+            ->leftJoin('Admin as AM', 'AM.maAdmin', 'BaiViet.maNguoiDang')
+            ->where('tieuDe', 'like', '%' . $q . '%')
+            ->orWhere('moTa', 'like', '%' . $q . '%')
+            ->orWhere('noiDung', 'like', '%' . $q . '%')
+            ->select('DM.*',
+                'AM.*',
+                'BaiViet.tieuDe',
+                'BaiViet.moTa',
+                'BaiViet.thoiGianDang',
+                'BaiViet.slug as postSlug',
+                'BaiViet.hinhAnh')
+            ->get();
+        return view('components.user.Phim.kq-tim-kiem', compact('q', 'filmResults', 'postResults'));
     }
 }

@@ -170,7 +170,7 @@
 
                 <li class="nav-item {{Route::currentRouteName() == 'admin.ThongKeDoanhThu' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.ThongKeDoanhThu' ? 'active' : ''}}">
-                        <i class="nav-icon fa-solid fa-film"></i>
+                        <i class="fa-solid fa-chart-pie"></i>
                         <p>
                             Thống kê
                             <i class="right fas fa-angle-left"></i>
@@ -188,7 +188,7 @@
 
                 <li class="nav-item {{Route::currentRouteName() == 'admin.bai-viet.index' || Route::currentRouteName() == 'admin.bai-viet.add' || Route::currentRouteName() == 'admin.bai-viet.edit' ? 'menu-is-opening menu-open' : ''}}">
                     <a href="#" class="nav-link {{Route::currentRouteName() == 'admin.bai-viet.index' || Route::currentRouteName() == 'admin.bai-viet.add' || Route::currentRouteName() == 'admin.bai-viet.edit' ? 'active' : ''}}">
-                        <i class="nav-icon fa-solid fa-film"></i>
+                        <i class="fa-brands fa-blogger"></i>
                         <p>
                             Quản lý bài viết
                             <i class="right fas fa-angle-left"></i>
