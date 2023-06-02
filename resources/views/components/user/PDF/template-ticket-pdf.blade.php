@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Thông tin vé</title>
     <style>
+          * { font-family: DejaVu Sans !important; }
         body {
             background-color: #9d9898;
             font-family: "Arial", "sans-serif";
@@ -35,7 +36,8 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container" style="display: flex">
+    @foreach ($dataDonHang->thongTinDonHang->veInfor->gheDisplay as $ve)
     <div class="ticket">
      <div class="div-top" style="display: flex">
          <img class="image-ticket"
@@ -53,12 +55,13 @@
             <p style="margin-left: 10px"><strong>Phòng:</strong> {{$dataDonHang->suatChieu[0]->tenPhong}}</p>
             <p style="margin-left: 10px"><strong>Số vé:</strong> {{$dataDonHang->thongTinDonHang->soVe}}</p>
             <p style="margin-left: 10px"><strong>Số ghế:</strong> @php
-                    $gheDisplayString = implode(', ', $dataDonHang->thongTinDonHang->veInfor->gheDisplay)
+                    // $gheDisplayString = implode(', ', $dataDonHang->thongTinDonHang->veInfor->gheDisplay)
+                    $gheDisplayString = $ve
                 @endphp
                 {{$gheDisplayString}}</p>
         </div>
     </div>
-
+@endforeach
 </div>
 </body>
 </html>

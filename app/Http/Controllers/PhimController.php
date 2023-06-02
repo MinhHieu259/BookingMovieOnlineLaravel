@@ -24,9 +24,10 @@ class PhimController extends Controller
 {
     public function DangChieu()
     {
+        $currentDate = Carbon::now()->format('d/m/Y');
         $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
             ->where('PHIM.deleted', '1')
-            ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->whereRaw("CONVERT(DATE, ngayKhoiChieu, 103) < CONVERT(DATE, '{$currentDate}', 103)")
             ->get();
         $categorys = DanhMucPhim::all();
         $ngonNgus = NgonNgu::all();
@@ -35,11 +36,12 @@ class PhimController extends Controller
 
     public function GetListDangChieu(Request $request)
     {
+        $currentDate = Carbon::now()->format('d/m/Y');
         $maDanhMuc = $request->input('danhMuc');
         $ngonNgu = $request->input('ngonNgu');
         $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
             ->where('PHIM.deleted', '1')
-            ->where('ngayKhoiChieu', '<', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->whereRaw("CONVERT(DATE, ngayKhoiChieu, 103) < CONVERT(DATE, '{$currentDate}', 103)")
             ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
                 return $query->where('maDanhMuc', $maDanhMuc);
             })
@@ -54,9 +56,10 @@ class PhimController extends Controller
 
     public function SapChieu()
     {
+        $currentDate = Carbon::now()->format('d/m/Y');
         $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
             ->where('PHIM.deleted', '1')
-            ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->whereRaw("CONVERT(DATE, ngayKhoiChieu, 103) > CONVERT(DATE, '{$currentDate}', 103)")
             ->get();
         $categorys = DanhMucPhim::all();
         $ngonNgus = NgonNgu::all();
@@ -65,11 +68,12 @@ class PhimController extends Controller
 
     public function GetListSapChieu(Request $request)
     {
+        $currentDate = Carbon::now()->format('d/m/Y');
         $maDanhMuc = $request->input('danhMuc');
         $ngonNgu = $request->input('ngonNgu');
         $films = Phim::join('HinhAnhPhim as HA', 'HA.maPhim', '=', 'PHIM.maPhim')
             ->where('PHIM.deleted', '1')
-            ->where('ngayKhoiChieu', '>', Carbon::now()->isoFormat('DD/MM/YYYY'))
+            ->whereRaw("CONVERT(DATE, ngayKhoiChieu, 103) > CONVERT(DATE, '{$currentDate}', 103)")
             ->when($maDanhMuc, function ($query) use ($maDanhMuc) {
                 return $query->where('maDanhMuc', $maDanhMuc);
             })

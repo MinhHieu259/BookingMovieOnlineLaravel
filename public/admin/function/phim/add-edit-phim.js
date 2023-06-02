@@ -38,7 +38,7 @@ function uploadImage() {
 
             var deleteButtonHtml = '<button class="btn btn-danger btn-delete-image"  data-index="' + index + '">Xóa</button>';
 
-            var imgHtml = '<img width="500" src="' + url + '" alt="Image preview">';
+            var imgHtml = '<img style="width:100px" src="' + url + '" alt="Image preview">';
 
             var imageContainerHtml = '<div class="image-container">' + imgHtml + deleteButtonHtml + '</div>';
             $("#image-preview-container").append(imageContainerHtml);
@@ -165,7 +165,7 @@ function updateImage(){
             // Thiết lập thuộc tính src của thẻ img để hiển thị hình ảnh đó
             var img = $('<img>')
             img.css('margin-top', '20px')
-            img.css('width', '500px')
+            img.css('width', '200px')
 
             // Thiết lập thuộc tính src của thẻ img để hiển thị hình ảnh
             img.attr('src', e.target.result)

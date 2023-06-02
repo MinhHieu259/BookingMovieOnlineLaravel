@@ -104,7 +104,7 @@
                 </li>
 
                 <li class="nav-item d-none d-sm-block">
-                    <a href="/tin-tuc/ant-man-and-the-wasp-quantumania/1ed03939-b71d-69b6-8ed3-02d6e652ea62"
+                    <a href="{{route('TinTucByFilm', ['slug' => $film->slug])}}"
                         class="nav-link text-center">
                         Tin tức
                     </a>

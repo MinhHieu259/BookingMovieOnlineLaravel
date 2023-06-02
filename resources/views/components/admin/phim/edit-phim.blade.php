@@ -251,7 +251,7 @@
                                   </div>
                                     <div id="image-preview-container">
                                         @if(isset($imageOfFilm[0]))
-                                            <img style="margin-top: 20px; width: 500px;" src="{{asset($imageOfFilm[0])}}" alt="">
+                                            <img style="margin-top: 20px; width: 200px;" src="{{asset($imageOfFilm[0])}}" alt="">
                                         @endif
                                     </div>
                                     <div class="col-md-6">

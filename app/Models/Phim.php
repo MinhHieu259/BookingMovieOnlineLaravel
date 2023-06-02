@@ -14,7 +14,7 @@ class Phim extends Model
     protected $primaryKey = 'maPhim';
     public $timestamps = false;
     protected $casts = [
-        'maPhim' => 'string',
+        'maPhim' => 'string'
 //        'maDienVien' => 'array',
 //        'maDaoDien' => 'array',
 //        'maNhaSanXuat' => 'array'
