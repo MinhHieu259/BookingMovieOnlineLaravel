@@ -35,7 +35,7 @@ class SuatChieuController extends Controller
             ->get();
         return response()->json([
             'status' => 200,
-            'suatChieus' => $suatChieus
+            'suatChieus' => $suatChieus,
         ]);
     }
 
@@ -51,7 +51,7 @@ class SuatChieuController extends Controller
         $rooms = Phong::where('maChiTietRap', $maCumRap)->where('deleted', 1)->get();
         return response()->json([
             'status' => 200,
-            'rooms' => $rooms
+            'rooms' => $rooms,
         ]);
     }
 
@@ -67,7 +67,7 @@ class SuatChieuController extends Controller
         } else {
             return response()->json([
                 'status' => 200,
-                'message' => 'Hiển thị popup'
+                'message' => 'Hiển thị popup',
             ]);
         }
     }
@@ -82,19 +82,19 @@ class SuatChieuController extends Controller
                 ->where('maPhim', $request->input('maPhim'))->where('maPhong', $request->input('phongChieu'))->first()) {
                 return response()->json([
                     'status' => 500,
-                    'message' => 'Suất chiếu đã tồn tại'
+                    'message' => 'Suất chiếu đã tồn tại',
                 ]);
             } else {
                 $phim = Phim::where('maPhim', $request->input('maPhim'))->first();
                 $ngayKhoiChieuFormat = Carbon::createFromFormat('d/m/Y', $phim->ngayKhoiChieu);
                 $ngayChieuFormat = Carbon::createFromFormat('d/m/Y', $request->input('ngayChieu'));
-                if ($ngayChieuFormat->gte($ngayKhoiChieuFormat)){
+                if ($ngayChieuFormat->gte($ngayKhoiChieuFormat)) {
                     $suatChieu::create([
                         'maSuatChieu' => '',
                         'ngayChieu' => $request->input('ngayChieu'),
                         'gioChieu' => $request->input('gioChieu'),
                         'maPhim' => $request->input('maPhim'),
-                        'maPhong' => $request->input('phongChieu')
+                        'maPhong' => $request->input('phongChieu'),
                     ]);
                     DB::commit();
                     //get maSuatChieu sau khi insert
@@ -107,7 +107,7 @@ class SuatChieuController extends Controller
                     foreach ($chairs as $index => $chair) {
                         $loaiGhe = $index + 1 == $numDayGhe ? 'double' : '';
                         $gia = $index + 1 == $numDayGhe ? '2' : '1';
-                        for ($i = 0; $i < (int)$chair->soGheMoiDay; $i++) {
+                        for ($i = 0; $i < (int) $chair->soGheMoiDay; $i++) {
                             $indexGhe = $i + 1;
                             $chiTietDayGhe = new ChiTietDayGhe();
                             $chiTietDayGhe::create([
@@ -117,7 +117,7 @@ class SuatChieuController extends Controller
                                 'loaiGhe' => $loaiGhe,
                                 'gia' => $gia,
                                 'trangThai' => 1,
-                                'maSuatChieu' => $maSuatChieu
+                                'maSuatChieu' => $maSuatChieu,
                             ]);
                             DB::commit();
                         }
@@ -125,12 +125,12 @@ class SuatChieuController extends Controller
                     return response()->json([
                         'status' => 200,
                         'message' => 'Thêm mới suất chiếu thành công',
-                        'chairs' => $chairs
+                        'chairs' => $chairs,
                     ]);
                 } else {
                     return response()->json([
                         'status' => 500,
-                        'message' => 'Ngày chiếu phim phải lớn hơn hoặc bằng ngày khởi chiếu'
+                        'message' => 'Ngày chiếu phim phải lớn hơn hoặc bằng ngày khởi chiếu',
                     ]);
                 }
             }
@@ -138,7 +138,7 @@ class SuatChieuController extends Controller
             DB::rollback();
             return response()->json([
                 'status' => 500,
-                'message' => $e
+                'message' => $e,
             ]);
         }
     }
@@ -153,13 +153,13 @@ class SuatChieuController extends Controller
             DB::commit();
             return response()->json([
                 'status' => 200,
-                'message' => 'Xóa suất chiếu thành công'
+                'message' => 'Xóa suất chiếu thành công',
             ]);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
                 'status' => 500,
-                'message' => $e
+                'message' => $e,
             ]);
         }
     }
@@ -190,12 +190,12 @@ class SuatChieuController extends Controller
         } else {
             return response()->json([
                 'status' => 200,
-                'message' => 'Hiển thị popup'
+                'message' => 'Hiển thị popup',
             ]);
         }
     }
 
-    function updateSuatChieu(Request $request, $maSuatChieu)
+    public function updateSuatChieu(Request $request, $maSuatChieu)
     {
         DB::beginTransaction();
         try {
@@ -206,13 +206,13 @@ class SuatChieuController extends Controller
             DB::commit();
             return response()->json([
                 'status' => 200,
-                'message' => 'Cập nhật suất chiếu thành công'
+                'message' => 'Cập nhật suất chiếu thành công',
             ]);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
                 'status' => 500,
-                'message' => $e
+                'message' => $e,
             ]);
         }
 
@@ -220,7 +220,19 @@ class SuatChieuController extends Controller
 
     public function detailChair($maPhong, $maSuatChieu)
     {
-        return view('components.admin.suat-chieu.chi-tiet-ghe');
+        $suatChieuInfor = SuatChieu::join('PHIM', 'PHIM.maPhim', '=', 'SuatChieu.maPhim')
+            ->join('PHONG', 'PHONG.maPhong', '=', 'SuatChieu.maPhong')
+            ->join('ChiTietRap as CTR', 'CTR.maChiTietRap', '=', 'PHONG.maChiTietRap')
+            ->select('SuatChieu.*', 'PHONG.tenPhong', 'CTR.tenRap', 'PHIM.tenPhim', 'PHIM.giaVe', 'PHIM.maPhim')
+            ->where('SuatChieu.maSuatChieu', $maSuatChieu)
+            ->first();
+
+        $countSeat = count(ChiTietDayGhe::where('maSuatChieu', $maSuatChieu)
+                ->get());
+        $countSeatFree = count(ChiTietDayGhe::where('maSuatChieu', $maSuatChieu)
+                ->where('trangThai', '1')
+                ->get());
+        return view('components.admin.suat-chieu.chi-tiet-ghe', compact('suatChieuInfor', 'countSeat', 'countSeatFree'));
     }
 
     public function getListChair($maSuatChieu)
@@ -251,7 +263,7 @@ class SuatChieuController extends Controller
         }
         return response()->json([
             'status' => 200,
-            'chairs' => $result
+            'chairs' => $result,
         ]);
     }
 }

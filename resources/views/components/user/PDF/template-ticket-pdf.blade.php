@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Thông tin vé</title>
-    <style>
+    <style type="text/css">
           * { font-family: DejaVu Sans !important; }
         body {
             background-color: #9d9898;
