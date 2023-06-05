@@ -5,6 +5,8 @@ function UpdateAccount() {
         formData.append('hoVaTen', $('#hoVaTen').val());
         formData.append('soDienThoai', $('#soDienThoai').val());
         formData.append('user_avatar', $('#user_avatar')[0].files[0]);
+        formData.append('ngaySinh', $('#ngaySinh').val());
+        formData.append('gioiTinh', $("input[type='radio'][name='gioiTinh']:checked").val());
         $.ajax({
             type: "POST",
             url: "cap-nhat-tai-khoan",

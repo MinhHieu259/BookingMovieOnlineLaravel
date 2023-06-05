@@ -29,6 +29,8 @@ class UserController extends Controller
             $nguoiDung = NguoiDung::find(Auth::guard('nguoidung')->user()->maNguoiDung);
             $nguoiDung->hoVaTen = $request->input('hoVaTen');
             $nguoiDung->soDienThoai = $request->input('soDienThoai');
+            $nguoiDung->ngaySinh = date("d/m/Y", strtotime($request->input('ngaySinh')));
+            $nguoiDung->gioiTinh = $request->input('gioiTinh');
 
             if ($request->hasFile('user_avatar')) {
                 if (file_exists($nguoiDung->anhDaiDien)) {

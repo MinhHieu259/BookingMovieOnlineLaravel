@@ -76,7 +76,6 @@
                       <div class="dropdown-menu dropdown-menu-right" style="left: -145px !important;">
                           <a href="{{route('UpdateUserView')}}" class="dropdown-item">Quản lý tài khoản</a>
                           <hr class="dropdown-divider">
-                          <a href="/user/diary" class="dropdown-item">Tủ phim</a>
                           <a href="{{route('NapTienView')}}" class="dropdown-item">Nạp tiền</a>
                           <a href="{{route('HistoryOrderView')}}" class="dropdown-item">Lịch sử mua vé</a>
                           <hr class="dropdown-divider">

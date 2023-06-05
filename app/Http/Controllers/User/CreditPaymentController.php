@@ -54,6 +54,7 @@ class CreditPaymentController extends Controller
                 $lichSuDat->maNguoiDung = Auth::guard('nguoidung')->user()->maNguoiDung;
                 $lichSuDat->loaiThanhToan = 'credit';
                 $lichSuDat->maSuatChieu = $maSuatChieu;
+                $lichSuDat->maPhim = $request->input('maPhim');
                 $lichSuDat->save();
 
                 $lichSuAfter = LichSuDat::where('thoiGianDat', $timeBook)

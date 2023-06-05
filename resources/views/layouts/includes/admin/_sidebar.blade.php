@@ -183,6 +183,12 @@
                                 <p>Thống kê doanh thu</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.ThongKeXuHuong')}}" class="nav-link {{Route::currentRouteName() == 'admin.ThongKeXuHuong' ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thống kê xu hướng xem phim</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

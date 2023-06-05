@@ -70,6 +70,9 @@ class MoMoPaymentController extends Controller
         $maSuatChieu = $request->input('maSuatChieu');
         $session->put('maSuatChieu', $maSuatChieu);
 
+        $maPhim = $request->input('maPhim');;
+        $session->put('maPhim', $maPhim);
+
         $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
         $partnerCode = "MOMOBKUN20180529";
         $accessKey = "klm05TvNBzhg7h7j";
@@ -120,6 +123,7 @@ class MoMoPaymentController extends Controller
             $lichSuDat->maNguoiDung = Auth::guard('nguoidung')->user()->maNguoiDung;
             $lichSuDat->loaiThanhToan = 'momo';
             $lichSuDat->maSuatChieu = $session->get('maSuatChieu');
+            $lichSuDat->maPhim = $session->get('maPhim');
             $lichSuDat->save();
 
             $lichSuAfter = LichSuDat::where('thoiGianDat', date("d/m/Y H:i:s", strtotime($request->input('responseTime'))))

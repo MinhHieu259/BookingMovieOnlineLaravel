@@ -13,4 +13,6 @@ Route::prefix('admin')->middleware('isAdminWeb')->group(function() {
     Route::get('/thong-ke-doanh-thu', [ThongKeController::class, 'ThongKeDoanhThu'])->name('admin.ThongKeDoanhThu');
     Route::get('/get-data-doanh-thu', [ThongKeController::class, 'GetDataDoanhThu'])->name('admin.GetDataDoanhThu');
 
+    Route::get('/thong-ke-xu-huong', [ThongKeController::class, 'ThongKeXuHuong'])->name('admin.ThongKeXuHuong');
+    Route::get('/get-data-xu-huong', [ThongKeController::class, 'GetDataXuHuong'])->name('admin.GetDataXuHuong');
 });
