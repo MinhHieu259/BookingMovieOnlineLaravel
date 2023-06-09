@@ -212,6 +212,7 @@ class UserController extends Controller
         //return $dataDonHang;
         $jsonData = $dataDonHang->getData();
         $pdf_ticket_view = PDF::loadView('components.user.PDF.template-ticket-pdf', ['dataDonHang' => $jsonData]);
+        //return $jsonData;
         return $pdf_ticket_view->download('test.pdf');
         //return view('components.user.PDF.template-ticket-pdf', ['dataDonHang' => $jsonData]);
     }

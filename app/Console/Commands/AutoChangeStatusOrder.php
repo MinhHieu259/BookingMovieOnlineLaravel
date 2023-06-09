@@ -45,13 +45,16 @@ class AutoChangeStatusOrder extends Command
         $datePart = $parts[0];
         $timePart = $parts[1];
         $bookHistory = LichSuDat::join('SuatChieu as SC', 'SC.maSuatChieu', '=', 'LichSuDat.maSuatChieu')
-            ->where('LichSuDat.trangThai', '1')
-            ->where('SC.ngayChieu', '<', $datePart)
-            ->orWhere(function ($query) use ($datePart, $timePart) {
-                $query->where('SC.ngayChieu', $datePart)
-                    ->where('SC.gioChieu', '<', $timePart);
-            })
-            ->get();
+        ->where('LichSuDat.trangThai', '1')
+        ->where(function ($query) use ($datePart, $timePart) {
+            $query->whereRaw("CONVERT(DATE, SC.ngayChieu, 103) < CONVERT(DATE, '{$datePart}', 103)")
+                ->orWhere(function ($query) use ($datePart, $timePart) {
+                    $query->whereRaw("CONVERT(DATE, SC.ngayChieu, 103) = CONVERT(DATE, '{$datePart}', 103)")
+                        ->where('SC.gioChieu', '<', $timePart);
+                });
+        })
+        ->get();
+    
 
         foreach ($bookHistory as $bookingHistory) {
             $bookingHistory->trangThai = '2';
