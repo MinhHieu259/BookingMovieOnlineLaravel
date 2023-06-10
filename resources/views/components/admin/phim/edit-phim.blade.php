@@ -258,6 +258,25 @@
                                         <button type="button" style="display:none;" class="float-right mt-5 btn btn-danger" id="delete-image-film">Xóa</button>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="hinhAnh">Slider</label>
+                                            <br>
+                                              <button type="button" id="btn-upload-slider-edit" class="btn btn-success">Cập nhật slider</button>
+                                            <input type="file" id="slider-film-edit" style="display: none;" multiple>
+                                        </div>
+                                    </div>
+                                      <div id="slider-preview-container">
+                                          @if($phim->slider)
+                                              <img style="margin-top: 20px; width: 200px;" src="{{asset($phim->slider)}}" alt="">
+                                          @endif
+                                      </div>
+                                      <div class="col-md-6">
+                                          <button type="button" style="display:none;" class="float-right mt-5 btn btn-danger" id="delete-slider-film">Xóa</button>
+                                      </div>
+                                  </div>
 
                             </div>
                             <!-- /.card-body -->

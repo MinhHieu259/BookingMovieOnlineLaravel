@@ -214,6 +214,35 @@ class PhimController extends Controller
                 }
             }
 
+            if($phim->slider){
+                if ($request->hasFile('slider')) {
+
+                    if (isset($phim->slider)){
+                        if (file_exists($phim->slider)) {
+                            unlink($phim->slider);
+                        }
+                    }
+
+                    $file = $request->file('slider');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $file->getClientOriginalName() . time() . '.' . $extension;
+                    $file->move('uploads/slider/', $filename);
+
+                    $phim->slider = 'uploads/slider/' . $filename;
+                    $phim->save();
+                }
+            } else {
+                if ($request->hasFile('slider')) {
+                    $file = $request->file('slider');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = $file->getClientOriginalName() . time() . '.' . $extension;
+                    $file->move('uploads/slider/', $filename);
+
+                    $phim->slider = 'uploads/slider/' . $filename;
+                    $phim->save();
+                }
+            }
+
 
 //            if($phim->wasRecentlyCreated){
             return response()->json([

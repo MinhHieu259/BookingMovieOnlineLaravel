@@ -49,6 +49,9 @@
         @yield('content')
     </div>
 </div>
+@include('layouts.includes.user.popup.rap.popup-rap')
+@include('commons.popup.popup-message')
+@stack('popup')
 <script
     src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -169,9 +172,6 @@
     </div>
 </div>
 <!--Modal province-->
-@include('layouts.includes.user.popup.rap.popup-rap')
-@include('commons.popup.popup-message')
-@stack('popup')
 </body>
 </html>
 

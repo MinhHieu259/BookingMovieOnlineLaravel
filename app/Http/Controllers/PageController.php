@@ -19,7 +19,8 @@ class PageController extends Controller
         ->where('deleted', '1')
         ->orderBy('maBaiViet', 'DESC')
         ->get();
-        return view('components.user.trang-chu', compact('films', 'post'));
+        $sliders = Phim::where('slider', '<>', null)->get();
+        return view('components.user.trang-chu', compact('films', 'post', 'sliders'));
     }
 
     public function AccessDenied()

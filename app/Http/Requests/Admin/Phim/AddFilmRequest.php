@@ -60,6 +60,9 @@ class AddFilmRequest extends FormRequest
             ],
             'maNgonNgu' => [
                 'required'
+            ],
+            'slider' => [
+                'nullable'
             ]
         ];
         return $rules;

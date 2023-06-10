@@ -13,8 +13,11 @@ var dienVien = $('#dienVien')
 var nhaSanXuat = $('#nhaSanXuat')
 var daoDien = $('#daoDien')
 var inputImageFilm = $('#image-film-edit')
+var inputSilderFilm = $('#slider-film-edit')
 var avatarPreview = $('#image-preview-container')
+var sliderPreview = $('#slider-preview-container')
 var buttonDelete = $('#delete-image-film')
+var buttonDeleteSlider = $('#delete-slider-film')
 
 function uploadImage() {
 
@@ -193,6 +196,42 @@ function updateImage(){
         // Mở file dialog để người dùng chọn hình ảnh
         $("#image-film-edit").click();
     });
+
+    inputSilderFilm.on('change', () => {
+        var file = inputSilderFilm.get(0).files[0]
+        var reader = new FileReader()
+        reader.onload = function (e) {
+            // Thiết lập thuộc tính src của thẻ img để hiển thị hình ảnh đó
+            var img = $('<img>')
+            img.css('margin-top', '20px')
+            img.css('width', '200px')
+
+            // Thiết lập thuộc tính src của thẻ img để hiển thị hình ảnh
+            img.attr('src', e.target.result)
+
+            // Thêm thẻ img vào div
+            sliderPreview.html(img)
+
+            //Show button delete
+            buttonDeleteSlider.show()
+        };
+        reader.readAsDataURL(file)
+    })
+
+    //Click button delete
+    buttonDeleteSlider.on('click', function (e) {
+        e.preventDefault()
+        sliderPreview.html('')
+        // Xóa giá trị của thẻ input bằng cách thiết lập giá trị là rỗng
+        inputSilderFilm.val('')
+        // Ẩn nút "Xóa"
+        buttonDeleteSlider.hide()
+    })
+
+    $("#btn-upload-slider-edit").on("click", function () {
+        // Mở file dialog để người dùng chọn hình ảnh
+        $("#slider-film-edit").click();
+    });
 }
 
 function updateFilm(e)
@@ -212,6 +251,7 @@ function updateFilm(e)
     formData.append('thoiLuong', $('#thoiLuongEdit').val());
     formData.append('gioiHanTuoi', $('#gioiHanTuoiEdit').val());
     formData.append('maNgonNgu', $('#maNgonNguEdit').val());
+    formData.append('slider', inputSilderFilm[0].files[0]);
     $.ajax({
         type: "POST",
         url: "/admin/update-phim/"+window.location.href.split('/').pop(),

@@ -56,15 +56,7 @@
         </form>
         <div class="area-right-nav">
           <div class="row">
-              <a
-                  href="#"
-                  class="province-logo-nav"
-                  data-toggle="modal"
-                  data-target="#modelProvince"
-              >
-                  <i class="fa-solid fa-map-location-dot"></i>
-              </a>
-
+          
               @if(Auth::guard('nguoidung')->check())
                   <div class="dropdown show">
                       <!-- Toggle -->
